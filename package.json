@@ -1,4 +1,24 @@
-- name: Checkout
-    uses: actions/checkout@v2
-    with:
-      fetch-depth: 0
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+  },
+  "devDependencies": {
+    "@mdi/font": "^7.2.96",
+    "@nuxt/devtools": "latest",
+    "@types/node": "^18.17.0",
+    "nuxt": "^3.6.5",
+    "push-dir": "^0.4.1"
+  },
+  "dependencies": {
+    "sass": "^1.64.1",
+    "vite-plugin-vuetify": "^1.0.2",
+    "vuetify": "^3.3.10"
+  }
+}
