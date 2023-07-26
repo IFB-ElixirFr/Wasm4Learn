@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Denecker"
+  given-names: "Thomas"
+  orcid: "https://orcid.org/0000-0003-1421-7641"
+- family-names: "Khamvongsa-Charbonnier"
+  given-names: "Lucie"
+  orcid: "https://orcid.org/0000-0002-1194-0546"
+title: "IFB-ElixirFr/sandboxbio-IFB-docs"
+version: 1.0.0
+doi: 
+date-released: 2023-07-24
+url: "https://github.com/IFB-ElixirFr/sandboxbio-IFB-docs"
