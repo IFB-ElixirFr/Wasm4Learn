@@ -4,8 +4,7 @@
 set -e
 
 # build
-npm run build
-npm run generate
+npx nuxi generate
 
 # Push modifications
 git add -A
