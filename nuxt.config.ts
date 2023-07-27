@@ -6,6 +6,10 @@ const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtConfig({
   target: 'static',
+  ssr: false,
+  nitro: {
+    preset: 'service-worker'
+  },
   buildModules: [
     '@nuxt/image',
   ],
@@ -28,7 +32,7 @@ export default defineNuxtConfig({
       }
     },
   },
-  ssr: false,
+
   app: {
     baseURL: '/R_WASM/',
   },
