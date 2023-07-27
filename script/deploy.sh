@@ -5,6 +5,7 @@ set -e
 
 # build
 npx nuxi generate
+npx nuxi generate
 
 # Push modifications
 git add -A
