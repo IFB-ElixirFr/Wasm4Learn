@@ -1,1 +1,0 @@
-import{q as a}from"./query.f287899a.js";import{n,o,c as s,t as c,q as i}from"./entry.9eb4228d.js";import"./preview.db5da7ca.js";import"./utils.c8d00964.js";const d={__name:"search",async setup(_){let t,e;const r=([t,e]=n(()=>a("/").find()),t=await t,e(),t);return(p,m)=>(o(),s("div",null,c(i(r)),1))}};export{d as default};
