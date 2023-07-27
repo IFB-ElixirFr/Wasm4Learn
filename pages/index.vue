@@ -20,7 +20,7 @@
         </div>
       </v-col>
       <v-col align-self="center" class="text-center"
-        ><img src="logoWebRFB.svg" alt="" style="height: 200px"
+        ><img src="/logoWebRFB.svg" alt="" style="height: 200px"
       /></v-col>
     </v-row>
   </v-sheet>
