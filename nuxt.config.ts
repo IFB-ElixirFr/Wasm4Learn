@@ -7,9 +7,6 @@ const { resolve } = createResolver(import.meta.url)
 export default defineNuxtConfig({
   target: 'static',
   ssr: false,
-  nitro: {
-    preset: 'service-worker'
-  },
   buildModules: [
     '@nuxt/image',
   ],
