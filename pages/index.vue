@@ -51,6 +51,7 @@
       </v-card>
     </v-col>
   </div>
+  <nuxt-link to="/search">tes</nuxt-link>
 </template>
 
 <script>

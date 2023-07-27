@@ -7,9 +7,6 @@ const { resolve } = createResolver(import.meta.url)
 export default defineNuxtConfig({
   target: 'static',
   ssr: false,
-  nitro: {
-    preset: 'service-worker'
-  },
   buildModules: [
     '@nuxt/image',
   ],
@@ -18,6 +15,9 @@ export default defineNuxtConfig({
     '@nuxt/content'
   ],
   content: {
+    experimental: {
+      clientDb: true
+    },
     highlight: {
       preload: [
         'r'
@@ -32,9 +32,10 @@ export default defineNuxtConfig({
       }
     },
   },
-
-  app: {
-    baseURL: '/R_WASM/',
+  router: {
+    options: {
+      strict: true,
+    },
   },
   css: ['vuetify/lib/styles/main.sass',
     '@mdi/font/css/materialdesignicons.min.css',],
