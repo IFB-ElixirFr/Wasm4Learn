@@ -9,6 +9,25 @@ export default defineNuxtConfig({
   buildModules: [
     '@nuxt/image',
   ],
+  modules: [
+    '@pinia/nuxt',
+    '@nuxt/content'
+  ],
+  content: {
+    highlight: {
+      preload: [
+        'r'
+      ],
+      theme: {
+        // Default theme (same as single string)
+        default: 'github-light',
+        // Theme used if `html.dark`
+        dark: 'github-dark',
+        // Theme used if `html.sepia`
+        sepia: 'monokai'
+      }
+    },
+  },
   ssr: false,
   app: {
     baseURL: '/R_WASM/',
@@ -22,5 +41,24 @@ export default defineNuxtConfig({
     define: {
       'process.env.DEBUG': false,
     },
+  },
+  pinia: {
+    autoImports: [
+      // automatically imports `defineStore`
+      'defineStore', // import { defineStore } from 'pinia'
+      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+    ],
+  },
+  render: {
+    static: {
+      setHeaders(res: any) {
+        res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp')
+        res.setHeader('Cross-Origin-Opener-Policy', 'same-origin')
+      }
+    },
+    script: [
+      { 'src': '~/webr-serviceworker.js', tagPosition: 'bodyClose' },
+      { 'src': '~/webr-worker.js', tagPosition: 'bodyClose' },
+    ],
   },
 })
