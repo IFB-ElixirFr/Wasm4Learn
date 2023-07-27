@@ -1,0 +1,1 @@
+self.importScripts('/R_WASM/server/index.mjs');
