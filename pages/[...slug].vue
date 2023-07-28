@@ -44,21 +44,23 @@
         </v-card>
       </div>
       <div style="height: 50%">
-        <v-tabs v-model="tab" class="mt-3">
-          <v-tab value="plot">Plot</v-tab>
-        </v-tabs>
-        <v-card-text>
-          <v-window v-model="tab">
-            <v-window-item value="plot">
-              <canvas
-                id="plot-canvas"
-                width="1008"
-                height="1008"
-                style="margin: auto; width: 100%; height: 100%"
-              ></canvas>
-            </v-window-item>
-          </v-window>
-        </v-card-text>
+        <v-card class="fill-height pa-2 mt-1">
+          <v-tabs v-model="tab">
+            <v-tab value="plot">Plot</v-tab>
+          </v-tabs>
+          <v-card-text class="fill-height">
+            <v-window v-model="tab">
+              <v-window-item value="plot">
+                <canvas
+                  id="plot-canvas"
+                  width="1008"
+                  height="1008"
+                  style="margin: auto; width: 100%; height: 100%"
+                ></canvas>
+              </v-window-item>
+            </v-window>
+          </v-card-text>
+        </v-card>
       </div>
     </v-col>
   </v-row>
@@ -93,8 +95,7 @@ export default {
       stderr: (line) => document.getElementById("out").append(line + "\n"),
       prompt: (p) => document.getElementById("out").append(p),
       canvasExec: (line) => {
-        let canvas = document.getElementById("plot-canvas");
-        eval(`canvas.getContext('2d').${line}`);
+        eval(`document.getElementById("plot-canvas").getContext('2d').${line}`);
       },
     });
 
@@ -136,7 +137,7 @@ export default {
       document.getElementById("out").append(this.command + "\n");
       this.command = "";
 
-      console.log( this.webRConsole.webR.objs)
+      console.log(this.webRConsole.webR.objs);
     },
     async nextBtn() {
       if (this.pos < this.tutosList.length) {
