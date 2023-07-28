@@ -158,6 +158,14 @@ Our guide is licensed under a [Creative Commons Attribution-ShareAlike 4.0 Inter
 
 ## Acknowledgement
 
-- All contributors
+* All contributors
 
 ## Ressources
+
+* [Nuxt.js](https://nuxt.com/)
+* [Nuxt/content](https://content.nuxtjs.org/)
+* [Vuetify 3](https://vuetifyjs.com/en/)
+* [vueJS 3](https://vuejs.org/)
+* [webR](https://docs.r-wasm.org/webr/latest/)
+* [Denis Puthier classes]()
+* [vue.draggable.next](https://github.com/SortableJS/vue.draggable.next)
