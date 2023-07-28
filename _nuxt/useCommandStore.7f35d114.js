@@ -1,1 +1,0 @@
-import{m as r,r as a}from"./entry.841cec3f.js";const l=r("commandStore",()=>{const e=a(null),n=a(!1);function o(u){e.value=u,n.value=!0}function t(){e.value=null,n.value=!1}return{command:e,changed:n,reset:t,updateCommand:o}});export{l as u};
