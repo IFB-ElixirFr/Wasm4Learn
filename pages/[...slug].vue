@@ -49,13 +49,13 @@
             <v-tab value="plot">Plot</v-tab>
           </v-tabs>
           <v-card-text class="fill-height">
-            <v-window v-model="tab">
-              <v-window-item value="plot">
+            <v-window v-model="tab" class="fill-height">
+              <v-window-item value="plot" class="fill-height text-center">
                 <canvas
                   id="plot-canvas"
                   width="1008"
                   height="1008"
-                  style="margin: auto; width: 100%; height: 100%"
+                  style="margin: auto; height: calc(100% - 50px)"
                 ></canvas>
               </v-window-item>
             </v-window>
