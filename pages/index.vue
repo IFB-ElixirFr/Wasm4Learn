@@ -2,24 +2,54 @@
   <v-sheet
     class="bg-indigo-lighten-5 pa-6 rounded mb-10"
     elevation="6"
-    style="height: 300px"
+    style="min-height: 300px"
   >
     <v-row class="fill-height">
-      <v-col align-self="center">
+      <v-col
+        align-self="center"
+        class="text-center"
+        xs="12"
+        sm="12"
+        md="12"
+        lg="6"
+      >
         <h1>Interactive R tutorials</h1>
         <p class="text-subtitle-1 mb-6">
-          The French Institute of Bioinformatics offers a series of tutorials on
-          the R language to introduce you to the first commands. This website
-          uses WASM technology through the
-          <a href="https://docs.r-wasm.org/webr/latest/">WebR</a> tool.
+          The French Institute of Bioinformatics (IFB) offers a series of
+          tutorials on the R language to introduce you to the first commands.
+          This website uses WASM technology through the
+          <a href="https://docs.r-wasm.org/webr/latest/">WebR</a> tool. The
+          teaching resources come from a course given by Denis Puthier (member
+          of the IFB's GT-eformation), available
+          <a href="https://github.com/dputhier/rtrainer/tree/main">here</a> .
         </p>
         <div class="d-flex justify-center mb-6">
-          <v-btn class="mx-3"><v-icon class="me-3">mdi-book</v-icon> Documentation</v-btn>
-          <v-btn class="mx-3"><v-icon class="me-3">mdi-play</v-icon> Get started</v-btn>
-          <v-btn class="mx-3"> <v-icon class="me-3">mdi-forum</v-icon> Feedbacks</v-btn>
+          <v-btn
+            class="mx-3"
+            href="https://github.com/IFB-ElixirFr/R_WASM/blob/main/README.md"
+            target="_blank"
+            ><v-icon class="me-3">mdi-book</v-icon> Documentation</v-btn
+          >
+          <v-btn class="mx-3"
+            ><v-icon class="me-3">mdi-play</v-icon> Get started</v-btn
+          >
+          <v-btn
+            class="mx-3"
+            href="https://github.com/IFB-ElixirFr/R_WASM/discussions"
+            target="_blank"
+          >
+            <v-icon class="me-3">mdi-forum</v-icon>
+            Feedbacks</v-btn
+          >
         </div>
       </v-col>
-      <v-col align-self="center" class="text-center"
+      <v-col
+        align-self="center"
+        class="text-center"
+        xs="12"
+        sm="12"
+        md="12"
+        lg="6"
         ><img src="/logoWebRFB.svg" alt="" style="height: 200px"
       /></v-col>
     </v-row>
@@ -27,8 +57,14 @@
 
   <div v-for="(n, key) in navigation" :key="key">
     <h1>{{ n.title }}</h1>
-    <v-col v-for="(c, keyC) in n.children" :key="keyC" cols="4">
-      <v-card @click="changePath(c._path)">
+    <div class="d-flex flex-wrap">
+      <v-card
+        @click="changePath(n._path, c._dir)"
+        v-for="(c, keyC) in n.children"
+        :key="keyC"
+        width="300px"
+        class="ma-5"
+      >
         <v-card-title>{{ c.title }}</v-card-title>
         <v-card-text>
           <div v-if="c.tags">
@@ -49,24 +85,25 @@
           </ul>
         </v-card-text>
       </v-card>
-    </v-col>
+    </div>
   </div>
-  <nuxt-link to="/search">tes</nuxt-link>
 </template>
 
 <script>
 export default {
   async setup(props) {
-    const tutoFolder = await queryContent("tutorial").find();
+    const tutoFolder = await queryContent("/").find();
     const { data: navigation } = await useAsyncData("navigation", () =>
       fetchContentNavigation()
     );
     return { tutoFolder, navigation };
   },
   methods: {
-    changePath(path) {
+    changePath(pathParent, id) {
       const router = useRouter();
-      router.push({ path: path });
+      console.log(pathParent + "/?id=" + id)
+      
+      router.push({ path: pathParent + "/", query: { id: id } });
     },
   },
 };

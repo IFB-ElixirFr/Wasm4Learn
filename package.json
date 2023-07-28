@@ -7,8 +7,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deploy": "sh script/deploy.sh",
-    "deploy2": "gh-pages --dotfiles -d .output/public"
+    "deploy": "nuxt generate && gh-pages --dotfiles -d .output/public"
   },
   "devDependencies": {
     "@mdi/font": "^7.2.96",

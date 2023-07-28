@@ -4,7 +4,7 @@
 set -e
 
 # build
-npx nuxi generate
+npx nuxi build
 npx nuxi generate
 
 # Push modifications

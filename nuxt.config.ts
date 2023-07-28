@@ -6,7 +6,6 @@ const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtConfig({
   target: 'static',
-  ssr: false,
   buildModules: [
     '@nuxt/image',
   ],
@@ -14,9 +13,31 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxt/content'
   ],
+  app: {
+    baseURL: '/R_WASM/',
+    head: {
+      title: 'R WASM by IFB',
+      meta: [
+        {
+          name: 'description',
+          content: 'R WASM platform to learn R with IFB'
+        }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: 'https://www.france-bioinformatique.fr/wp-content/uploads/logo-ifb-couleur.svg' }
+      ]
+    },
+  },
+  ssr: false,
+  nitro: {
+    serveStatic: true,
+  },
   content: {
     experimental: {
-      clientDb: true
+      clientDB: true
+    },
+    navigation: {
+      fields: ['_dir']
     },
     highlight: {
       preload: [
@@ -30,11 +51,6 @@ export default defineNuxtConfig({
         // Theme used if `html.sepia`
         sepia: 'monokai'
       }
-    },
-  },
-  router: {
-    options: {
-      strict: true,
     },
   },
   css: ['vuetify/lib/styles/main.sass',
@@ -54,16 +70,16 @@ export default defineNuxtConfig({
       ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
     ],
   },
+  routeRules: {
+    '/**': { prerender: true },
+    '/dashboard/**': { ssr: false }
+  },
   render: {
     static: {
       setHeaders(res: any) {
         res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp')
         res.setHeader('Cross-Origin-Opener-Policy', 'same-origin')
       }
-    },
-    script: [
-      { 'src': '~/webr-serviceworker.js', tagPosition: 'bodyClose' },
-      { 'src': '~/webr-worker.js', tagPosition: 'bodyClose' },
-    ],
+    }
   },
 })

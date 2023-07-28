@@ -30,15 +30,36 @@
       </v-card>
     </v-col>
     <v-col class="fill-height">
-      <v-card class="fill-height">
-        <v-card-text class="fill-height overflow-y-auto">
-          <pre><code id="out">Loading webR, please wait...</code></pre>
-          <v-text-field
-            v-on:keyup.enter="onEnter"
-            v-model="command"
-          ></v-text-field>
+      <div style="height: 50%">
+        <v-card class="fill-height">
+          <v-card-text class="fill-height overflow-y-auto">
+            <pre><code id="out">Loading webR, please wait...</code></pre>
+            <v-textarea
+              v-on:keyup.enter="onEnter"
+              v-model="command"
+              variant="underlined"
+              prepend-icon="mdi-chevron-right"
+            ></v-textarea>
+          </v-card-text>
+        </v-card>
+      </div>
+      <div style="height: 50%">
+        <v-tabs v-model="tab" class="mt-3">
+          <v-tab value="plot">Plot</v-tab>
+        </v-tabs>
+        <v-card-text>
+          <v-window v-model="tab">
+            <v-window-item value="plot">
+              <canvas
+                id="plot-canvas"
+                width="1008"
+                height="1008"
+                style="margin: auto; width: 100%; height: 100%"
+              ></canvas>
+            </v-window-item>
+          </v-window>
         </v-card-text>
-      </v-card>
+      </div>
     </v-col>
   </v-row>
 </template>
@@ -49,32 +70,21 @@ import { useCommandStore } from "@/stores/useCommandStore";
 import { storeToRefs } from "pinia";
 
 export default {
-  head() {
-    return {
-      script: [
-        {
-          src: "/webr-serviceworker.js",
-          body: true,
-        },
-        {
-          src: "/webr-worker.js",
-          body: true,
-        },
-      ],
-    };
-  },
   data() {
     return {
       command: "",
-      next: null,
-      prev: null,
-      prev_path: "#",
-      next_path: "#",
-      data: "",
       pos: 0,
+      data: "",
+      shelter: null,
+      tab: null,
     };
   },
   async setup() {
+    const route = useRoute();
+    const id = ref(route.query.id ? route.query.id : "");
+
+    const path = route.path + id.value;
+
     const store = useCommandStore();
     const { command } = storeToRefs(store);
 
@@ -82,8 +92,12 @@ export default {
       stdout: (line) => document.getElementById("out").append(line + "\n"),
       stderr: (line) => document.getElementById("out").append(line + "\n"),
       prompt: (p) => document.getElementById("out").append(p),
+      canvasExec: (line) => {
+        let canvas = document.getElementById("plot-canvas");
+        eval(`canvas.getContext('2d').${line}`);
+      },
     });
-    const { path } = useRoute();
+
     const tutosList = await queryContent(path).find();
 
     for (var i = tutosList.length - 1; i >= 0; i--) {
@@ -98,22 +112,8 @@ export default {
     return { webRConsole, tutosList, store, command };
   },
   async mounted() {
-    this.webRConsole.run();
-
-    const { path } = useRoute();
-    const { data } = await useAsyncData("page-data", () =>
-      queryContent(this.tutosList[this.pos]._path).findOne()
-    );
-
-    this.data = data;
-
-    const [prev, next] = await queryContent()
-      .only(["_path", "title"])
-      .findSurround(path);
-    this.prev = prev;
-    this.next = next;
-    if (prev) this.prev_path = prev._path;
-    if (next) this.next_path = next._path;
+    await this.webRConsole.run();
+    this.data = this.tutosList[this.pos];
   },
   methods: {
     async getOutput() {
@@ -135,6 +135,8 @@ export default {
       this.webRConsole.stdin(this.command);
       document.getElementById("out").append(this.command + "\n");
       this.command = "";
+
+      console.log( this.webRConsole.webR.objs)
     },
     async nextBtn() {
       if (this.pos < this.tutosList.length) {
@@ -184,5 +186,10 @@ div.prose pre {
 div.prose a {
   color: black;
   text-decoration: none;
+}
+
+pre {
+  overflow-x: auto !important;
+  margin-bottom: 10px !important;
 }
 </style>
