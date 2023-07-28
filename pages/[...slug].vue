@@ -192,4 +192,7 @@ pre {
   overflow-x: auto !important;
   margin-bottom: 10px !important;
 }
+li {
+  margin-left: 25px;
+}
 </style>
