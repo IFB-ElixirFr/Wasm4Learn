@@ -96,13 +96,14 @@ export default {
     const { data: navigation } = await useAsyncData("navigation", () =>
       fetchContentNavigation()
     );
+   
     return { tutoFolder, navigation };
   },
   methods: {
     changePath(pathParent, id) {
       const router = useRouter();
-      console.log(pathParent + "/?id=" + id)
-      
+      console.log(pathParent + "/?id=" + id);
+
       router.push({ path: pathParent + "/", query: { id: id } });
     },
   },

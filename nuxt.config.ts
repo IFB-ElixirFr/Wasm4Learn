@@ -25,7 +25,7 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: 'https://www.france-bioinformatique.fr/wp-content/uploads/logo-ifb-couleur.svg' }
-      ]
+      ],
     },
   },
   ssr: false,

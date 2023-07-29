@@ -47,6 +47,7 @@
         <v-card class="fill-height pa-2 mt-1">
           <v-tabs v-model="tab">
             <v-tab value="plot">Plot</v-tab>
+            <v-tab value="editorTab" @click="startEditor">Editor</v-tab>
           </v-tabs>
           <v-card-text class="fill-height">
             <v-window v-model="tab" class="fill-height">
@@ -57,6 +58,9 @@
                   height="1008"
                   style="margin: auto; height: calc(100% - 50px)"
                 ></canvas>
+              </v-window-item>
+              <v-window-item value="editorTab" class="fill-height text-center">
+                <div id="editorArea" style="height: 400px">some text</div>
               </v-window-item>
             </v-window>
           </v-card-text>
@@ -70,6 +74,7 @@
 import { Console } from "@r-wasm/webr";
 import { useCommandStore } from "@/stores/useCommandStore";
 import { storeToRefs } from "pinia";
+import ace from "ace-code";
 
 export default {
   data() {
@@ -79,6 +84,7 @@ export default {
       data: "",
       shelter: null,
       tab: null,
+      editorStarted: false,
     };
   },
   async setup() {
@@ -117,6 +123,14 @@ export default {
     this.data = this.tutosList[this.pos];
   },
   methods: {
+    async startEditor() {
+      console.log("hello");
+      if (!this.editorStarted) {
+        console.log("hello");
+        ace.edit("editorArea");
+        this.editorStarted = true;
+      }
+    },
     async getOutput() {
       for (;;) {
         const output = await this.webR.read();
