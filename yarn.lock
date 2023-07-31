@@ -1190,6 +1190,11 @@
   "resolved" "https://registry.npmjs.org/abbrev/-/abbrev-1.1.1.tgz"
   "version" "1.1.1"
 
+"ace-builds@^1.23.4":
+  "integrity" "sha512-a4hKAT2T7KNUQC4LQPW2peuoEsZmLYTn4Dwjkh26A3Z+fQ8/fA2JZNs3V6CqvivhbyMQXQJD1u/0qTCoSS6deA=="
+  "resolved" "https://registry.npmjs.org/ace-builds/-/ace-builds-1.23.4.tgz"
+  "version" "1.23.4"
+
 "ace-code@^1.23.4":
   "integrity" "sha512-IlJSTQ9yVTvQm819Snk+bCnm9C5QtjXx5EEETud7pn9DsQi6cNTMnl+VuLWE9RUU0op0XXzPER8dUbj1qnkmsQ=="
   "resolved" "https://registry.npmjs.org/ace-code/-/ace-code-1.23.4.tgz"

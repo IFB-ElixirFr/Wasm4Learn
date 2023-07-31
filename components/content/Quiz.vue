@@ -1,5 +1,5 @@
 <template>
-  <v-card :color="color" class="pa-4 my-4 text-white">
+  <v-card :color="color" class="pa-4 my-4 text-white" :id="id">
     <h3>{{ question }}</h3>
     <v-radio-group v-if="type == 'simple'" v-model="radios">
       <v-radio
@@ -36,6 +36,12 @@ export default {
       message: "",
       checkedNames: ref([]),
     };
+  },
+  setup(props) {
+    console.log(props.question);
+    const id = getHash(props.question);
+    console.log(id);
+    return { id };
   },
   methods: {
     async submit() {
