@@ -9,7 +9,7 @@
       <v-expansion-panels>
         <v-expansion-panel title="Solution">
           <v-expansion-panel-text>
-            <pre><code>{{ solution.replace(/\n/g, "<br />") }}</code></pre>
+            <Execute :readOnly=true > {{ solution }} </Execute>
           </v-expansion-panel-text>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+
 export default {
   props: { consigne: String, solution: String, tips: String },
 };

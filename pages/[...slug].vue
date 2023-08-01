@@ -6,11 +6,11 @@
           class="fill-height overflow-y-auto"
           style="max-height: calc(100% - 50px)"
         >
-          <div class="prose" style="">
-            <ContentRenderer :value="data" v-if="data">
+          <div class="prose">
+            <ContentRenderer :value="data" v-if="data" :key="data._path">
               <h1>{{ data.title }}</h1>
               <br />
-              <ContentRendererMarkdown :value="data" />
+              <ContentRendererMarkdown :value="data.body" />
             </ContentRenderer>
           </div>
         </v-card-text>
@@ -81,6 +81,7 @@ export default {
       command: "",
       pos: 0,
       data: "",
+      path: null,
       shelter: null,
       tab: null,
       editorStarted: false,
@@ -141,26 +142,23 @@ export default {
       this.webRConsole.stdin(this.command);
       document.getElementById("out").append(this.command + "\n");
       this.command = "";
-
-      console.log(this.webRConsole.webR.objs);
     },
     async nextBtn() {
       if (this.pos < this.tutosList.length) {
         this.pos = this.pos + 1;
-        this.data = this.tutosList[this.pos]
+        this.data = this.tutosList[this.pos];
       }
     },
     async prevBtn() {
       if (this.pos > 0) {
         this.pos = this.pos - 1;
-        this.data = this.tutosList[this.pos]
+        this.data = this.tutosList[this.pos];
       }
     },
   },
   watch: {
     command(new_val) {
       if (this.store.changed) {
-        console.log(this.store.command);
         for (const element of this.store.command) {
           this.webRConsole.stdin(element);
           document.getElementById("out").append(element + "\n");

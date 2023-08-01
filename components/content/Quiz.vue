@@ -38,9 +38,8 @@ export default {
     };
   },
   setup(props) {
-    console.log(props.question);
-    const id = getHash(props.question);
-    console.log(id);
+    var id = new Date().valueOf();
+    id = "editorArea" + id 
     return { id };
   },
   methods: {
@@ -48,9 +47,7 @@ export default {
       if (this.type == "simple") {
         var test = false;
         for (const c of this.choices) {
-          console.log(c);
           if (c.value == this.radios && c.valid) {
-            console.log(c);
             this.color = "green";
             this.message = "Bonne réponse !";
             test = true;

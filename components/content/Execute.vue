@@ -1,23 +1,51 @@
 <template>
-  <div @click="action" class="pointer d-flex flex-row align-center">
-    <v-icon color="green-darken-2" class="me-2">mdi-play</v-icon>
-    <pre style="width: 100%;"><code>{{ command }}</code></pre>
+  <v-btn
+    @click="action"
+    size="x-small"
+    color="success"
+    prepend-icon="mdi-play"
+    class="mb-2"
+    >Run code</v-btn
+  >
+  <div :id="id" style="width: 100%; height: 200px">
+    <div ref="codeSlot"><slot /></div>
   </div>
 </template>
 
 <script>
 import { useCommandStore } from "@/stores/useCommandStore";
+import ace from "ace-builds";
+import "ace-builds/src-noconflict/mode-r";
 
 export default {
-  props: { command: String },
+  props: {
+    command: String,
+    readOnly: {
+      default: false,
+      type: Boolean,
+    },
+  },
 
   setup(props) {
     const store = useCommandStore();
-    return { store };
+
+    var id = new Date().valueOf();
+    id = "editorArea" + id;
+    return { store, id };
+  },
+  mounted() {
+    ace.edit(this.id, {
+      mode: "ace/mode/r",
+      tabSize: 4,
+      readOnly: this.readOnly,
+      autoScrollEditorIntoView: true,
+      maxLines: 50,
+      minLines: 2,
+    });
   },
   methods: {
     action() {
-      this.store.updateCommand(this.command.split("\n"));
+      this.store.updateCommand(this.$refs.codeSlot.textContent.split("\n"));
     },
   },
 };
