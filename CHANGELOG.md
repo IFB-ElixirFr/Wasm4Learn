@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.0](https://github.com/IFB-ElixirFr/R_WASM/compare/v1.2.0...v1.3.0) (2023-08-02)
+
+
+### Features
+
+* test the code validity in Exo ([cdde3dc](https://github.com/IFB-ElixirFr/R_WASM/commit/cdde3dc445050e5ae6f9138fece0d1e7265b9a19))
+
 ## [1.2.0](https://github.com/IFB-ElixirFr/R_WASM/compare/v1.1.0...v1.2.0) (2023-08-02)
 
 
