@@ -6,20 +6,36 @@
     prepend-icon="mdi-play"
     class="mb-2"
     >Run code</v-btn
+  ><v-btn
+    v-if="test"
+    @click="testCode"
+    size="x-small"
+    prepend-icon="mdi-cog-play"
+    class="mb-2 ms-2"
+    >Tester mon code</v-btn
   >
   <div :id="id" style="width: 100%; height: 200px">
     {{ command }}
   </div>
+
+  <p v-if="testResult === true">
+    <b>&#x1F389; Well done !</b>
+  </p>
+  <p v-if="testResult === false">
+    <b>&#x274C; It's not the good response...</b>
+  </p>
 </template>
 
 <script>
 import { useCommandStore } from "@/stores/useCommandStore";
+import { storeToRefs } from "pinia";
 import ace from "ace-builds";
 import "ace-builds/src-noconflict/mode-r";
 
 export default {
   props: {
     command: String,
+    test: String,
     readOnly: {
       default: false,
       type: Boolean,
@@ -31,10 +47,18 @@ export default {
 
     var id = new Date().valueOf();
     id = "editorArea" + id;
-    return { store, id };
+    const { resultTestChanged } = storeToRefs(store);
+
+    return { store, id, resultTestChanged };
+  },
+  data() {
+    return {
+      testResult: null,
+      editor: null,
+    };
   },
   mounted() {
-    ace.edit(this.id, {
+    this.editor = ace.edit(this.id, {
       mode: "ace/mode/r",
       tabSize: 4,
       readOnly: this.readOnly,
@@ -45,7 +69,19 @@ export default {
   },
   methods: {
     action() {
-      this.store.updateCommand(this.command.split("\n"));
+      this.store.updateCommand(this.editor.getValue().split("\n"));
+    },
+    async testCode() {
+      await this.store.updateCommand(this.editor.getValue().split("\n"));
+      await this.store.updateCommandTest(this.test.split("\n"), this.id);
+    },
+  },
+  watch: {
+    resultTestChanged(new_val) {
+      if (this.store.resultTestChanged && this.id == this.store.testID) {
+        this.testResult = this.store.resultTest;
+        this.store.reset();
+      }
     },
   },
 };

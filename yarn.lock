@@ -978,6 +978,11 @@
   "resolved" "https://registry.npmjs.org/@types/unist/-/unist-3.0.0.tgz"
   "version" "3.0.0"
 
+"@types/web-bluetooth@^0.0.17":
+  "integrity" "sha512-4p9vcSmxAayx72yn70joFoL44c9MO/0+iVEBIQXe3v2h2SiAsEIo/G5v6ObFWvNKRFjbrVadNf9LqEEZeQPzdA=="
+  "resolved" "https://registry.npmjs.org/@types/web-bluetooth/-/web-bluetooth-0.0.17.tgz"
+  "version" "0.0.17"
+
 "@unhead/dom@1.1.32":
   "integrity" "sha512-AMpHlKEKcm1dxSAvm6GPXhjoZHzXh7ZeR8DAnXVH7Sd9a48xaJhQjmxETweFAcNBSnAn9e7TxTPZVrUcW0ej2w=="
   "resolved" "https://registry.npmjs.org/@unhead/dom/-/dom-1.1.32.tgz"
@@ -1184,6 +1189,28 @@
   dependencies:
     "find-cache-dir" "^3.3.2"
     "upath" "^2.0.1"
+
+"@vueuse/core@^10.3.0":
+  "integrity" "sha512-BEM5yxcFKb5btFjTSAFjTu5jmwoW66fyV9uJIP4wUXXU8aR5Hl44gndaaXp7dC5HSObmgbnR2RN+Un1p68Mf5Q=="
+  "resolved" "https://registry.npmjs.org/@vueuse/core/-/core-10.3.0.tgz"
+  "version" "10.3.0"
+  dependencies:
+    "@types/web-bluetooth" "^0.0.17"
+    "@vueuse/metadata" "10.3.0"
+    "@vueuse/shared" "10.3.0"
+    "vue-demi" ">=0.14.5"
+
+"@vueuse/metadata@10.3.0":
+  "integrity" "sha512-Ema3YhNOa4swDsV0V7CEY5JXvK19JI/o1szFO1iWxdFg3vhdFtCtSTP26PCvbUpnUtNHBY2wx5y3WDXND5Pvnw=="
+  "resolved" "https://registry.npmjs.org/@vueuse/metadata/-/metadata-10.3.0.tgz"
+  "version" "10.3.0"
+
+"@vueuse/shared@10.3.0":
+  "integrity" "sha512-kGqCTEuFPMK4+fNWy6dUOiYmxGcUbtznMwBZLC1PubidF4VZY05B+Oht7Jh7/6x4VOWGpvu3R37WHi81cKpiqg=="
+  "resolved" "https://registry.npmjs.org/@vueuse/shared/-/shared-10.3.0.tgz"
+  "version" "10.3.0"
+  dependencies:
+    "vue-demi" ">=0.14.5"
 
 "abbrev@^1.0.0", "abbrev@1":
   "integrity" "sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q=="
@@ -2372,6 +2399,16 @@
   "integrity" "sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw=="
   "resolved" "https://registry.npmjs.org/entities/-/entities-4.5.0.tgz"
   "version" "4.5.0"
+
+"entities@~2.1.0":
+  "integrity" "sha512-hCx1oky9PFrJ611mf0ifBLBRW8lUUVRlFolb5gWRfIELabBlbp9xZvrqZLZAs+NxFnbfQoeGd8wDkygjg7U85w=="
+  "resolved" "https://registry.npmjs.org/entities/-/entities-2.1.0.tgz"
+  "version" "2.1.0"
+
+"entities@~3.0.1":
+  "integrity" "sha512-WiyBqoomrwMdFG1e0kqvASYfnlb0lp8M5o5Fw2OFq1hNZxxcNk8Ik0Xm7LxzBhuidnZB/UtBqVCgUz3kBOP51Q=="
+  "resolved" "https://registry.npmjs.org/entities/-/entities-3.0.1.tgz"
+  "version" "3.0.1"
 
 "env-paths@^2.2.0":
   "integrity" "sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A=="
@@ -3725,6 +3762,20 @@
   "resolved" "https://registry.npmjs.org/lilconfig/-/lilconfig-2.1.0.tgz"
   "version" "2.1.0"
 
+"linkify-it@^3.0.1":
+  "integrity" "sha512-ynTsyrFSdE5oZ/O9GEf00kPngmOfVwazR5GKDq6EYfhlpFug3J2zybX56a2PRRpc9P+FuSoGNAwjlbDs9jJBPQ=="
+  "resolved" "https://registry.npmjs.org/linkify-it/-/linkify-it-3.0.3.tgz"
+  "version" "3.0.3"
+  dependencies:
+    "uc.micro" "^1.0.1"
+
+"linkify-it@^4.0.1":
+  "integrity" "sha512-C7bfi1UZmoj8+PQx22XyeXCuBlokoyWQL5pWSP+EI6nzRylyThouddufc2c1NDIcP9k5agmN9fLpA7VNJfIiqw=="
+  "resolved" "https://registry.npmjs.org/linkify-it/-/linkify-it-4.0.1.tgz"
+  "version" "4.0.1"
+  dependencies:
+    "uc.micro" "^1.0.1"
+
 "listhen@^1.0.4", "listhen@^1.1.1":
   "integrity" "sha512-rLX5V57oonazmc6zoZ2LzfbSOfGzDOLdQ/eTEh/d3f1xYMACH1yIU8nr0YGl2WiR+l31o3QCN4/VH2dUNyYvTA=="
   "resolved" "https://registry.npmjs.org/listhen/-/listhen-1.1.2.tgz"
@@ -3907,6 +3958,28 @@
     "promise-retry" "^2.0.1"
     "socks-proxy-agent" "^7.0.0"
     "ssri" "^10.0.0"
+
+"markdown-it@^12.3.2":
+  "integrity" "sha512-TchMembfxfNVpHkbtriWltGWc+m3xszaRD0CZup7GFFhzIgQqxIfn3eGj1yZpfuflzPvfkt611B2Q/Bsk1YnGg=="
+  "resolved" "https://registry.npmjs.org/markdown-it/-/markdown-it-12.3.2.tgz"
+  "version" "12.3.2"
+  dependencies:
+    "argparse" "^2.0.1"
+    "entities" "~2.1.0"
+    "linkify-it" "^3.0.1"
+    "mdurl" "^1.0.1"
+    "uc.micro" "^1.0.5"
+
+"markdown-it@^13.0.1":
+  "integrity" "sha512-lTlxriVoy2criHP0JKRhO2VDG9c2ypWCsT237eDiLqi09rmbKoUetyGHq2uOIRoRS//kfoJckS0eUzzkDR+k2Q=="
+  "resolved" "https://registry.npmjs.org/markdown-it/-/markdown-it-13.0.1.tgz"
+  "version" "13.0.1"
+  dependencies:
+    "argparse" "^2.0.1"
+    "entities" "~3.0.1"
+    "linkify-it" "^4.0.1"
+    "mdurl" "^1.0.1"
+    "uc.micro" "^1.0.5"
 
 "markdown-table@^3.0.0":
   "integrity" "sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw=="
@@ -6506,6 +6579,11 @@
   "resolved" "https://registry.npmjs.org/type-fest/-/type-fest-2.19.0.tgz"
   "version" "2.19.0"
 
+"uc.micro@^1.0.1", "uc.micro@^1.0.5":
+  "integrity" "sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA=="
+  "resolved" "https://registry.npmjs.org/uc.micro/-/uc.micro-1.0.6.tgz"
+  "version" "1.0.6"
+
 "ufo@^1.1.1", "ufo@^1.1.2":
   "integrity" "sha512-TrY6DsjTQQgyS3E3dBaOXf0TpPD8u9FVrVYmKVegJuFw51n/YB9XPt+U6ydzFG5ZIN7+DIjPbNmXoBj9esYhgQ=="
   "resolved" "https://registry.npmjs.org/ufo/-/ufo-1.1.2.tgz"
@@ -7008,6 +7086,14 @@
   "resolved" "https://registry.npmjs.org/vue-devtools-stub/-/vue-devtools-stub-0.1.0.tgz"
   "version" "0.1.0"
 
+"vue-markdown-render@^2.0.1":
+  "integrity" "sha512-/UBCu0OrZ9zzEDtiZVwlV/CQ+CgcwViServGis3TRXSVc6+6lJxcaOcD43vRoQzYfPa9r9WDt0Q7GyupOmpEWA=="
+  "resolved" "https://registry.npmjs.org/vue-markdown-render/-/vue-markdown-render-2.0.1.tgz"
+  "version" "2.0.1"
+  dependencies:
+    "markdown-it" "^12.3.2"
+    "vue" "^3.2.45"
+
 "vue-router@^4.1.0", "vue-router@^4.2.4":
   "integrity" "sha512-9PISkmaCO02OzPVOMq2w82ilty6+xJmQrarYZDkjZBfl4RvYAlt4PKnEX21oW4KTtWfa9OuO/b3qk1Od3AEdCQ=="
   "resolved" "https://registry.npmjs.org/vue-router/-/vue-router-4.2.4.tgz"
@@ -7015,7 +7101,7 @@
   dependencies:
     "@vue/devtools-api" "^6.5.0"
 
-"vue@^2.6.14 || ^3.3.0", "vue@^2.7.0 || ^3.2.25", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.1", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.3.4", "vue@>=2.7 || >=3", "vue@3.3.4":
+"vue@^2.6.14 || ^3.3.0", "vue@^2.7.0 || ^3.2.25", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.0.1", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.45", "vue@^3.3.4", "vue@>=2.7 || >=3", "vue@3.3.4":
   "integrity" "sha512-VTyEYn3yvIeY1Py0WaYGZsXnz3y5UnGi62GjVEqvEGPl6nxbOrCXbVOTQWBEJUqAyTUk2uJ5JLVnYJ6ZzGbrSw=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.3.4.tgz"
   "version" "3.3.4"

@@ -85,6 +85,7 @@ export default {
       shelter: null,
       tab: null,
       editorStarted: false,
+      test: null,
     };
   },
   async setup() {
@@ -155,15 +156,33 @@ export default {
         this.data = this.tutosList[this.pos];
       }
     },
+    async testCode(code) {
+      this.test = null;
+      const result = await this.webRConsole.webR
+        .evalRBoolean(code)
+        .then((res) => {
+          return res;
+        })
+        .catch((error) => {
+          return false;
+        });
+
+      this.test = result;
+    },
   },
   watch: {
-    command(new_val) {
+    async command(new_val) {
       if (this.store.changed) {
         for (const element of this.store.command) {
           this.webRConsole.stdin(element);
           document.getElementById("out").append(element + "\n");
         }
         this.store.reset();
+      } else if (this.store.changedTest) {
+        for (const element of this.store.command) {
+          await this.testCode(element);
+          this.store.setResultTest(this.test);
+        }
       }
     },
   },

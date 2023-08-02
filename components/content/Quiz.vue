@@ -53,7 +53,6 @@ export default {
             test = true;
           }
         }
-        console.log(test);
         if (!test) {
           this.color = "red";
           this.message = "Mauvaise réponse !";

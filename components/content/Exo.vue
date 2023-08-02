@@ -2,14 +2,18 @@
   <v-card color="green-lighten-5" class="my-5">
     <v-card-title><v-icon>mdi-head-question</v-icon> Exercice</v-card-title>
     <v-card-text>
-      <p class="text-subtitle-1">{{ consigne }}</p>
+      <p class="text-subtitle-1" v-html="$mdRenderer.render(consigne)"></p>
       <p v-if="tips">
         <i>{{ tips }}</i>
       </p>
-      <v-expansion-panels>
+
+      <Execute :command="code" :test="test"> </Execute>
+      <br />
+
+      <v-expansion-panels v-if="solution">
         <v-expansion-panel title="Solution">
           <v-expansion-panel-text>
-            <Execute :readOnly=true > {{ solution }} </Execute>
+            <Execute :readOnly="true" :command="solution"> </Execute>
           </v-expansion-panel-text>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -18,9 +22,18 @@
 </template>
 
 <script>
-
 export default {
-  props: { consigne: String, solution: String, tips: String },
+  props: {
+    consigne: String,
+    code: String,
+    language: {
+      default: "r",
+      type: String,
+    },
+    solution: String,
+    test: String,
+    tips: String,
+  },
 };
 </script>
 
