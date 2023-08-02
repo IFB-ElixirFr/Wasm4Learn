@@ -28,6 +28,7 @@ import ace from "ace-builds";
 import "ace-builds/src-noconflict/mode-r";
 import { useCommandStore } from "@/stores/useCommandStore";
 let editor;
+
 export default {
   setup(props) {
     const store = useCommandStore();

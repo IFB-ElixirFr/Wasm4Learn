@@ -8,7 +8,7 @@
     >Run code</v-btn
   >
   <div :id="id" style="width: 100%; height: 200px">
-    <div ref="codeSlot"><slot /></div>
+    {{ command }}
   </div>
 </template>
 
@@ -40,12 +40,12 @@ export default {
       readOnly: this.readOnly,
       autoScrollEditorIntoView: true,
       maxLines: 50,
-      minLines: 2,
+      minLines: 1,
     });
   },
   methods: {
     action() {
-      this.store.updateCommand(this.$refs.codeSlot.textContent.split("\n"));
+      this.store.updateCommand(this.command.split("\n"));
     },
   },
 };
