@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.0](https://github.com/IFB-ElixirFr/R_WASM/compare/v1.3.0...v1.4.0) (2023-08-03)
+
+
+### Features
+
+* improve user experience ([74c4db4](https://github.com/IFB-ElixirFr/R_WASM/commit/74c4db4037b668723559116f208cfce0d4fee27a))
+
 ## [1.3.0](https://github.com/IFB-ElixirFr/R_WASM/compare/v1.2.0...v1.3.0) (2023-08-02)
 
 
