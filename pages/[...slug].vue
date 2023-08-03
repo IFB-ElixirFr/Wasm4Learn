@@ -18,14 +18,14 @@
           class="d-flex justify-end"
           style="background-color: lightsteelblue"
         >
-          <v-btn :disabled="pos == 0" @click="prevBtn">Prev</v-btn>
+          <v-btn :disabled="step == 0" @click="prevBtn">Prev</v-btn>
           <v-btn
-            :disabled="pos == tutosList.length - 1"
+            :disabled="step == tutosList.length - 1"
             @click="nextBtn"
             class="me-2"
             >Next</v-btn
           >
-          <v-chip> {{ pos + 1 }} / {{ tutosList.length }} </v-chip>
+          <v-chip> {{ step + 1 }} / {{ tutosList.length }} </v-chip>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -82,7 +82,6 @@ export default {
   data() {
     return {
       command: "",
-      pos: 0,
       data: "",
       path: null,
       shelter: null,
@@ -92,14 +91,18 @@ export default {
     };
   },
   async setup() {
+    // Manage path
     const route = useRoute();
     const id = ref(route.query.id ? route.query.id : "");
-
+    var step = ref(route.query.step ? route.query.step : 0);
+    const pathParent = route.path
     const path = route.path + id.value;
 
+    // Manage store
     const store = useCommandStore();
     const { command } = storeToRefs(store);
 
+    // Start WebR
     const webRConsole = new Console({
       stdout: (line) => document.getElementById("out").append(line + "\n"),
       stderr: (line) => document.getElementById("out").append(line + "\n"),
@@ -109,6 +112,7 @@ export default {
       },
     });
 
+    // Get Tuto pages
     const tutosList = await queryContent(path).find();
 
     for (var i = tutosList.length - 1; i >= 0; i--) {
@@ -120,11 +124,11 @@ export default {
       }
     }
 
-    return { webRConsole, tutosList, store, command };
+    return { webRConsole, tutosList, store, command, pathParent, id, step };
   },
   async mounted() {
     await this.webRConsole.run();
-    this.data = this.tutosList[this.pos];
+    this.data = this.tutosList[this.step];
   },
   methods: {
     async getOutput() {
@@ -150,17 +154,17 @@ export default {
       objDiv.scrollTop = objDiv.scrollHeight;
     },
     async nextBtn() {
-      if (this.pos < this.tutosList.length) {
-        this.pos = this.pos + 1;
-        this.data = this.tutosList[this.pos];
+      if (this.step < this.tutosList.length) {
+        this.step = this.step + 1;
+        this.data = this.tutosList[this.step];
         var myDiv = document.getElementById("contentDiv");
         myDiv.scrollTop = 0;
       }
     },
     async prevBtn() {
-      if (this.pos > 0) {
-        this.pos = this.pos - 1;
-        this.data = this.tutosList[this.pos];
+      if (this.step > 0) {
+        this.step = this.step - 1;
+        this.data = this.tutosList[this.step];
         var myDiv = document.getElementById("contentDiv");
         myDiv.scrollTop = 0;
       }
@@ -196,6 +200,12 @@ export default {
         }
       }
     },
+    step(new_val) {
+      const router = useRouter();
+      router.push({ path: this.pathParent , 
+      query: { id: this.id, 
+        step: this.step } });
+    }
   },
 };
 </script>

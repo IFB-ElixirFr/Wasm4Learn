@@ -116,7 +116,6 @@ export default {
   methods: {
     changePath(pathParent, id) {
       const router = useRouter();
-
       router.push({ path: pathParent + "/", query: { id: id } });
     },
   },
