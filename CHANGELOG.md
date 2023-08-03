@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.0](https://github.com/IFB-ElixirFr/R_WASM/compare/v1.4.0...v1.5.0) (2023-08-03)
+
+
+### Features
+
+* add step in url ([48eeec4](https://github.com/IFB-ElixirFr/R_WASM/commit/48eeec4061bb29f86c061e6be8ffdc42cf529835))
+
 ## [1.4.0](https://github.com/IFB-ElixirFr/R_WASM/compare/v1.3.0...v1.4.0) (2023-08-03)
 
 
