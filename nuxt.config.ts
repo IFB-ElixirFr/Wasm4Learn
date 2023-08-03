@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@pinia/nuxt',
+    'nuxt-content-assets', 
     '@nuxt/content'
   ],
   app: {

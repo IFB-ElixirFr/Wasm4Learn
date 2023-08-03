@@ -6,7 +6,7 @@
           class="fill-height overflow-y-auto"
           style="max-height: calc(100% - 50px)"
         >
-          <div class="prose">
+          <div class="prose" id="contentDiv">
             <ContentRenderer :value="data" v-if="data" :key="data._path">
               <h1>{{ data.title }}</h1>
               <br />
@@ -32,7 +32,10 @@
     <v-col class="fill-height">
       <div style="height: 50%">
         <v-card class="fill-height">
-          <v-card-text class="fill-height overflow-y-auto">
+          <v-card-text
+            class="fill-height overflow-y-auto overflow-x-auto"
+            id="divConsole"
+          >
             <pre><code id="out">Loading webR, please wait...</code></pre>
             <v-textarea
               v-on:keyup.enter="onEnter"
@@ -143,17 +146,23 @@ export default {
       this.webRConsole.stdin(this.command);
       document.getElementById("out").append(this.command + "\n");
       this.command = "";
+      var objDiv = document.getElementById("divConsole");
+      objDiv.scrollTop = objDiv.scrollHeight;
     },
     async nextBtn() {
       if (this.pos < this.tutosList.length) {
         this.pos = this.pos + 1;
         this.data = this.tutosList[this.pos];
+        var myDiv = document.getElementById("contentDiv");
+        myDiv.scrollTop = 0;
       }
     },
     async prevBtn() {
       if (this.pos > 0) {
         this.pos = this.pos - 1;
         this.data = this.tutosList[this.pos];
+        var myDiv = document.getElementById("contentDiv");
+        myDiv.scrollTop = 0;
       }
     },
     async testCode(code) {
@@ -178,6 +187,8 @@ export default {
           document.getElementById("out").append(element + "\n");
         }
         this.store.reset();
+        var objDiv = document.getElementById("divConsole");
+        objDiv.scrollTop = objDiv.scrollHeight;
       } else if (this.store.changedTest) {
         for (const element of this.store.command) {
           await this.testCode(element);

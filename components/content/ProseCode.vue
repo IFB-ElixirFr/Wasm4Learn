@@ -23,6 +23,7 @@
         >
         <v-btn
           @click="runCode"
+          v-if="meta != 'noRun'"
           size="x-small"
           color="success"
           prepend-icon="mdi-play"
@@ -47,8 +48,9 @@ const props = withDefaults(
     language?: string | null;
     filename?: string | null;
     highlights?: Array<number>;
+    meta?: string | null;
   }>(),
-  { code: "", language: null, filename: null, highlights: () => [] }
+  { code: "", language: null, filename: null, highlights: () => [], meta: null}
 );
 
 const languageMap: Record<
@@ -65,6 +67,11 @@ const languageMap: Record<
     background: "#2164B6",
     color: "white",
   },
+  bash: {
+    text: "bash",
+    background: "#3E474A",
+    color: "white",
+  }
 };
 
 const languageText = computed(() =>

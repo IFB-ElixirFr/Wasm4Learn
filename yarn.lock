@@ -501,7 +501,7 @@
     "read-package-json-fast" "^3.0.0"
     "which" "^3.0.0"
 
-"@nuxt/content@^2.7.2":
+"@nuxt/content@^2.0.0", "@nuxt/content@^2.7.2":
   "integrity" "sha512-fP0nrnyjtFbluKltKUtC7jSMFc1xAH+bwweZyLwXb3gkIap2EHlVL+e9ptGt39+4HIkRkLgME7TNr/fUO+CHug=="
   "resolved" "https://registry.npmjs.org/@nuxt/content/-/content-2.7.2.tgz"
   "version" "2.7.2"
@@ -614,7 +614,7 @@
     "which" "^3.0.1"
     "ws" "^8.13.0"
 
-"@nuxt/kit@^3.5.0", "@nuxt/kit@^3.6.3", "@nuxt/kit@^3.6.5", "@nuxt/kit@3.6.5":
+"@nuxt/kit@^3.3.2", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.6.3", "@nuxt/kit@^3.6.5", "@nuxt/kit@3.6.5":
   "integrity" "sha512-uBI5I2Zx6sk+vRHU+nBmifwxg/nyXCGZ1g5hUKrUfgv1ZfiKB8JkN5T9iRoduDOaqbwM6XSnEl1ja73iloDcrw=="
   "resolved" "https://registry.npmjs.org/@nuxt/kit/-/kit-3.6.5.tgz"
   "version" "3.6.5"
@@ -957,6 +957,11 @@
   "integrity" "sha512-xlR1jahfizdplZYRU59JlUx9uzF1ARa8jbhM11ccpCJya8kvos5jwdm2ZAgxSCwOl0fq21svP18EVwPBXMQudw=="
   "resolved" "https://registry.npmjs.org/@types/node/-/node-18.17.1.tgz"
   "version" "18.17.1"
+
+"@types/node@^17.0.36":
+  "integrity" "sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw=="
+  "resolved" "https://registry.npmjs.org/@types/node/-/node-17.0.45.tgz"
+  "version" "17.0.45"
 
 "@types/parse5@^6.0.0":
   "integrity" "sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g=="
@@ -1967,6 +1972,13 @@
     "shebang-command" "^2.0.0"
     "which" "^2.0.1"
 
+"crosspath@^2.0.0":
+  "integrity" "sha512-ju88BYCQ2uvjO2bR+SsgLSTwTSctU+6Vp2ePbKPgSCZyy4MWZxYsT738DlKVRE5utUjobjPRm1MkTYKJxCmpTA=="
+  "resolved" "https://registry.npmjs.org/crosspath/-/crosspath-2.0.0.tgz"
+  "version" "2.0.0"
+  dependencies:
+    "@types/node" "^17.0.36"
+
 "css-declaration-sorter@^6.3.1":
   "integrity" "sha512-rtdthzxKuyq6IzqX6jEcIzQF/YqccluefyCYheovBOLhFT/drQA9zj/UbRAa9J7C0o6EG6u3E6g+vKkay7/k3g=="
   "resolved" "https://registry.npmjs.org/css-declaration-sorter/-/css-declaration-sorter-6.4.1.tgz"
@@ -2078,6 +2090,11 @@
   "integrity" "sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A=="
   "resolved" "https://registry.npmjs.org/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz"
   "version" "4.0.1"
+
+"debounce@^1.2.1":
+  "integrity" "sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug=="
+  "resolved" "https://registry.npmjs.org/debounce/-/debounce-1.2.1.tgz"
+  "version" "1.2.1"
 
 "debug@^4.0.0", "debug@^4.1.0", "debug@^4.3.3", "debug@^4.3.4", "debug@~4.3.1", "debug@~4.3.2", "debug@4":
   "integrity" "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ=="
@@ -3346,6 +3363,13 @@
   "integrity" "sha512-+oXiHwOEPr1IE5zY0tcBLED/CYcre15J4nwL50x3o0jxWqEkyjrusiKP3YSU+tr9fvJp33ZcP5Gpj2295g3aEw=="
   "resolved" "https://registry.npmjs.org/image-meta/-/image-meta-0.1.1.tgz"
   "version" "0.1.1"
+
+"image-size@^1.0.2":
+  "integrity" "sha512-xfOoWjceHntRb3qFCrh5ZFORYH8XCdYpASltMhZ/Q0KZiOwjdE/Yl2QCiWdwD+lygV5bMCvauzgu5PxBX/Yerg=="
+  "resolved" "https://registry.npmjs.org/image-size/-/image-size-1.0.2.tgz"
+  "version" "1.0.2"
+  dependencies:
+    "queue" "6.0.2"
 
 "immutable@^4.0.0":
   "integrity" "sha512-lj9cnmB/kVS0QHsJnYKD1uo3o39nrbKxszjnqS9Fr6NB7bZzW45U6WSGBPKXDL/CvDKqDNPA4r3DoDQ8GTxo2A=="
@@ -4933,6 +4957,21 @@
   optionalDependencies:
     "fsevents" "~2.3.2"
 
+"nuxt-content-assets@^1.3.2":
+  "integrity" "sha512-UiHC0Il5XSb3FdxVJvlxBWpvTp3QfYwAJpb2XP1yIxCYWaIBXIvVvl5kn0Eu+HgDtOZzy+YPlfd1cmxD4vcBAQ=="
+  "resolved" "https://registry.npmjs.org/nuxt-content-assets/-/nuxt-content-assets-1.3.2.tgz"
+  "version" "1.3.2"
+  dependencies:
+    "@nuxt/kit" "^3.3.2"
+    "crosspath" "^2.0.0"
+    "debounce" "^1.2.1"
+    "image-size" "^1.0.2"
+    "listhen" "^1.0.4"
+    "ohash" "^1.0.0"
+    "unist-util-visit" "^4.1.2"
+    "unstorage" "^1.4.1"
+    "ws" "^8.13.0"
+
 "nuxt@^3.6.1", "nuxt@^3.6.5":
   "integrity" "sha512-0A7V8B1HrIXX9IlqPc2w+5ZPXi+7MYa9QVhtuGYuLvjRKoSFANhCoMPRP6pKdoxigM1MBxhLue2VmHA/VbtJCw=="
   "resolved" "https://registry.npmjs.org/nuxt/-/nuxt-3.6.5.tgz"
@@ -5025,7 +5064,7 @@
     "node-fetch-native" "^1.2.0"
     "ufo" "^1.1.2"
 
-"ohash@^1.1.2":
+"ohash@^1.0.0", "ohash@^1.1.2":
   "integrity" "sha512-9CIOSq5945rI045GFtcO3uudyOkYVY1nyfFxVQp+9BRgslr8jPNiSSrsFGg/BNTUFOLqx0P5tng6G32brIPw0w=="
   "resolved" "https://registry.npmjs.org/ohash/-/ohash-1.1.2.tgz"
   "version" "1.1.2"
@@ -5600,6 +5639,13 @@
   "integrity" "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A=="
   "resolved" "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
   "version" "1.2.3"
+
+"queue@6.0.2":
+  "integrity" "sha512-iHZWu+q3IdFZFX36ro/lKBkSvfkztY5Y7HMiPlOUjhupPcG2JMfst2KKEpu5XndviX/3UhFbRngUPNKtgvtZiA=="
+  "resolved" "https://registry.npmjs.org/queue/-/queue-6.0.2.tgz"
+  "version" "6.0.2"
+  dependencies:
+    "inherits" "~2.0.3"
 
 "radix3@^1.0.1":
   "integrity" "sha512-y+AcwZ3HcUIGc9zGsNVf5+BY/LxL+z+4h4J3/pp8jxSmy1STaCocPS3qrj4tA5ehUSzqtqK+0Aygvz/r/8vy4g=="
@@ -6759,7 +6805,7 @@
     "@types/unist" "^3.0.0"
     "unist-util-is" "^6.0.0"
 
-"unist-util-visit@^4.0.0", "unist-util-visit@^4.1.1":
+"unist-util-visit@^4.0.0", "unist-util-visit@^4.1.1", "unist-util-visit@^4.1.2":
   "integrity" "sha512-MSd8OUGISqHdVvfY9TPhyK2VdUrPgxkUtWSuMHF6XAAFuL4LokseigBnZtPnJMu+FbynTkFNnFlyjxpVKujMRg=="
   "resolved" "https://registry.npmjs.org/unist-util-visit/-/unist-util-visit-4.1.2.tgz"
   "version" "4.1.2"
@@ -6816,7 +6862,7 @@
     "webpack-sources" "^3.2.3"
     "webpack-virtual-modules" "^0.5.0"
 
-"unstorage@^1.7.0", "unstorage@^1.8.0":
+"unstorage@^1.4.1", "unstorage@^1.7.0", "unstorage@^1.8.0":
   "integrity" "sha512-Wl6a0fYIIPx8yWIHAVNzsNRcIpagVnBV05UXeIFCNqPZ5tu0w0MPE+eTjpRe/yxCD60K7qX55K5Px/PeKvNntw=="
   "resolved" "https://registry.npmjs.org/unstorage/-/unstorage-1.8.0.tgz"
   "version" "1.8.0"

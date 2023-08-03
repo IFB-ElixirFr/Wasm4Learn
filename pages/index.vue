@@ -21,12 +21,14 @@
           <a href="https://docs.r-wasm.org/webr/latest/">WebR</a> tool. The
           teaching resources come from a course given by Denis Puthier (member
           of the IFB's GT-eformation), available
-          <a href="https://github.com/dputhier/rtrainer/tree/main">here</a> .
+          <a href="https://github.com/dputhier/rtrainer/tree/main">here</a> and Thomas Denecker (member
+          of the IFB's GT-eformation) available
+          <a href="https://github.com/IFB-ElixirFr/EBAII_IntroR">here</a>.
         </p>
         <div class="d-flex justify-center mb-6">
           <v-btn
             class="mx-3"
-            href="https://github.com/IFB-ElixirFr/R_WASM/blob/main/README.md"
+            href="https://ifb-elixirfr.github.io/R_WASM_doc/"
             target="_blank"
             ><v-icon class="me-3">mdi-book</v-icon> Documentation</v-btn
           >
@@ -67,6 +69,18 @@
       >
         <v-card-title>{{ c.title }}</v-card-title>
         <v-card-text>
+          <div v-if="c.belt">
+            <v-chip
+              v-for="(b, kb) in c.belt"
+              :key="kb"
+              class="ma-1"
+              size="small"
+              :variant="b =='white' ? 'outlined' : 'tonal'"
+              :color="b =='white' ? '' : b"
+            >
+              {{ b }} belt
+            </v-chip>
+          </div>
           <div v-if="c.tags">
             <v-chip
               v-for="(t, kt) in c.tags"
@@ -96,7 +110,7 @@ export default {
     const { data: navigation } = await useAsyncData("navigation", () =>
       fetchContentNavigation()
     );
-   
+
     return { tutoFolder, navigation };
   },
   methods: {
