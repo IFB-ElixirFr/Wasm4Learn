@@ -10,7 +10,7 @@ npx nuxi generate
 # Push modifications
 git add -A
 git commit -m 'deploy'
-git push -f git@github.com:IFB-ElixirFr/R_WASM.git main:main
+git push -f git@github.com:IFB-ElixirFr/Wasm4Learn.git main:main
 
 # navigate into the build output directory
 cd .output/public/
@@ -21,5 +21,5 @@ touch .nojekyll
 git init
 git add -A
 git commit -m 'deploy'
-git push -f git@github.com:IFB-ElixirFr/R_WASM.git main:gh-pages
+git push -f git@github.com:IFB-ElixirFr/Wasm4Learn.git main:gh-pages
 cd ..

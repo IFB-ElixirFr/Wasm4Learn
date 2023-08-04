@@ -53,7 +53,7 @@ export default {
         "href",
         "data:text/plain;charset=utf-8," + encodeURIComponent(editor.getValue())
       );
-      element.setAttribute("download", "R_WASM.R");
+      element.setAttribute("download", "Wasm4Learn.R");
 
       element.style.display = "none";
       document.body.appendChild(element);

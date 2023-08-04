@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     '@nuxt/content'
   ],
   app: {
-    baseURL: '/R_WASM/',
+    baseURL: '/Wasm4Learn/',
     head: {
       title: 'R WASM by IFB',
       meta: [

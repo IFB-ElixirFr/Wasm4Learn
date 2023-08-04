@@ -33,7 +33,7 @@
           >
           <v-btn
             class="mx-3"
-            href="https://github.com/IFB-ElixirFr/R_WASM/discussions"
+            href="https://github.com/IFB-ElixirFr/Wasm4Learn/discussions"
             target="_blank"
           >
             <v-icon class="me-3">mdi-forum</v-icon>

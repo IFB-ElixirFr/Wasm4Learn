@@ -1,4 +1,4 @@
-# R_WASM
+# Wasm4Learn
 
 ## Project layout
 

@@ -9,7 +9,7 @@
     <template v-slot:append>
       <v-btn
         icon
-        href="https://github.com/IFB-ElixirFr/R_WASM"
+        href="https://github.com/IFB-ElixirFr/Wasm4Learn"
         target="_blank"
       >
         <v-icon>mdi-github</v-icon>

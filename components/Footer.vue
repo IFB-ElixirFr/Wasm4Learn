@@ -37,7 +37,7 @@ export default {
       },
       {
         title: "Feedbacks",
-        link: "https://github.com/IFB-ElixirFr/R_WASM/discussions",
+        link: "https://github.com/IFB-ElixirFr/Wasm4Learn/discussions",
       },
     ],
   }),
