@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.8.0...v1.8.1) (2023-08-04)
+
+
+### Bug Fixes
+
+* remove split for run command ([7e16d95](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/7e16d950d6c314273994337c9761aa67f3b9803b))
+
 ## [1.8.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.7.0...v1.8.0) (2023-08-04)
 
 
