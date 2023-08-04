@@ -2,21 +2,66 @@
 
 ## Project layout
 
+```bash
+...
+/components
+    /content
+        ...             # Component usable in content file (md)
+    ...                 # content only usable by vue
+/composables
+    ...                 # function shared in all project
+/layouts
+    default.vue         # layout of the application
+/pages
+    index.vue           # home page
+    /[lang]
+        index.vue       # home page of language
+        [...slug].vue   # How display content
+/plugins                # plugings used by application
+    vuetify.js
+    markdownit.ts
+/publics                # assets available in all web site
+    ... 
+/store
+    ...                 # Store declaration
+nuxt.config.ts           # configuration file
 ```
-[...]
-Content
-    tutorials
-        class1
-            _dir.yml    # Metadata shared in the class
-            1.file.md   # The application sorts 1. and after 2. etc
-            2.file.md
-            3.file.md
-        class2
-            _dir.yml    # Metadata shared in the class
-            1.file.md
-            2.file.md
-            3.file.md
-[...]
+
+!!! warning
+    In public folder, webR files must be duplicated like content r folder
+
+### Highlight on `nuxt.config.ts`
+
+#### Nuxt content and GitHub
+
+Configuring Nuxt content to fetch content from GitHub
+
+```ts
+content: {
+    sources: {
+      github: {
+        prefix: '', // Prefix for routes used to query contents
+        driver: 'github', // Driver used to fetch contents (view unstorage documentation)
+        repo: "IFB-ElixirFr/Wasm4Learn-content",
+        branch: "main",
+        dir: "content", // Directory where contents are located. It could be a subdirectory of the repository.
+        // Imagine you have a blog inside your content folder. You can set this option to `content/blog` with the prefix option to `/blog` to avoid conflicts with local files.
+      },
+    },
+    ...
+}
+```
+
+#### Github pages
+
+For the GitHub pages to work, the name of the repo must be specified in the config file.
+
+```ts
+app: {
+    baseURL: '/Wasm4Learn/',
+    ...
+}
+,
 ```
 
 ## For collaborators and developers
