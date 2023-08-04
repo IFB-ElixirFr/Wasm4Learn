@@ -101,76 +101,7 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 ## Components to enrich markdown files
 
-### Quizz 
-#### Simple
-
-```
-::Quiz
----
-question: "Il est conseillé d'utiliser l'opérateur '=' plutôt que '<-' pour l'assignation ?"
-type: simple
-choices:
-    -   value: "oui"
-        valid: false
-    -   value: "non"
-        valid: true
----
-::
-```
-
-#### Multiple
-
-```
-::Quiz
----
-question: "Dans la question précédente, pourquoi faut-il mettre *file* entre guillemets et écrire apropos('file') et non pas apropos(file)"
-type: multiple
-choices:
-    -   value: "Parce que *file* sans guillemet sous-entendrait qu'il existe en mémoire un objet nommé *file*."
-        valid: true
-    -   value: "Parce que le premier argument de la fonction *apropos()* doit obligatoirement être un chaîne de caractère."
-        valid: true
----
-::
-```
-
-### Order propositions
-
-```
-::Sort
----
-elements:
-    - Description
-    - Usage
-    - Arguments
-    - Value
-    - See Also
-    - Examples
-question: "Quel est l'ordre des différentes section dans la fiche d'aide ?"
----
-::
-```
-
-### Exercice
-
-```
-::Exo
----
-consigne: "Recherchez toutes les fonctions dont le nom contient 'file' (*i.e* fichier). Attention 'file' doit être entre guillemets."
-tips: En informatique on parle de guillemets simples ou simples guillemets pour faire référence  à l'apostrophe (' '). On parle de guillemets doubles ou doubles guillemets pour faire référence au guillemets (" "). Cette appellation nous vient du monde anglo-saxon (*single quote* et *double quote*). Dans le langage R, les deux formes ont la même signification et permettent de désigner une suite de caractères qu'on appelle *chaîne de caractères* (ici 'file' ou "file"). Cela permet une certaine flexibilité si une chaîne de caractères contient un guillemet simple par exemple (*e.g.* x <- "extrémités 5' et 3' des molécules d'ADN").
-solution: apropos("file")
----
-::
-```
-
-### Executable code
-
-```
-:Execute{
-    command="x = 15
-print(x)"
-}
-```
+Read the documention available [here](https://ifb-elixirfr.github.io/Wasm4Learn-doc/Components/components_01_intro/)
 
 ## Citation
 
