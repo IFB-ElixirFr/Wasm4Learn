@@ -13,22 +13,18 @@
         md="12"
         lg="6"
       >
-        <h1>Interactive R tutorials</h1>
+        <h1>Interactive tutorials with WASM</h1>
         <p class="text-subtitle-1 mb-6">
           The French Institute of Bioinformatics (IFB) offers a series of
-          tutorials on the R language to introduce you to the first commands.
-          This website uses WASM technology through the
-          <a href="https://docs.r-wasm.org/webr/latest/">WebR</a> tool. The
-          teaching resources come from a course given by Denis Puthier (member
-          of the IFB's GT-eformation), available
-          <a href="https://github.com/dputhier/rtrainer/tree/main">here</a> and Thomas Denecker (member
-          of the IFB's GT-eformation) available
-          <a href="https://github.com/IFB-ElixirFr/EBAII_IntroR">here</a>.
+          tutorials on the R and Python languages to introduce you to the first
+          commands. This website uses WASM technology with the
+          <a href="https://docs.r-wasm.org/webr/latest/">WebR</a> and
+          <a href="https://pyodide.org/en/stable/">Pyodide</a>.
         </p>
         <div class="d-flex justify-center mb-6">
           <v-btn
             class="mx-3"
-            href="https://ifb-elixirfr.github.io/R_WASM_doc/"
+            href="https://ifb-elixirfr.github.io/Wasm4Learn-doc/"
             target="_blank"
             ><v-icon class="me-3">mdi-book</v-icon> Documentation</v-btn
           >
@@ -57,50 +53,45 @@
     </v-row>
   </v-sheet>
 
-  <div v-for="(n, key) in navigation" :key="key">
-    <h1>{{ n.title }}</h1>
-    <div class="d-flex flex-wrap">
-      <v-card
-        @click="changePath(n._path, c._dir)"
-        v-for="(c, keyC) in n.children"
-        :key="keyC"
-        width="300px"
-        class="ma-5"
-      >
-        <v-card-title>{{ c.title }}</v-card-title>
-        <v-card-text>
-          <div v-if="c.belt">
-            <v-chip
-              v-for="(b, kb) in c.belt"
-              :key="kb"
-              class="ma-1"
-              size="small"
-              :variant="b =='white' ? 'outlined' : 'tonal'"
-              :color="b =='white' ? '' : b"
-            >
-              {{ b }} belt
-            </v-chip>
-          </div>
-          <div v-if="c.tags">
-            <v-chip
-              v-for="(t, kt) in c.tags"
-              :key="kt"
-              class="ma-1"
-              size="small"
-            >
-              {{ t }}
-            </v-chip>
-          </div>
-          <p><b>Programme</b></p>
-          <ul class="ms-4">
-            <li v-for="(c2, keyC2) in c.children" :key="keyC2">
-              {{ c2.title }}
-            </li>
-          </ul>
-        </v-card-text>
-      </v-card>
-    </div>
+  <h2>Available languages</h2>
+  <div class="d-flex flex-wrap">
+    <v-card
+      width="300px"
+      class="ma-5"
+      v-for="(n, key) in navigation"
+      :key="key"
+      @click="changePath(n._path)"
+    >
+      <v-card-text>
+        <div class="text-center">
+          <img :src="n.image" alt="logo" style="height: 100px" />
+        </div>
+        <h1>{{ n.title }}</h1>
+        <br />
+        <p class="text-subtitle-1">{{ n.description }}</p>
+        <br />
+
+        <div v-if="n.children">
+          <p v-for="(c, cKey) in n.children" :key="cKey">
+            <b>{{ c.title }}</b> : {{ getItems(c) }}
+          </p>
+        </div>
+      </v-card-text>
+    </v-card>
   </div>
+
+  <h2>Ressources</h2>
+  <p>The teaching resources come from a course given by :</p>
+  <ul>
+    <li>
+      Denis Puthier (member ofthe IFB's GT-eformation), available
+      <a href="https://github.com/dputhier/rtrainer/tree/main">here</a>
+    </li>
+    <li>
+      Thomas Denecker (member of the IFB's GT-eformation) available
+      <a href="https://github.com/IFB-ElixirFr/EBAII_IntroR">here</a>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -114,9 +105,27 @@ export default {
     return { tutoFolder, navigation };
   },
   methods: {
-    changePath(pathParent, id) {
+    changePath(path) {
       const router = useRouter();
-      router.push({ path: pathParent + "/", query: { id: id } });
+      router.push({ path: path + "/" });
+    },
+    getSection(n) {
+      if (n.children !== undefined) {
+        return n.children.length;
+      } else {
+        return 0;
+      }
+    },
+    getItems(n) {
+      var compt = 0;
+      if (n.children !== undefined) {
+        for (const c of n.children) {
+          if (c.children !== undefined) {
+            compt = compt + 1;
+          }
+        }
+      }
+      return compt;
     },
   },
 };

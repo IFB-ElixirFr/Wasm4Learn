@@ -2,7 +2,7 @@
   <v-app-bar :elevation="2">
     <v-app-bar-title
       ><NuxtLink to="/" style="color: black; text-decoration: none"
-        >R WASM - IFB</NuxtLink
+        >Interactive tutorials with WASM</NuxtLink
       ></v-app-bar-title
     >
 

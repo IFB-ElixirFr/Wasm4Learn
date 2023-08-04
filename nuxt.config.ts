@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@pinia/nuxt',
-    'nuxt-content-assets', 
+    'nuxt-content-assets',
     '@nuxt/content'
   ],
   app: {
@@ -23,6 +23,11 @@ export default defineNuxtConfig({
           name: 'description',
           content: 'R WASM platform to learn R with IFB'
         }
+      ],
+      script: [
+        {
+          src: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js",
+        },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: 'https://www.france-bioinformatique.fr/wp-content/uploads/logo-ifb-couleur.svg' }
@@ -38,7 +43,7 @@ export default defineNuxtConfig({
       github: {
         prefix: '', // Prefix for routes used to query contents
         driver: 'github', // Driver used to fetch contents (view unstorage documentation)
-        repo: "IFB-ElixirFr/R_WASM-content",
+        repo: "IFB-ElixirFr/Wasm4Learn-content",
         branch: "main",
         dir: "content", // Directory where contents are located. It could be a subdirectory of the repository.
         // Imagine you have a blog inside your content folder. You can set this option to `content/blog` with the prefix option to `/blog` to avoid conflicts with local files.

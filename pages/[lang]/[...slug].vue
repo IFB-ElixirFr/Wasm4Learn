@@ -36,7 +36,7 @@
             class="fill-height overflow-y-auto overflow-x-auto"
             id="divConsole"
           >
-            <pre><code id="out">Loading webR, please wait...</code></pre>
+            <pre><code id="out">Loading {{lang}} WASM environnement, please wait... <br></code></pre>
             <v-textarea
               v-on:keyup.enter="onEnter"
               v-model="command"
@@ -88,14 +88,17 @@ export default {
       tab: null,
       editorStarted: false,
       test: null,
+      pyodide: null,
+      pyodideLoaded: false,
     };
   },
   async setup() {
-    // Manage path
+    // Manage path and get language
     const route = useRoute();
+    let lang = route.params.lang;
     const id = ref(route.query.id ? route.query.id : "");
     var step = ref(route.query.step ? route.query.step : 0);
-    const pathParent = route.path
+    const pathParent = route.path;
     const path = route.path + id.value;
 
     // Manage store
@@ -103,14 +106,25 @@ export default {
     const { command } = storeToRefs(store);
 
     // Start WebR
-    const webRConsole = new Console({
-      stdout: (line) => document.getElementById("out").append(line + "\n"),
-      stderr: (line) => document.getElementById("out").append(line + "\n"),
-      prompt: (p) => document.getElementById("out").append(p),
-      canvasExec: (line) => {
-        eval(`document.getElementById("plot-canvas").getContext('2d').${line}`);
-      },
-    });
+    var webConsole;
+    if (lang == "r") {
+      webConsole = new Console({
+        stdout: (line) => document.getElementById("out").append(line + "\n"),
+        stderr: (line) => document.getElementById("out").append(line + "\n"),
+        prompt: (p) => document.getElementById("out").append(p),
+        canvasExec: (line) => {
+          eval(
+            `document.getElementById("plot-canvas").getContext('2d').${line}`
+          );
+        },
+      });
+    } else {
+      webConsole = await loadPyodide({
+        indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/",
+        stdout: (line) => document.getElementById("out").append(line + "\n"),
+        stderr: (line) => document.getElementById("out").append(line + "\n"),
+      });
+    }
 
     // Get Tuto pages
     const tutosList = await queryContent(path).find();
@@ -124,10 +138,29 @@ export default {
       }
     }
 
-    return { webRConsole, tutosList, store, command, pathParent, id, step };
+    return {
+      webConsole,
+      tutosList,
+      store,
+      command,
+      pathParent,
+      id,
+      step,
+      lang,
+    };
   },
   async mounted() {
-    await this.webRConsole.run();
+    if (this.lang == "python") {
+      document.getElementById("out").innerHTML = "";
+      this.webConsole.runPython(
+        `
+from pyodide.console import BANNER
+print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
+        `
+      );
+    } else if (this.lang == "r") {
+      await this.webConsole.run();
+    }
     this.data = this.tutosList[this.step];
   },
   methods: {
@@ -147,9 +180,23 @@ export default {
       }
     },
     async onEnter() {
-      this.webRConsole.stdin(this.command);
-      document.getElementById("out").append(this.command + "\n");
-      this.command = "";
+      if (this.lang == "python") {
+        document.getElementById("out").append(">>>" + this.command + "\n");
+        try {
+          let output = this.webConsole.runPython(this.command + "\n\n");
+          if (output !== undefined) {
+            document.getElementById("out").append(output + "\n");
+          }
+        } catch (err) {
+          document.getElementById("out").append(err + "\n");
+        }
+        this.command = "";
+      } else if (this.lang == "r") {
+        this.webConsole.stdin(this.command);
+        document.getElementById("out").append(this.command + "\n");
+        this.command = "";
+      }
+
       var objDiv = document.getElementById("divConsole");
       objDiv.scrollTop = objDiv.scrollHeight;
     },
@@ -171,7 +218,7 @@ export default {
     },
     async testCode(code) {
       this.test = null;
-      const result = await this.webRConsole.webR
+      const result = await this.webConsole.webR
         .evalRBoolean(code)
         .then((res) => {
           return res;
@@ -186,9 +233,23 @@ export default {
   watch: {
     async command(new_val) {
       if (this.store.changed) {
-        for (const element of this.store.command) {
-          this.webRConsole.stdin(element);
-          document.getElementById("out").append(element + "\n");
+        if (this.lang == "r") {
+          for (const element of this.store.command.split("\n")) {
+            this.webConsole.stdin(element);
+            document.getElementById("out").append(element + "\n");
+          }
+        } else if (this.lang == "python") {
+          document
+            .getElementById("out")
+            .append(">>>" + this.store.command + "\n");
+          try {
+            let output = this.webConsole.runPython(this.store.command + "\n\n");
+            if (output !== undefined) {
+              document.getElementById("out").append(output + "\n");
+            }
+          } catch (err) {
+            document.getElementById("out").append(err + "\n");
+          }
         }
         this.store.reset();
         var objDiv = document.getElementById("divConsole");
@@ -202,10 +263,11 @@ export default {
     },
     step(new_val) {
       const router = useRouter();
-      router.push({ path: this.pathParent , 
-      query: { id: this.id, 
-        step: this.step } });
-    }
+      router.push({
+        path: this.pathParent,
+        query: { id: this.id, step: this.step },
+      });
+    },
   },
 };
 </script>

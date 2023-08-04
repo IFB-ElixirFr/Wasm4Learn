@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     source() {
-      this.store.updateCommand(editor.getValue().split("\n"));
+      this.store.updateCommand(editor.getValue());
     },
     save() {
       var element = document.createElement("a");

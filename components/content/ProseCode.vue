@@ -50,7 +50,7 @@ const props = withDefaults(
     highlights?: Array<number>;
     meta?: string | null;
   }>(),
-  { code: "", language: null, filename: null, highlights: () => [], meta: null}
+  { code: "", language: null, filename: null, highlights: () => [], meta: null }
 );
 
 const languageMap: Record<
@@ -71,7 +71,12 @@ const languageMap: Record<
     text: "bash",
     background: "#3E474A",
     color: "white",
-  }
+  },
+  python:{
+    text: "py",
+    background: "linear-gradient(to bottom right, #2F6E9D, #F6D652)",
+    color: "white",
+  },
 };
 
 const languageText = computed(() =>
@@ -86,7 +91,7 @@ const languageColor = computed(() =>
 
 // functions
 function runCode() {
-  store.updateCommand(props.code.split("\n"));
+  store.updateCommand(props.code);
 }
 </script>
   

@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     action() {
-      this.store.updateCommand(this.editor.getValue().split("\n"));
+      this.store.updateCommand(this.editor.getValue());
     },
     async testCode() {
       await this.store.updateCommand(this.editor.getValue().split("\n"));
