@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.6.0...v1.7.0) (2023-08-04)
+
+
+### Features
+
+* new repo name ([9de1213](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/9de121347bd4edf60b233fbc44be08532063eba5))
+
 ## [1.6.0](https://github.com/IFB-ElixirFr/R_WASM/compare/v1.5.0...v1.6.0) (2023-08-04)
 
 
