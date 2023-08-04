@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.0](https://github.com/IFB-ElixirFr/R_WASM/compare/v1.5.0...v1.6.0) (2023-08-04)
+
+
+### Features
+
+* add python ([bc7eafb](https://github.com/IFB-ElixirFr/R_WASM/commit/bc7eafbf44e9a7131a94beea818a83eacb895b9f))
+
 ## [1.5.0](https://github.com/IFB-ElixirFr/R_WASM/compare/v1.4.0...v1.5.0) (2023-08-03)
 
 
