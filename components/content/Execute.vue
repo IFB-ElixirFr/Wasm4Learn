@@ -12,7 +12,7 @@
     size="x-small"
     prepend-icon="mdi-cog-play"
     class="mb-2 ms-2"
-    >Tester mon code</v-btn
+    >Test my code</v-btn
   >
   <div :id="id" style="width: 100%; height: 200px">
     {{ command }}
@@ -72,7 +72,7 @@ export default {
       this.store.updateCommand(this.editor.getValue());
     },
     async testCode() {
-      await this.store.updateCommand(this.editor.getValue().split("\n"));
+      await this.store.updateCommand(this.editor.getValue());
       await this.store.updateCommandTest(this.test.split("\n"), this.id);
     },
   },
