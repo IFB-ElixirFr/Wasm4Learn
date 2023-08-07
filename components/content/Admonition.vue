@@ -7,7 +7,7 @@
       >
     </v-card-title>
     <v-card-text class="pt-4">
-      {{ text }}
+      <p v-html="$mdRenderer.render(text)"></p>
     </v-card-text>
   </v-card>
 </template>
