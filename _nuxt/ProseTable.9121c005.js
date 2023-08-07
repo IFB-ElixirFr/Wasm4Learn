@@ -1,0 +1,1 @@
+import{_ as t,r as s,o as a,k as n,w as r,I as c}from"./entry.4c7018de.js";const l={};function _(e,f){const o=s("v-table");return a(),n(o,null,{default:r(()=>[c(e.$slots,"default")]),_:3})}const p=t(l,[["render",_]]);export{p as default};
