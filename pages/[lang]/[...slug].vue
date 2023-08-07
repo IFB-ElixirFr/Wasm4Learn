@@ -77,6 +77,7 @@
 import { Console } from "@r-wasm/webr";
 import { useCommandStore } from "@/stores/useCommandStore";
 import { storeToRefs } from "pinia";
+import { getQuickJS } from "quickjs-emscripten";
 
 export default {
   data() {
@@ -118,13 +119,16 @@ export default {
           );
         },
       });
-    } else {
+    } else if (lang == "js") {
+      const QuickJS = await getQuickJS();
+      webConsole = QuickJS.newContext();
+    } else if (lang == "python") {
       webConsole = await loadPyodide({
         indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/",
         stdout: (line) => document.getElementById("out").append(line + "\n"),
         stderr: (line) => document.getElementById("out").append(line + "\n"),
       });
-    }
+    } 
 
     // Get Tuto pages
     const tutosList = await queryContent(path).find();
@@ -181,22 +185,15 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
     },
     async onEnter() {
       if (this.lang == "python") {
-        document.getElementById("out").append(">>>" + this.command + "\n");
-        try {
-          let output = this.webConsole.runPython(this.command + "\n\n");
-          if (output !== undefined) {
-            document.getElementById("out").append(output + "\n");
-          }
-        } catch (err) {
-          document.getElementById("out").append(err + "\n");
-        }
-        this.command = "";
+        this.runPython();
       } else if (this.lang == "r") {
         this.webConsole.stdin(this.command);
         document.getElementById("out").append(this.command + "\n");
-        this.command = "";
-      }
+      } else if (this.lang == "js") {
+        this.runJS();
+      } 
 
+      this.command = "";
       var objDiv = document.getElementById("divConsole");
       objDiv.scrollTop = objDiv.scrollHeight;
     },
@@ -229,6 +226,34 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
 
       this.test = result;
     },
+    async runJS() {
+      const result = this.webConsole.evalCode(this.command);
+      document.getElementById("out").append(">" + this.command + "\n");
+      if (result.error) {
+        document
+          .getElementById("out")
+          .append(this.webConsole.dump(result.error) + "\n");
+        this.command = "";
+        result.error.dispose();
+      } else {
+        document
+          .getElementById("out")
+          .append(this.webConsole.dump(result.value) + "\n");
+        this.command = "";
+        result.value.dispose();
+      }
+    },
+    runPython() {
+      document.getElementById("out").append(">>>" + this.store.command + "\n");
+      try {
+        let output = this.webConsole.runPython(this.store.command + "\n\n");
+        if (output !== undefined) {
+          document.getElementById("out").append(output + "\n");
+        }
+      } catch (err) {
+        document.getElementById("out").append(err + "\n");
+      }
+    },
   },
   watch: {
     async command(new_val) {
@@ -239,18 +264,11 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
             document.getElementById("out").append(element + "\n");
           }
         } else if (this.lang == "python") {
-          document
-            .getElementById("out")
-            .append(">>>" + this.store.command + "\n");
-          try {
-            let output = this.webConsole.runPython(this.store.command + "\n\n");
-            if (output !== undefined) {
-              document.getElementById("out").append(output + "\n");
-            }
-          } catch (err) {
-            document.getElementById("out").append(err + "\n");
-          }
-        }
+          this.runPython();
+        } else if (this.lang == "js") {
+          this.runJS();
+        } 
+
         this.store.reset();
         var objDiv = document.getElementById("divConsole");
         objDiv.scrollTop = objDiv.scrollHeight;

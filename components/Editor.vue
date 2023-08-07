@@ -18,7 +18,6 @@
     >
       Source</v-btn
     >
-    
   </div>
   <div id="editorArea" style="height: 90%" ref="codeValue"></div>
 </template>

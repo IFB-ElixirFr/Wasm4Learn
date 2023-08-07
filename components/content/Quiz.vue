@@ -12,6 +12,7 @@
 
     <div v-if="type == 'multiple'">
       <v-checkbox
+        hide-details="true"
         v-for="(c, k) in choices"
         :key="k"
         :label="c.value"
@@ -20,8 +21,9 @@
         v-model="checkedNames"
       ></v-checkbox>
     </div>
-    <v-btn @click="submit">Submit</v-btn>
-
+    <div class="text-right">
+      <v-btn @click="submit">Submit</v-btn>
+    </div>
     <p>{{ message }}</p>
   </v-card>
 </template>
@@ -39,7 +41,7 @@ export default {
   },
   setup(props) {
     var id = new Date().valueOf();
-    id = "editorArea" + id 
+    id = "editorArea" + id;
     return { id };
   },
   methods: {

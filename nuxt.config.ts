@@ -7,7 +7,7 @@ const { resolve } = createResolver(import.meta.url)
 export default defineNuxtConfig({
   target: 'static',
   buildModules: [
-    '@nuxt/image',
+    '@nuxt/image'
   ],
   modules: [
     '@pinia/nuxt',
