@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.8.1...v1.9.0) (2023-08-07)
+
+
+### Features
+
+* admonition in md ([c3bbfc0](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/c3bbfc089e42546eaf786823ad5310a9b1571d8c))
+
 ## [1.8.1](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.8.0...v1.8.1) (2023-08-04)
 
 
