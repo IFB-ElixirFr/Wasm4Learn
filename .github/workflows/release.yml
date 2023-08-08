@@ -32,9 +32,3 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_AUTH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Release
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          automatic_release_tag: "latest"
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          prerelease: false
