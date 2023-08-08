@@ -7,19 +7,40 @@
     >
 
     <template v-slot:append>
-      <v-btn
-        icon
-        href="https://github.com/IFB-ElixirFr/Wasm4Learn"
-        target="_blank"
-      >
-        <v-icon>mdi-github</v-icon>
-      </v-btn>
+      <v-menu>
+        <template v-slot:activator="{ props }">
+          <v-btn v-bind="props" icon="mdi-github"> </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(item, index) in items"
+            :key="index"
+            :value="index"
+          >
+            <v-list-item-title :href="item.link" target="_blank">{{ item.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </template>
   </v-app-bar>
 </template>
 
 <script>
-export default {};
+export default {
+  data: () => ({
+    items: [
+      { title: "Tool", link: "https://github.com/IFB-ElixirFr/Wasm4Learn" },
+      {
+        title: "Documentation",
+        link: "https://github.com/IFB-ElixirFr/Wasm4Learn-content",
+      },
+      {
+        title: "Content",
+        link: "https://github.com/IFB-ElixirFr/Wasm4Learn-doc",
+      },
+    ],
+  }),
+};
 </script>
 
 <style>
