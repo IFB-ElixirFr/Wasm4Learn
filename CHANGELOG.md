@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.9.0...v1.10.0) (2023-08-08)
+
+
+### Features
+
+* create a community page ([060e992](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/060e992d816a2f5c34338e0f4df14b0a40d125f0))
+* create a GitHub menu ([e7331f9](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/e7331f92ec7a92d6ee68c172b2380110149bab76))
+* create an about page ([d955055](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/d955055cfc0666da24dd4bca282be90ba04d90ff))
+* create resources page ([1b7a48f](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/1b7a48f12d1a40fc674630657d345f4f877646d0))
+
 ## [1.9.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.8.1...v1.9.0) (2023-08-07)
 
 
