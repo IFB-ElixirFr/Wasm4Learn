@@ -65,7 +65,7 @@
   </v-list>
 
   To find out more about the teaching resources and WASM tools we have used,
-  please read our Resource page.
+  please read our <nuxt-link to="/resources/">ressources</nuxt-link> page.
 </template>
 
 <script>
