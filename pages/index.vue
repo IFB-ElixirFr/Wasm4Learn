@@ -17,9 +17,7 @@
         <p class="text-subtitle-1 mb-6">
           The French Institute of Bioinformatics (IFB) offers a series of
           tutorials on the R and Python languages to introduce you to the first
-          commands. This website uses WASM technology with the
-          <a href="https://docs.r-wasm.org/webr/latest/">WebR</a> and
-          <a href="https://pyodide.org/en/stable/">Pyodide</a>.
+          commands. This website uses WASM technology (see <nuxt-link to="/resources/">ressources</nuxt-link>).
         </p>
         <div class="d-flex justify-center mb-6">
           <v-btn
@@ -79,19 +77,6 @@
       </v-card-text>
     </v-card>
   </div>
-
-  <h2>Ressources</h2>
-  <p>The teaching resources come from a course given by :</p>
-  <ul>
-    <li>
-      Denis Puthier (member ofthe IFB's GT-eformation), available
-      <a href="https://github.com/dputhier/rtrainer/tree/main">here</a>
-    </li>
-    <li>
-      Thomas Denecker (member of the IFB's GT-eformation) available
-      <a href="https://github.com/IFB-ElixirFr/EBAII_IntroR">here</a>
-    </li>
-  </ul>
 </template>
 
 <script>
