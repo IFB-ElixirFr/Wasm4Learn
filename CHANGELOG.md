@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.10.0...v1.11.0) (2023-08-08)
+
+
+### Features
+
+* add a splitter between console and plot/editor ([0952acf](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/0952acfb260aea9dabc275246165534f123f5c02))
+
 ## [1.10.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.9.0...v1.10.0) (2023-08-08)
 
 
