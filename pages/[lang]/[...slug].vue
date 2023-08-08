@@ -30,7 +30,28 @@
               href="https://github.com/IFB-ElixirFr/Wasm4Learn/discussions"
               target="_blank">Help</v-btn>
 
-            <v-chip> {{ step + 1 }} / {{ tutosList.length }} </v-chip>
+
+        <v-menu
+          open-on-hover
+          >
+            <template v-slot:activator="{ props }">
+              <v-btn
+              class="rounded-pill"
+              variant="tonal"
+              > {{ step + 1 }} / {{ tutosList.length }} </v-btn>
+            </template>
+            <v-list>
+              <v-list-item v-for="(n, key) in navigation" :key="key">
+              </v-list-item>  
+              <v-list-item-title>{{ c2.title }}</v-list-item-title> 
+            </v-list>
+
+          </v-menu>
+            <!-- <v-btn
+              @click="menuDisplay"
+              class="rounded-pill"
+              variant="tonal"
+              > {{ step + 1 }} / {{ tutosList.length }} </v-btn> -->
 
         </v-card-actions>
        

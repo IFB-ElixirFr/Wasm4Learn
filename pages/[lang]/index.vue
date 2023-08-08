@@ -8,14 +8,17 @@
     <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
       <h2>{{ section.title }}</h2>
       <div class="d-flex flex-wrap">
-        <v-card
-          @click="changePath(section._path, c._dir)"
+        <v-card outlined elevation="3"
           v-for="(c, keyC) in section.children"
           :key="keyC"
-          width="300px"
+          width="350px"
           class="ma-5"
         >
+        <v-card
+        @click="changePath(section._path, c._dir)">
           <v-card-title>{{ c.title }}</v-card-title>
+        </v-card>
+
           <v-card-text>
             <div v-if="c.belt">
               <v-chip
@@ -39,12 +42,14 @@
                 {{ t }}
               </v-chip>
             </div>
+            <p><b>Description</b></p>
+              <v-card-text>
+              {{ c.description }}
+              </v-card-text>
             <p><b>Programme</b></p>
-            <ul class="ms-4">
-              <li v-for="(c2, keyC2) in c.children" :key="keyC2">
+              <v-list v-for="(c2, keyC2) in c.children" :key="keyC2">
                 {{ c2.title }}
-              </li>
-            </ul>
+              </v-list>
           </v-card-text>
         </v-card>
       </div>
