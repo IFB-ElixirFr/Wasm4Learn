@@ -79,19 +79,6 @@
       </v-card-text>
     </v-card>
   </div>
-
-  <h2>Ressources</h2>
-  <p>The teaching resources come from a course given by :</p>
-  <ul>
-    <li>
-      Denis Puthier (member ofthe IFB's GT-eformation), available
-      <a href="https://github.com/dputhier/rtrainer/tree/main">here</a>
-    </li>
-    <li>
-      Thomas Denecker (member of the IFB's GT-eformation) available
-      <a href="https://github.com/IFB-ElixirFr/EBAII_IntroR">here</a>
-    </li>
-  </ul>
 </template>
 
 <script>
