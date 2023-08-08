@@ -25,8 +25,14 @@
             class="me-2"
             >Next</v-btn
           >
-          <v-chip> {{ step + 1 }} / {{ tutosList.length }} </v-chip>
+            <v-btn class="bg-primary rounded-pill lighten-4 mx-4"
+              variant="Flat"
+              href="https://github.com/IFB-ElixirFr/Wasm4Learn/discussions"
+              target="_blank">Help</v-btn>
+            <v-chip> {{ step + 1 }} / {{ tutosList.length }} </v-chip>
+
         </v-card-actions>
+       
       </v-card>
     </v-col>
     <v-col class="fill-height">
