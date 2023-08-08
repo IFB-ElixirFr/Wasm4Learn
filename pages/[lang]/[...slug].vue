@@ -29,6 +29,7 @@
               variant="Flat"
               href="https://github.com/IFB-ElixirFr/Wasm4Learn/discussions"
               target="_blank">Help</v-btn>
+
             <v-chip> {{ step + 1 }} / {{ tutosList.length }} </v-chip>
 
         </v-card-actions>
