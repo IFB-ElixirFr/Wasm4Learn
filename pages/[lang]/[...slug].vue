@@ -29,8 +29,8 @@
         </v-card-actions>
       </v-card>
     </v-col>
-    <v-col class="fill-height">
-      <div style="height: 50%">
+    <v-col class="fill-height split">
+      <div id="split-0" style="height: 50%">
         <v-card class="fill-height">
           <v-card-text
             class="fill-height overflow-y-auto overflow-x-auto"
@@ -46,7 +46,7 @@
           </v-card-text>
         </v-card>
       </div>
-      <div style="height: 50%">
+      <div id="split-1" style="height: 50%">
         <v-card class="fill-height pa-2 mt-1">
           <v-tabs v-model="tab">
             <v-tab value="plot">Plot</v-tab>
@@ -78,6 +78,7 @@ import { Console } from "@r-wasm/webr";
 import { useCommandStore } from "@/stores/useCommandStore";
 import { storeToRefs } from "pinia";
 import { getQuickJS } from "quickjs-emscripten";
+import Split from "split.js";
 
 export default {
   data() {
@@ -128,7 +129,7 @@ export default {
         stdout: (line) => document.getElementById("out").append(line + "\n"),
         stderr: (line) => document.getElementById("out").append(line + "\n"),
       });
-    } 
+    }
 
     // Get Tuto pages
     const tutosList = await queryContent(path).find();
@@ -166,6 +167,9 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
       await this.webConsole.run();
     }
     this.data = this.tutosList[this.step];
+    Split(["#split-0", "#split-1"], {
+      direction: "vertical",
+    });
   },
   methods: {
     async getOutput() {
@@ -191,7 +195,7 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
         document.getElementById("out").append(this.command + "\n");
       } else if (this.lang == "js") {
         this.runJS();
-      } 
+      }
 
       this.command = "";
       var objDiv = document.getElementById("divConsole");
@@ -267,7 +271,7 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
           this.runPython();
         } else if (this.lang == "js") {
           this.runJS();
-        } 
+        }
 
         this.store.reset();
         var objDiv = document.getElementById("divConsole");
@@ -291,6 +295,17 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
 </script>
   
 <style>
+.gutter {
+  background-color: #eee;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.gutter.gutter-vertical {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=");
+  cursor: row-resize;
+}
+
 p {
   margin-top: 10px;
   margin-bottom: 10px;

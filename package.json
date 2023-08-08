@@ -31,6 +31,7 @@
     "pyodide": "^0.23.4",
     "quickjs-emscripten": "^0.23.0",
     "sass": "^1.64.1",
+    "split.js": "^1.6.5",
     "vite-plugin-vuetify": "^1.0.2",
     "vue-markdown-render": "^2.0.1",
     "vuedraggable": "^4.1.0",
