@@ -29,45 +29,65 @@
         </v-card-actions>
       </v-card>
     </v-col>
-    <v-col class="fill-height split">
-      <div id="split-0" style="height: 50%">
-        <v-card class="fill-height">
-          <v-card-text
-            class="fill-height overflow-y-auto overflow-x-auto"
-            id="divConsole"
-          >
-            <pre><code id="out">Loading {{lang}} WASM environnement, please wait... <br></code></pre>
-            <v-textarea
-              v-on:keyup.enter="onEnter"
-              v-model="command"
-              variant="underlined"
-              prepend-icon="mdi-chevron-right"
-            ></v-textarea>
-          </v-card-text>
-        </v-card>
-      </div>
-      <div id="split-1" style="height: 50%">
-        <v-card class="fill-height pa-2 mt-1">
-          <v-tabs v-model="tab">
-            <v-tab value="plot">Plot</v-tab>
-            <v-tab value="editorTab">Editor</v-tab>
-          </v-tabs>
-          <v-card-text class="fill-height">
-            <v-window v-model="tab" class="fill-height">
-              <v-window-item value="plot" class="fill-height text-center">
-                <canvas
-                  id="plot-canvas"
-                  width="1008"
-                  height="1008"
-                  style="margin: auto; height: calc(100% - 50px)"
-                ></canvas>
-              </v-window-item>
-              <v-window-item value="editorTab" class="fill-height text-center">
-                <Editor />
-              </v-window-item>
-            </v-window>
-          </v-card-text>
-        </v-card>
+    <v-col class="fill-height">
+      <div class="fill-height split" style="width: calc(100% - 10px)">
+        <div id="split-0" style="height: 50%">
+          <v-card class="fill-height">
+            <v-card-text class="fill-height overflow-x-auto" id="divConsole">
+              <pre><code id="out">Loading {{lang}} WASM environnement, please wait... <br></code></pre>
+              <v-textarea
+                v-on:keyup.enter="onEnter"
+                v-model="command"
+                variant="underlined"
+                prepend-icon="mdi-chevron-right"
+              ></v-textarea>
+            </v-card-text>
+          </v-card>
+        </div>
+        <div id="split-1" style="height: 50%">
+          <v-card class="fill-height pa-2 mt-1">
+            <v-tabs v-model="tab">
+              <v-tab value="plot">Plot</v-tab>
+              <v-tab value="editorTab">Editor</v-tab>
+            </v-tabs>
+            <v-card-text class="fill-height">
+              <v-window v-model="tab" class="fill-height">
+                <v-window-item value="plot" class="fill-height text-center">
+                  <div
+                    style="width: 100%; background-color: gainsboro"
+                    class="text-left"
+                  >
+                    <v-btn
+                      variant="text"
+                      @click="changePlot('prev')"
+                      icon="mdi-chevron-left"
+                      size="x-small"
+                    ></v-btn>
+                    <v-btn
+                      variant="text"
+                      @click="changePlot('next')"
+                      icon="mdi-chevron-right"
+                      size="x-small"
+                    ></v-btn>
+                    <v-btn size="x-small" @click="saveCanvas">Save</v-btn>
+                  </div>
+                  <canvas
+                    id="plot-canvas"
+                    width="1008"
+                    height="1008"
+                    style="margin: auto; height: calc(100% - 50px)"
+                  ></canvas>
+                </v-window-item>
+                <v-window-item
+                  value="editorTab"
+                  class="fill-height text-center"
+                >
+                  <Editor />
+                </v-window-item>
+              </v-window>
+            </v-card-text>
+          </v-card>
+        </div>
       </div>
     </v-col>
   </v-row>
@@ -79,6 +99,8 @@ import { useCommandStore } from "@/stores/useCommandStore";
 import { storeToRefs } from "pinia";
 import { getQuickJS } from "quickjs-emscripten";
 import Split from "split.js";
+
+let tempLineArray = [];
 
 export default {
   data() {
@@ -92,6 +114,8 @@ export default {
       test: null,
       pyodide: null,
       pyodideLoaded: false,
+      canvasArray: [],
+      canvasPos: 0,
     };
   },
   async setup() {
@@ -115,6 +139,7 @@ export default {
         stderr: (line) => document.getElementById("out").append(line + "\n"),
         prompt: (p) => document.getElementById("out").append(p),
         canvasExec: (line) => {
+          tempLineArray.push(line);
           eval(
             `document.getElementById("plot-canvas").getContext('2d').${line}`
           );
@@ -172,27 +197,49 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
     });
   },
   methods: {
-    async getOutput() {
-      for (;;) {
-        const output = await this.webR.read();
-        switch (output.type) {
-          case "stdout":
-            this.stdout.push(output.data);
-            break;
-          case "stderr":
-            this.stderr = this.srdout + output.data;
-            break;
-          default:
-            console.warn(`Unhandled output type: ${output.type}.`);
-        }
+    changePlot(direction) {
+      this.updateCanvas();
+      if (direction == "next" && this.canvasPos + 1 < this.canvasArray.length) {
+        this.canvasPos = this.canvasPos + 1;
+      } else if (direction == "prev" && this.canvasPos - 1 >= 0) {
+        this.canvasPos = this.canvasPos - 1;
       }
+
+      for (const i in this.canvasArray[this.canvasPos]) {
+        const line = this.canvasArray[this.canvasPos][i];
+        eval(`document.getElementById("plot-canvas").getContext('2d').${line}`);
+      }
+    },
+    updateCanvas() {
+      if (tempLineArray.length != 0) {
+        this.canvasArray.push(tempLineArray);
+        tempLineArray = [];
+      }
+    },
+    saveCanvas() {
+      var canvas = document.getElementById("plot-canvas");
+      var dataURL = canvas
+        .toDataURL("image/png")
+        .replace("image/png", "image/octet-stream");
+      var element = document.createElement("a");
+
+      element.href = dataURL;
+      element.setAttribute("download", "Wasm4Learn.png");
+      element.style.display = "none";
+      document.body.appendChild(element);
+
+      element.click();
+
+      document.body.removeChild(element);
     },
     async onEnter() {
       if (this.lang == "python") {
         this.runPython();
       } else if (this.lang == "r") {
-        this.webConsole.stdin(this.command);
+        this.updateCanvas();
+        await this.webConsole.stdin(this.command);
         document.getElementById("out").append(this.command + "\n");
+        this.updateCanvas();
       } else if (this.lang == "js") {
         this.runJS();
       }
@@ -264,15 +311,16 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
       if (this.store.changed) {
         if (this.lang == "r") {
           for (const element of this.store.command.split("\n")) {
-            this.webConsole.stdin(element);
+            this.updateCanvas();
+            await this.webConsole.stdin(element);
             document.getElementById("out").append(element + "\n");
+            this.updateCanvas();
           }
         } else if (this.lang == "python") {
           this.runPython();
         } else if (this.lang == "js") {
           this.runJS();
         }
-
         this.store.reset();
         var objDiv = document.getElementById("divConsole");
         objDiv.scrollTop = objDiv.scrollHeight;
@@ -327,5 +375,8 @@ pre {
 }
 li {
   margin-left: 25px;
+}
+.math {
+  font-family: Courier, monospace;
 }
 </style>
