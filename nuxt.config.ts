@@ -49,6 +49,14 @@ export default defineNuxtConfig({
         // Imagine you have a blog inside your content folder. You can set this option to `content/blog` with the prefix option to `/blog` to avoid conflicts with local files.
       },
     },
+    markdown: {
+      remarkPlugins: ['remark-math'],
+      rehypePlugins: {
+        'rehype-katex': {
+          output: 'html' // the default value is 'htmlAndMathml'
+        }
+      }
+    },
     experimental: {
       clientDB: true
     },
