@@ -15,7 +15,9 @@
     "@nuxt/devtools": "latest",
     "@types/node": "^18.17.0",
     "nuxt": "^3.6.5",
-    "push-dir": "^0.4.1"
+    "push-dir": "^0.4.1",
+    "rehype-katex": "^6.0.3",
+    "remark-math": "^5.1.1"
   },
   "dependencies": {
     "@nuxt/content": "^2.7.2",
