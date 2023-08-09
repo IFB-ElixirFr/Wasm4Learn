@@ -2,7 +2,7 @@
   <v-app-bar flat=true color="#0080bc" class="text-white">
     <v-app-bar-title
       ><NuxtLink to="/" style="color: white; text-decoration: none"
-        >Interactive tutorials with WASM</NuxtLink
+        >Wasm<span style="color: #cddd00">4</span>Learn</NuxtLink
       ></v-app-bar-title
     >
     <v-alert type="warning" text="POC under development" style="width: 200px;" max-height="80%"></v-alert>

@@ -1,26 +1,36 @@
 <template>
-  <v-sheet color="#0080bc">
+  <v-sheet
+    color="#0080bc"
+    style="height: calc(100vh - 60px)"
+    class="d-flex flex-wrap justify-center align-center"
+  >
     <v-container class="pa-10 text-white text-center">
-      <p class="text-h2 ma-10">Interactive tutorials with WASM</p>
-      <p class="text-h5 mb-6">
-        The French Institute of Bioinformatics (IFB) offers a series of
-        tutorials on the R and Python languages to introduce you to the first
-        commands. This website uses WASM technology (see
+      <p class="title ma-10 text-h1">
+        Wasm<span style="color: #cddd00">4</span>Learn
+      </p>
+      <p class="text-h5 mb-10">
+        The French Institute of Bioinformatics (IFB) offers an interactive
+        tutorial platform to introduce you to the first commands in different
+        languages like R and Python. This website uses WASM technology (see
         <nuxt-link to="/resources/" style="color: white">ressources</nuxt-link
         >).
       </p>
-      <img src="/logoWebRFB.svg" alt="" style="height: 200px" class="mb-6" />
+      <img src="/logoWebRFB.svg" alt="" style="height: 200px" class="mb-10" />
       <div class="d-flex justify-center mb-6">
         <v-btn
+          size="large"
+          elevation="6"
           class="mx-3"
           href="https://ifb-elixirfr.github.io/Wasm4Learn-doc/"
           target="_blank"
           ><v-icon class="me-3">mdi-book</v-icon> Documentation</v-btn
         >
-        <v-btn class="mx-3"
+        <v-btn class="mx-3" size="large" elevation="6" href="#getStarted"
           ><v-icon class="me-3">mdi-play</v-icon> Get started</v-btn
         >
         <v-btn
+          size="large"
+          elevation="6"
           class="mx-3"
           href="https://github.com/IFB-ElixirFr/R_WASM/discussions"
           target="_blank"
@@ -29,99 +39,124 @@
           Feedbacks</v-btn
         >
       </div>
+      <div class="scroll-down"></div>
     </v-container>
   </v-sheet>
-  <div class="backgroundDiv">
-    <v-sheet style="background-color: transparent">
-      <v-container class="pa-10 text-center text-white">
-        <p class="text-h3 ma-5">
-          <span style="color: #cddd00">A turnkey</span> training site
-        </p>
-        <v-row>
-          <v-col
-            ><img
-              src="/trainingArea.png"
-              alt="logo"
-              style="max-width: 100%"
-              class="rounded elevation-4"
-          /></v-col>
-          <v-col cols="4" class="d-flex align-center justify-center">
-            <p class="text-h5 text-center">
-              No installation required — run code from your browser
-            </p>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col >
+
+  <v-sheet>
+    <v-container class="pa-10 text-center">
+      <p class="text-h3 ma-5">
+        <span style="color: #cddd00">A turnkey</span> training site
+      </p>
+      <v-row>
+        <v-col
+          ><img
+            src="/trainingArea.png"
+            alt="logo"
+            style="max-width: 100%"
+            class="rounded elevation-4"
+        /></v-col>
+        <v-col cols="4" class="d-flex align-center justify-center">
+          <p class="text-h4 text-center">
+            <span style="color: #0080bc">No installation required</span> — run
+            code from your browser
+          </p>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="4" class="d-flex align-center justify-center">
+          <p class="text-h4 text-center">
+            Learn from the
+            <span style="color: #0080bc">IFB GT e-formation</span>
+          </p></v-col
+        >
+        <v-col>
+          <v-sheet
+            class="d-flex flex-wrap justify-center"
+            style="background-color: transparent"
+          >
             <v-sheet
-              class="d-flex flex-wrap justify-center"
-              style="background-color: transparent"
+              v-for="(i, k) in instructors"
+              :key="k"
+              class="ma-2 pa-2"
+              width="200px"
+              elevation="6"
             >
-              <v-sheet
-                v-for="(i, k) in instructors"
-                :key="k"
-                class="ma-2 pa-2"
-                width="200px"
-                color="#e6f0f9"
-                elevation='6'
-              >
-                <v-avatar icon="mdi-account" size="63"></v-avatar>
-                <p><b>{{ i.name }}</b> </p>
-                <p>{{ i.role }}</p>
-                <p>{{ i.location }}</p>
-              </v-sheet>
+              <v-avatar icon="mdi-account" size="63"></v-avatar>
+              <p>
+                <b>{{ i.name }}</b>
+              </p>
+              <p>{{ i.role }}</p>
+              <p>{{ i.location }}</p>
             </v-sheet>
-          </v-col>
-          <v-col cols="4" class="d-flex align-center justify-center">
-            <p class="text-h5 text-center">
-              Learn from the best instructors
-            </p></v-col
-          >
-        </v-row>
-        <v-row>
-          <v-col
-            ><img src="/testSkills.png" alt="logo" style="max-width: 100%"
-          /></v-col>
-          <v-col cols="4" class="d-flex align-center justify-center">
-            <p class="text-h5 text-center">Practice and apply your skills</p>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-sheet>
-    <v-sheet style="background-color: transparent">
-      <v-container class="pa-10 text-white text-center">
-        <p class="text-h3 ma-5">
-          <span style="color: #cddd00">Learning path</span> design by trainers
-        </p>
-        <h2>Available languages</h2>
-        <div class="d-flex flex-wrap justify-center">
-          <v-card
-            width="300px"
-            class="ma-5"
-            v-for="(n, key) in navigation"
-            :key="key"
-            @click="changePath(n._path)"
-            elevation="5"
-          >
-            <v-card-text>
-              <div class="text-center">
-                <img :src="n.image" alt="logo" style="height: 100px" />
-              </div>
-              <h1>{{ n.title }}</h1>
-              <br />
-              <p class="text-subtitle-1">{{ n.description }}</p>
-              <br />
-              <div v-if="n.children">
-                <p v-for="(c, cKey) in n.children" :key="cKey">
-                  <b>{{ c.title }}</b> : {{ getItems(c) }}
-                </p>
-              </div>
-            </v-card-text>
-          </v-card>
-        </div>
-      </v-container>
-    </v-sheet>
-  </div>
+          </v-sheet>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col
+          ><img src="/testSkills.png" alt="logo" style="max-width: 100%"
+        /></v-col>
+        <v-col cols="4" class="d-flex align-center justify-center">
+          <p class="text-h4 text-center">
+            <span style="color: #0080bc">Practice</span> your new knowledge
+          </p>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-sheet>
+  <v-sheet style="background-color: #0080bc" id="getStarted">
+    <v-container class="pa-10 text-white text-center">
+      <p class="text-h3 ma-5">
+        <span style="color: #cddd00">Learning path</span> design by trainers
+      </p>
+      <p class="text-h4">By languages</p>
+      <div class="d-flex flex-wrap justify-center">
+        <v-card
+          width="300px"
+          class="ma-5"
+          v-for="(n, key) in navigation"
+          :key="key"
+          @click="changePath(n._path)"
+          elevation="5"
+        >
+          <v-card-text>
+            <div class="text-center">
+              <img :src="n.image" alt="logo" style="height: 100px" />
+            </div>
+            <h1>{{ n.title }}</h1>
+            <br />
+            <p class="text-subtitle-1">{{ n.description }}</p>
+            <br />
+            <div v-if="n.children">
+              <p v-for="(c, cKey) in n.children" :key="cKey">
+                <b>{{ c.title }}</b> : {{ getItems(c) }}
+              </p>
+            </div>
+          </v-card-text>
+        </v-card>
+      </div>
+    </v-container>
+  </v-sheet>
+
+  <v-sheet>
+    <v-container class="pa-10 text-center">
+      <p class="text-h3 ma-5">
+        <span style="color: #cddd00">Join</span> our community !
+      </p>
+      <p class="text-h5">
+        Want to join our community? Create a new course? Or simply give us some
+        feedback?
+      </p>
+
+      <v-btn
+        size="large"
+        class="ma-10"
+        href="mailto:ifb-gt-eformation@groupes.france-bioinformatique.fr"
+        >Send us an email !</v-btn
+      >
+    </v-container>
+  </v-sheet>
+
   <Footer />
 </template>
 
@@ -221,8 +256,76 @@ export default {
 </script>
 
 <style>
-.backgroundDiv {
-  background: linear-gradient(135deg, #0080bc 80%, #e6f0f9 80%);
+html {
+  scroll-behavior: smooth;
 }
 
+.title {
+  font-family: "Open Sans Condensed" !important;
+}
+
+.scroll-down {
+  position: absolute;
+  left: 50%;
+  top: calc(100vh - 60px);
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  z-index: 100;
+  text-decoration: none;
+  text-shadow: 0;
+  width: 13px;
+  height: 13px;
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
+  z-index: 9;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0%) rotate(45deg);
+  -moz-transform: translate(-50%, 0%) rotate(45deg);
+  transform: translate(-50%, 0%) rotate(45deg);
+  -webkit-animation: fade_move_down 4s ease-in-out infinite;
+  -moz-animation: fade_move_down 4s ease-in-out infinite;
+  animation: fade_move_down 4s ease-in-out infinite;
+}
+
+/*animated scroll arrow animation*/
+@-webkit-keyframes fade_move_down {
+  0% {
+    -webkit-transform: translate(0, -10px) rotate(45deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate(0, 10px) rotate(45deg);
+    opacity: 0;
+  }
+}
+@-moz-keyframes fade_move_down {
+  0% {
+    -moz-transform: translate(0, -10px) rotate(45deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -moz-transform: translate(0, 10px) rotate(45deg);
+    opacity: 0;
+  }
+}
+@keyframes fade_move_down {
+  0% {
+    transform: translate(0, -10px) rotate(45deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 10px) rotate(45deg);
+    opacity: 0;
+  }
+}
 </style>
