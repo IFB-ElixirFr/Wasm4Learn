@@ -1,6 +1,7 @@
 <template>
-  <v-card :color="color" class="pa-4 my-4 text-white" :id="id">
-    <h3>{{ question }}</h3>
+  <v-card :color="color" class="pa-4 my-4" :id="id">
+    <h3><v-icon>mdi-help-box-multiple</v-icon> Quiz</h3>
+    <p class="text-subtitle-1" v-html="$mdRenderer.render(question)"></p>
     <v-radio-group v-if="type == 'simple'" v-model="radios">
       <v-radio
         v-for="(c, k) in choices"
@@ -34,7 +35,7 @@ export default {
   data() {
     return {
       radios: "",
-      color: "#385F73",
+      color: "#E8EAF6",
       message: "",
       checkedNames: ref([]),
     };
