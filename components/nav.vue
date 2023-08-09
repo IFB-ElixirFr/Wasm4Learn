@@ -1,11 +1,11 @@
 <template>
-  <v-app-bar :elevation="2">
+  <v-app-bar flat=true color="#0080bc" class="text-white">
     <v-app-bar-title
-      ><NuxtLink to="/" style="color: black; text-decoration: none"
+      ><NuxtLink to="/" style="color: white; text-decoration: none"
         >Interactive tutorials with WASM</NuxtLink
       ></v-app-bar-title
     >
-
+    <v-alert type="warning" text="POC under development" style="width: 200px;" max-height="80%"></v-alert>
     <template v-slot:append>
       <v-menu>
         <template v-slot:activator="{ props }">
