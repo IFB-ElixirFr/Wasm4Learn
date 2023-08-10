@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.12.0...v1.13.0) (2023-08-10)
+
+
+### Features
+
+* add instructor pictures ([0b1ac7e](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/0b1ac7e047b32b8b14e2dc1be5ab17cbfdb3008f))
+* **nav:** add discussion btn ([f29e8a4](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/f29e8a4b06772e9de7bb79009e4500219398a70b))
+* redesign home page ([3f6fda8](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/3f6fda8a8469b2712762832531a0999d7946ab45))
+
 ## [1.12.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.11.0...v1.12.0) (2023-08-09)
 
 
