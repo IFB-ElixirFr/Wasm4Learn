@@ -82,7 +82,7 @@
               width="200px"
               elevation="6"
             >
-              <v-avatar icon="mdi-account" size="63"></v-avatar>
+              <v-avatar :image="i.image" size="63"></v-avatar>
               <p>
                 <b>{{ i.name }}</b>
               </p>
@@ -181,49 +181,49 @@ export default {
           name: "Hélène Chiapello",
           role: "Research Engineer",
           location: "IFB/ELIXIR-FR training coordinator, INRAE (Jouy-en-Josas)",
-          image: "",
+          image: "/instructors/hc.png",
         },
         {
           name: "Thomas Denecker",
           role: "Research Engineer",
           location: "IFB, CNRS (Paris)",
-          image: "",
+          image: "/instructors/td.jpeg",
         },
         {
           name: "Lucie Khamvongsa Charbonnier",
           role: "Engineer",
           location: "IFB, CNRS (Marseille)",
-          image: "",
+          image: "/instructors/lkc.jpeg",
         },
         {
           name: "Pierre Poulain",
           role: "Associate Prof. ",
           location: "Université Paris Cité (Paris)",
-          image: "",
+          image: "/instructors/pp.jpeg",
         },
         {
           name: "Denis Puthier",
           role: "Prof",
           location: "Aix Marseille Université (Marseille)",
-          image: "",
+          image: "/instructors/dp.png",
         },
         {
           name: "Olivier Sand",
           role: "Research Engineer",
           location: "IFB/ELIXIR-FR Training Coordinator, CNRS (Lille)",
-          image: "",
+          image: "/instructors/os.jpeg",
         },
         {
           name: "Claire Toffano-Nioche",
           role: "Researcher",
           location: "CNRS (Gif-sur-Yvette)",
-          image: "",
+          image: "/instructors/ctn.jpeg",
         },
         {
           name: "Morgane Thomas-Chollier",
           role: "Associate Prof",
           location: "PSL University - Ecole normale supérieure (Paris)",
-          image: "",
+          image: "/instructors/mtc.jpeg",
         },
       ],
     };
