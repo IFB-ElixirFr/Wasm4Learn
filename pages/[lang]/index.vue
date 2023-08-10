@@ -1,11 +1,19 @@
 <template>
   <div v-for="(n, key) in navigation" :key="key">
-  <h2>Introduction to {{ n.title }}</h2>
+    <v-sheet
+    color="#0080bc"
+  >
+  <div class="d-flex flex-wrap justify-left align-left">
+    <h2 class="text-white">Learn {{ n.title }}</h2>
+  </div>
     <h1>
-      <img :src="n.image" alt="logo" style="height: 100px" />
-      <h6 style="font-weight: normal;">{{ n.description }}</h6>
+      <div class="d-flex flex-wrap justify-right align-right">
+      <img :src="n.image" alt="logo" style="height: 50px" />
+    </div>
+      <h6 class="text-white" style="font-weight: normal;">{{ n.description }}</h6>
     </h1>
     <br/>
+  </v-sheet>
     
     <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
       <h2>{{ section.title }}</h2>
@@ -43,8 +51,7 @@
             </div>
             <p><b>Description</b></p>
               <v-card-text>
-              <!-- {{ c.description }} -->
-              {{ n.description }}
+              {{ c.description }}
               </v-card-text>
               <v-card-actions class="justify-space-between">
                 <v-menu open-on-hover>
