@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar flat=true color="#0080bc" class="text-white">
+  <v-app-bar flat=true color="#0080bc" class="text-white" style="position: fixed;">
     <v-app-bar-title
       ><NuxtLink to="/" style="color: white; text-decoration: none"
         >Wasm<span style="color: #cddd00">4</span>Learn</NuxtLink
