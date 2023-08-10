@@ -102,6 +102,14 @@ import Split from "split.js";
 
 let tempLineArray = [];
 
+let logBackup = console.log;
+let logMessages = [];
+
+console.log = function () {
+  logMessages.push.apply(logMessages, arguments);
+  logBackup.apply(console, arguments);
+};
+
 export default {
   data() {
     return {
@@ -154,6 +162,19 @@ export default {
         stdout: (line) => document.getElementById("out").append(line + "\n"),
         stderr: (line) => document.getElementById("out").append(line + "\n"),
       });
+    } else if (lang == "ruby") {
+      const { DefaultRubyVM } = window["ruby-wasm-wasi"];
+      // Fetch and instantiate WebAssembly binary
+      const response = await fetch(
+        //      Tips: Replace the binary with debug info if you want symbolicated stack trace.
+        //      (only nightly release for now)
+        //      "https://cdn.jsdelivr.net/npm/ruby-head-wasm-wasi@next/dist/ruby.debug+stdlib.wasm"
+        "https://cdn.jsdelivr.net/npm/ruby-head-wasm-wasi@latest/dist/ruby.wasm"
+      );
+      const buffer = await response.arrayBuffer();
+      const module = await WebAssembly.compile(buffer);
+      const { vm } = await DefaultRubyVM(module);
+      webConsole = vm;
     }
 
     // Get Tuto pages
@@ -190,7 +211,17 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
       );
     } else if (this.lang == "r") {
       await this.webConsole.run();
+    } else if (this.lang == "ruby") {
+      var pos = logMessages.length;
+
+      this.webConsole.printVersion();
+      var temp = logMessages;
+      for (let i = pos; i < temp.length; i++) {
+        document.getElementById("out").append(temp[i] + "\n");
+      }
+      temp = [];
     }
+
     this.data = this.tutosList[this.step];
     Split(["#split-0", "#split-1"], {
       direction: "vertical",
@@ -242,6 +273,19 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
         this.updateCanvas();
       } else if (this.lang == "js") {
         this.runJS();
+      } else if ((this.lang = "ruby")) {
+        var pos = logMessages.length;
+        document.getElementById("out").append(this.command + "\n");
+        try {
+          this.webConsole.eval(this.command);
+        } catch (err) {
+          document.getElementById("out").append(err + "\n");
+        }
+        var temp = logMessages;
+        for (let i = pos; i < temp.length; i++) {
+          document.getElementById("out").append(temp[i] + "\n");
+        }
+        temp = [];
       }
 
       this.command = "";
@@ -320,6 +364,19 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
           this.runPython();
         } else if (this.lang == "js") {
           this.runJS();
+        } else if ((this.lang = "ruby")) {
+          var pos = logMessages.length;
+          document.getElementById("out").append(this.command + "\n");
+          try {
+            this.webConsole.eval(this.command);
+          } catch (err) {
+            document.getElementById("out").append(err + "\n");
+          }
+          var temp = logMessages;
+          for (let i = pos; i < temp.length; i++) {
+            document.getElementById("out").append(temp[i] + "\n");
+          }
+          temp = [];
         }
         this.store.reset();
         var objDiv = document.getElementById("divConsole");

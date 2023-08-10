@@ -28,6 +28,9 @@ export default defineNuxtConfig({
         {
           src: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js",
         },
+        {
+          src: "https://cdn.jsdelivr.net/npm/@ruby/wasm-wasi@latest/dist/browser.umd.js",
+        },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: 'https://www.france-bioinformatique.fr/wp-content/uploads/logo-ifb-couleur.svg' }
