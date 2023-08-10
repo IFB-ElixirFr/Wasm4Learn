@@ -28,30 +28,44 @@
             <v-btn class="bg-primary rounded-pill lighten-4 mx-4"
               variant="Flat"
               href="https://github.com/IFB-ElixirFr/Wasm4Learn/discussions"
-              target="_blank">Help</v-btn>
+              target="_blank">Help
+            </v-btn>
 
-
-        <v-menu
-          open-on-hover
-          >
-            <template v-slot:activator="{ props }">
-              <v-btn
+            <v-btn
+              @click.stop="drawer = !drawer"
               class="rounded-pill"
               variant="tonal"
-              > {{ step + 1 }} / {{ tutosList.length }} </v-btn>
-            </template>
-            <v-list>
-              <v-list-item v-for="(n, key) in navigation" :key="key">
-              </v-list-item>  
-              <v-list-item-title>{{ c2.title }}</v-list-item-title> 
-            </v-list>
+              > {{ step + 1 }} / {{ tutosList.length }}
+            </v-btn>
 
-          </v-menu>
-            <!-- <v-btn
-              @click="menuDisplay"
-              class="rounded-pill"
-              variant="tonal"
-              > {{ step + 1 }} / {{ tutosList.length }} </v-btn> -->
+          <v-navigation-drawer v-model="drawer" absolute temporary>
+            <div v-for="(n, key) in navigation" :key="key">
+              <v-list-item
+              @click="changePath(section._path, c._dir)"
+              v-for="(s, Sectionkey) in n.children" :key="Sectionkey">
+                <v-list-item-content
+                v-for="(section, Skey) in s.children" :key="Skey">
+                <v-divider></v-divider>
+                <v-list-item-title>
+                  {{ section.title }}</v-list-item-title>
+                  <v-list-item-title
+                  v-for="(n, nkey) in section.children" :key="nkey">
+                  {{ n.title }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-divider></v-divider>
+              <!-- <v-list dense nav>
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title
+                    v-for="(n, nkey) in section.children" :key="nkey"
+                    class="text-h6"
+                    >{{ n.title }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list> -->
+            </div>
+            </v-navigation-drawer>
 
         </v-card-actions>
        
@@ -152,6 +166,7 @@ export default {
       pyodideLoaded: false,
       canvasArray: [],
       canvasPos: 0,
+      drawer: null,
     };
   },
   async setup() {
@@ -217,7 +232,14 @@ export default {
       }
     }
 
+    const contentFolder = await queryContent("/" + lang).find();
+    const { data: navigation } = await useAsyncData("navigation", () =>
+      fetchContentNavigation("/" + lang)
+    );
+
     return {
+      contentFolder,
+      navigation,
       webConsole,
       tutosList,
       store,
@@ -256,6 +278,10 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
     });
   },
   methods: {
+    changePath(pathParent, id) {
+      const router = useRouter();
+      router.push({ path: pathParent + "/", query: { id: id } });
+    },
     changePlot(direction) {
       this.updateCanvas();
       if (direction == "next" && this.canvasPos + 1 < this.canvasArray.length) {

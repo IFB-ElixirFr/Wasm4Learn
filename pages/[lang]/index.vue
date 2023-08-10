@@ -12,12 +12,10 @@
           v-for="(c, keyC) in section.children"
           :key="keyC"
           width="350px"
-          class="ma-5 rounded-xl"
-        >
+          class="ma-5 rounded-xl">
         <!-- @click="changePath(section._path, c._dir)"> -->
           <v-card-text
           class="text-h6"><strong>{{ c.title }}</strong></v-card-text>
-
           <v-card-text>
             <div v-if="c.belt">
               <v-chip
@@ -47,10 +45,23 @@
               {{ n.description }}
               </v-card-text>
               <v-card-actions class="justify-space-between">
-                <v-btn
-            @click="changePath(section._path, c._dir)"
-            class="lighten-4 mx-0"
-            ><strong>Programme<v-icon color="info" class="mx-2" icon="mdi-plus"/></strong></v-btn>
+                <v-menu open-on-hover>
+                  <template v-slot:activator="{ props }">
+                  <v-btn
+                    color="primary"
+                    v-bind="props"
+                    class="lighten-4 mx-0"
+                    ><strong>Programme<v-icon color="info" class="mx-2" icon="mdi-plus"/></strong>
+                  </v-btn>
+                </template>
+                  <v-list>
+                    <v-list-item
+                    @click="changePath(section._path, c._dir)"
+                    v-for="(c2, keyC2) in c.children" :key="keyC2">
+                      <v-list-item-title>{{ c2.title }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
               <!-- <v-list v-for="(c2, keyC2) in c.children" :key="keyC2">
                 {{ c2.title }}
               </v-list> -->
@@ -80,7 +91,7 @@ export default {
   methods: {
     changePath(pathParent, id) {
       const router = useRouter();
-      router.push({ path: pathParent + "/", query: { id: id } });
+      router.push({ path: pathParent + "/", query: { id: id }});
     },
   },
 };
