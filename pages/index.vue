@@ -78,7 +78,7 @@
             <v-sheet
               v-for="(i, k) in instructors"
               :key="k"
-              class="ma-2 pa-2"
+              class="ma-2 pa-2 rounded-xl"
               width="200px"
               elevation="6"
             >
@@ -111,9 +111,9 @@
       </p>
       <p class="text-h4">By languages</p>
       <div class="d-flex flex-wrap justify-center">
-        <v-card
+        <v-card 
           width="300px"
-          class="ma-5"
+          class="ma-5 rounded-xl"
           v-for="(n, key) in navigation"
           :key="key"
           @click="changePath(n._path)"

@@ -1,10 +1,12 @@
 <template>
   <div v-for="(n, key) in navigation" :key="key">
+  <h2>Introduction to {{ n.title }}</h2>
     <h1>
-      <img :src="n.image" alt="logo" style="height: 100px" /> {{ n.title }}
+      <img :src="n.image" alt="logo" style="height: 100px" />
+      <h6 style="font-weight: normal;">{{ n.description }}</h6>
     </h1>
     <br/>
-    <p class="text-subtitle-1">{{ n.description }}</p>
+    
     <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
       <h2>{{ section.title }}</h2>
       <div class="d-flex flex-wrap">
@@ -51,7 +53,7 @@
                     color="primary"
                     v-bind="props"
                     class="lighten-4 mx-0"
-                    ><strong>Programme<v-icon color="info" class="mx-2" icon="mdi-plus"/></strong>
+                    ><strong>Program<v-icon color="info" class="mx-2" icon="mdi-plus"/></strong>
                   </v-btn>
                 </template>
                   <v-list>
@@ -68,13 +70,14 @@
               <v-btn
             @click="changePath(section._path, c._dir)"
             class="bg-primary lighten-4 mx-1"
-            >Commencer</v-btn>
+            >Start Now</v-btn>
           </v-card-actions>
           </v-card-text>
         </v-card>
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
