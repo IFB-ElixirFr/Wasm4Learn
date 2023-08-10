@@ -9,6 +9,20 @@
     <template v-slot:append>
       <v-menu>
         <template v-slot:activator="{ props }">
+          <v-btn v-bind="props" icon="mdi-forum-outline"> </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(item, index) in items"
+            :key="index"
+            :value="index"
+          >
+          <a :href="item.link + '/discussions'" target="_blank" style="all: unset;"><v-list-item-title  >{{ item.title }}</v-list-item-title></a> 
+          </v-list-item>
+        </v-list>
+      </v-menu>
+      <v-menu>
+        <template v-slot:activator="{ props }">
           <v-btn v-bind="props" icon="mdi-github"> </v-btn>
         </template>
         <v-list>
@@ -17,10 +31,11 @@
             :key="index"
             :value="index"
           >
-            <v-list-item-title :href="item.link" target="_blank">{{ item.title }}</v-list-item-title>
+          <a :href="item.link" target="_blank" style="all: unset;"><v-list-item-title  >{{ item.title }}</v-list-item-title></a> 
           </v-list-item>
         </v-list>
       </v-menu>
+
     </template>
   </v-app-bar>
 </template>
