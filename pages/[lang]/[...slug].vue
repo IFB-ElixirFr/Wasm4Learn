@@ -1,7 +1,7 @@
 <template>
   <v-row class="fill-height">
     <v-col class="fill-height overflow-y-auto">
-      <v-card class="fill-height">
+      <v-card class="fill-height" >
         <v-card-text
           class="fill-height overflow-y-auto"
           style="max-height: calc(100% - 50px)"

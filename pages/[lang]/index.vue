@@ -3,7 +3,7 @@
     <h1>
       <img :src="n.image" alt="logo" style="height: 100px" /> {{ n.title }}
     </h1>
-    <br />
+    <br/>
     <p class="text-subtitle-1">{{ n.description }}</p>
     <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
       <h2>{{ section.title }}</h2>
@@ -12,12 +12,11 @@
           v-for="(c, keyC) in section.children"
           :key="keyC"
           width="350px"
-          class="ma-5"
+          class="ma-5 rounded-xl"
         >
-        <v-card
-        @click="changePath(section._path, c._dir)">
-          <v-card-title>{{ c.title }}</v-card-title>
-        </v-card>
+        <!-- @click="changePath(section._path, c._dir)"> -->
+          <v-card-text
+          class="text-h6"><strong>{{ c.title }}</strong></v-card-text>
 
           <v-card-text>
             <div v-if="c.belt">
@@ -44,12 +43,22 @@
             </div>
             <p><b>Description</b></p>
               <v-card-text>
-              {{ c.description }}
+              <!-- {{ c.description }} -->
+              {{ n.description }}
               </v-card-text>
-            <p><b>Programme</b></p>
-              <v-list v-for="(c2, keyC2) in c.children" :key="keyC2">
+              <v-card-actions class="justify-space-between">
+                <v-btn
+            @click="changePath(section._path, c._dir)"
+            class="lighten-4 mx-0"
+            ><strong>Programme<v-icon color="info" class="mx-2" icon="mdi-plus"/></strong></v-btn>
+              <!-- <v-list v-for="(c2, keyC2) in c.children" :key="keyC2">
                 {{ c2.title }}
-              </v-list>
+              </v-list> -->
+              <v-btn
+            @click="changePath(section._path, c._dir)"
+            class="bg-primary lighten-4 mx-1"
+            >Commencer</v-btn>
+          </v-card-actions>
           </v-card-text>
         </v-card>
       </div>
