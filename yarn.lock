@@ -840,6 +840,13 @@
     "estree-walker" "^2.0.2"
     "picomatch" "^2.3.1"
 
+"@ruby/wasm-wasi@^2.0.0":
+  "integrity" "sha512-0XlKcAEJhfzQsCifqNtDdICoPza5MEcSSKjINjtObY4BYumvOZ3qrLmn2uSixkhnPpl4cIt/EBw9KlXdbz5FBg=="
+  "resolved" "https://registry.npmjs.org/@ruby/wasm-wasi/-/wasm-wasi-2.1.0.tgz"
+  "version" "2.1.0"
+  dependencies:
+    "tslib" "^2.3.1"
+
 "@sideway/address@^4.1.3":
   "integrity" "sha512-7vwq+rOHVWjyXxVlR76Agnvhy8I9rpzjosTESvmhNeXOXdZZB15Fl+TI9x1SiHZH5Jv2wTGduSxFDIaq0m3DUw=="
   "resolved" "https://registry.npmjs.org/@sideway/address/-/address-4.1.4.tgz"
@@ -6134,6 +6141,20 @@
   optionalDependencies:
     "fsevents" "~2.3.2"
 
+"ruby-3_2-wasm-wasi@^2.1.0":
+  "integrity" "sha512-52wbP/vxaqeqX1LWvk4shrNBcwI5K7LP2XsSOkselPiggrnlp0m6aR/4kPzDqssa+D9xppbUOecB/4Ke2gmLXA=="
+  "resolved" "https://registry.npmjs.org/ruby-3_2-wasm-wasi/-/ruby-3_2-wasm-wasi-2.1.0.tgz"
+  "version" "2.1.0"
+  dependencies:
+    "@ruby/wasm-wasi" "^2.0.0"
+
+"ruby-head-wasm-wasi@^2.1.0":
+  "integrity" "sha512-WIEuSSTTJHyO0040fbX9eUw4QQ92RYarPfaIHG7SukDCHtUNYbwzRNhtoUmKWnXepVjWURFypB3iNnKaHu5Lpg=="
+  "resolved" "https://registry.npmjs.org/ruby-head-wasm-wasi/-/ruby-head-wasm-wasi-2.1.0.tgz"
+  "version" "2.1.0"
+  dependencies:
+    "@ruby/wasm-wasi" "^2.0.0"
+
 "run-applescript@^5.0.0":
   "integrity" "sha512-XcT5rBksx1QdIhlFOCtgZkB99ZEouFZ1E2Kc2LHqNW13U3/74YGdkQRmThTwxy4QIyookibDKYZOPqX//6BlAg=="
   "resolved" "https://registry.npmjs.org/run-applescript/-/run-applescript-5.0.0.tgz"
@@ -6749,7 +6770,7 @@
   "resolved" "https://registry.npmjs.org/trough/-/trough-2.1.0.tgz"
   "version" "2.1.0"
 
-"tslib@^2.0.1", "tslib@^2.1.0":
+"tslib@^2.0.1", "tslib@^2.1.0", "tslib@^2.3.1":
   "integrity" "sha512-t0hLfiEKfMUoqhG+U1oid7Pva4bbDPHYfJNiB7BiIjRkj1pyC++4N3huJfqY6aRH6VTB0rvtzQwjM4K6qpfOig=="
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.6.1.tgz"
   "version" "2.6.1"
