@@ -82,7 +82,9 @@
               width="200px"
               elevation="6"
             >
-              <v-avatar :image="i.image" size="63"></v-avatar>
+              <v-avatar size="63">
+                <img :src="i.image" height="63" alt=""
+              /></v-avatar>
               <p>
                 <b>{{ i.name }}</b>
               </p>
@@ -111,8 +113,7 @@
       </p>
       <p class="text-h4">By languages</p>
       <div class="d-flex flex-wrap justify-center">
-        <v-card 
-        
+        <v-card
           width="300px"
           class="ma-5 rounded-lg"
           v-for="(n, key) in navigation"
@@ -120,8 +121,7 @@
           @click="changePath(n._path)"
           elevation="5"
         >
-        
-          <v-card-text class="d-flex flex-column" style="height: 100%;">
+          <v-card-text class="d-flex flex-column" style="height: 100%">
             <div class="text-center mb-10">
               <img :src="n.image" alt="logo" style="height: 100px" />
             </div>
@@ -261,7 +261,6 @@ export default {
 <style>
 html {
   scroll-behavior: smooth;
-  
 }
 
 .title {
