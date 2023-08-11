@@ -119,8 +119,9 @@
           @click="changePath(n._path)"
           elevation="5"
         >
+        
           <v-card-text>
-            <div class="text-center">
+            <div class="text-center mb-10">
               <img :src="n.image" alt="logo" style="height: 100px" />
             </div>
             <h1>{{ n.title }}</h1>

@@ -1,7 +1,6 @@
 <template>
   <v-navigation-drawer
             :width="325"
-            app
             v-model="drawer"
             absolute temporary
             location="right">
@@ -228,7 +227,7 @@ export default {
 
     const contentFolder = await queryContent("/" + lang).find();
     const { data: navigation } = await useAsyncData("navigation", () =>
-      fetchContentNavigation("/" + lang)
+      fetchContentNavigation("/" + lang + "/")
     );
 
     return {
