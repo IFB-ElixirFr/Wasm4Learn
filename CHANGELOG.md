@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.1](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.17.0...v1.17.1) (2023-08-11)
+
+
+### Bug Fixes
+
+* intructor img ([93b2ec2](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/93b2ec24a9f353ef25a1e15682aa5f3cbe86647b))
+
 ## [1.17.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.16.0...v1.17.0) (2023-08-11)
 
 
