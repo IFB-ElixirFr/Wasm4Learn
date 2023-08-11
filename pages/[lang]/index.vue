@@ -1,19 +1,35 @@
 <template>
-  <div v-for="(n, key) in navigation" :key="key">
+    <div v-for="(nk, keynk) in navigation" :key="keynk">
     <v-sheet
     color="#0080bc"
+    class="d-flex flex-wrap justify-center align-center pa-9 ma-0"
   >
-  <div class="d-flex flex-wrap justify-left align-left">
-    <h2 class="text-white">Learn {{ n.title }}</h2>
-  </div>
-    <h1>
-      <div class="d-flex flex-wrap justify-right align-right">
-      <img :src="n.image" alt="logo" style="height: 50px" />
-    </div>
-      <h6 class="text-white" style="font-weight: normal;">{{ n.description }}</h6>
+  <v-row no-gutters>
+      <v-col>
+        <v-sheet class="pa-2 ma-2"  color="#0080bc">
+          <h2 class="text-white">Learn {{ nk.title }}</h2>
+          <h1>
+
+      <h6 class="text-white" style="font-weight: normal;">{{ nk.description }}</h6>
     </h1>
-    <br/>
+        </v-sheet>
+      </v-col>
+      <v-col>
+        <v-sheet class="pa-2 ma-2 rounded-xl">
+          <img :src="nk.image" alt="logo" style="height: 100px" />
+        </v-sheet>
+      </v-col>
+    </v-row>
+
+  <!-- <h2>Learn {{ n.title }}</h2>
+    <h1>
+      <img :src="n.image" alt="logo" style="height: 100px" />
+      <h6 style="font-weight: normal;">{{ n.description }}</h6>
+    </h1>
+    <br/> -->
   </v-sheet>
+</div>
+  <div v-for="(n, key) in navigation" :key="key">
     
     <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
       <h2>{{ section.title }}</h2>
