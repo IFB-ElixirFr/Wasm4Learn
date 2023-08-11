@@ -1,7 +1,29 @@
 <template>
+  <v-navigation-drawer
+            :width="325"
+            v-model="drawer"
+            absolute temporary
+            location="right">
+            <div v-for="(n, key) in navigation" :key="key">
+              <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
+                <div v-for="(c, keyC) in section.children" :key="keyC">
+                  <h3 class="text-black" style="margin-bottom: 2%; margin-left: 4%; margin-top: 4%;"> {{ c.title }}</h3>
+                  <v-list>
+                    <v-list-item
+                    @click="changePath(section._path, c._dir)"
+                    v-for="(c2, keyC2) in c.children" :key="keyC2">
+                      <v-list-item-title style="margin-bottom: 2%; margin-left: 4%;">{{ c2.title }}</v-list-item-title>
+                      <v-divider></v-divider>
+                    </v-list-item>
+                  </v-list>
+
+                </div>
+              </div>
+            </div>
+      </v-navigation-drawer>
   <v-row class="fill-height">
     <v-col class="fill-height overflow-y-auto">
-      <v-card class="fill-height">
+      <v-card class="fill-height" >
         <v-card-text
           class="fill-height overflow-y-auto"
           style="max-height: calc(100% - 50px)"
@@ -25,8 +47,21 @@
             class="me-2"
             >Next</v-btn
           >
-          <v-chip> {{ step + 1 }} / {{ tutosList.length }} </v-chip>
+            <v-btn class="bg-primary rounded-pill lighten-4 mx-4"
+              variant="Flat"
+              href="https://github.com/IFB-ElixirFr/Wasm4Learn/discussions"
+              target="_blank">Help
+            </v-btn>
+
+            <v-btn
+              @click.stop="drawer = !drawer"
+              class="rounded-pill"
+              variant="tonal"
+              > {{ step + 1 }} / {{ tutosList.length }}
+            </v-btn>
+
         </v-card-actions>
+       
       </v-card>
     </v-col>
     <v-col class="fill-height">
@@ -124,6 +159,7 @@ export default {
       pyodideLoaded: false,
       canvasArray: [],
       canvasPos: 0,
+      drawer: null,
     };
   },
   async setup() {
@@ -189,7 +225,14 @@ export default {
       }
     }
 
+    const contentFolder = await queryContent("/" + lang).find();
+    const { data: navigation } = await useAsyncData("navigation", () =>
+      fetchContentNavigation("/" + lang + "/")
+    );
+
     return {
+      contentFolder,
+      navigation,
       webConsole,
       tutosList,
       store,
@@ -228,6 +271,10 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
     });
   },
   methods: {
+    changePath(pathParent, id) {
+      const router = useRouter();
+      router.push({ path: pathParent + "/", query: { id: id } });
+    },
     changePlot(direction) {
       this.updateCanvas();
       if (direction == "next" && this.canvasPos + 1 < this.canvasArray.length) {
