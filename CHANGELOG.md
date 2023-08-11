@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.15.0...v1.16.0) (2023-08-11)
+
+
+### Features
+
+* help btn for the discussion added ([f3a212d](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/f3a212d46eb7241f9bc7cca6b281a51b3a90081a))
+* help btn forthe discussion added ([7479df2](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/7479df2bd392aeba7bcca77e8856004275438a5f))
+* menu sections on the right for class/tuto ([5ca8eb5](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/5ca8eb506b5858a04e53d6e3f037881dbaa96d1f))
+* page number linked toan area with TOC and descrition added in the cards ([0d1371c](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/0d1371c86cb3d7653992a9de182ecc36b9a4f1d1))
+
 ## [1.15.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.14.0...v1.15.0) (2023-08-11)
 
 
