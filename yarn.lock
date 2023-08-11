@@ -2804,6 +2804,11 @@
     "locate-path" "^5.0.0"
     "path-exists" "^4.0.0"
 
+"flag-icons@^6.9.3":
+  "integrity" "sha512-HIU4V8342pmBjk+zlvq0jGyHEifyP9976ynzQw8sLeONNcyMxW5I+NWY9OWGMrd9lkFjgfcnvRdD3MGd1ihHzQ=="
+  "resolved" "https://registry.npmjs.org/flag-icons/-/flag-icons-6.9.3.tgz"
+  "version" "6.9.3"
+
 "flat@^5.0.2":
   "integrity" "sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ=="
   "resolved" "https://registry.npmjs.org/flat/-/flat-5.0.2.tgz"

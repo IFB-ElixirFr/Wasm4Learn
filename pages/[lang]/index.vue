@@ -58,11 +58,10 @@ export default {
     const route = useRoute();
 
     let lang = route.params.lang;
-    const contentFolder = await queryContent("/" + lang).find();
     const { data: navigation } = await useAsyncData("navigation", () =>
-      fetchContentNavigation("/" + lang)
+      fetchContentNavigation("/" + lang  + "/")
     );
-    return { contentFolder, navigation };
+    return { navigation };
   },
   methods: {
     changePath(pathParent, id) {

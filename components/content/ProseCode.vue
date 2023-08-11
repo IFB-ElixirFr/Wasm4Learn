@@ -77,6 +77,16 @@ const languageMap: Record<
     background: "linear-gradient(to bottom right, #2F6E9D, #F6D652)",
     color: "white",
   },
+  ruby:{
+    text: "ruby",
+    background: "#A41600",
+    color: "white",
+  },
+  js:{
+    text: "JS",
+    background: "#E9D34B",
+    color: "black",
+  }
 };
 
 const languageText = computed(() =>

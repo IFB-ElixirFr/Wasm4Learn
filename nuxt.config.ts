@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import vuetify from 'vite-plugin-vuetify'
+
 import { createResolver } from '@nuxt/kit'
 
 const { resolve } = createResolver(import.meta.url)
@@ -17,11 +17,11 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/Wasm4Learn/',
     head: {
-      title: 'R WASM by IFB',
+      title: 'Wasm4Learn',
       meta: [
         {
           name: 'description',
-          content: 'R WASM platform to learn R with IFB'
+          content: 'An interactive tutorial platform to introduce you to the first commands in different languages like R and Python'
         }
       ],
       script: [
