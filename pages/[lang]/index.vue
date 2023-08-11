@@ -1,36 +1,30 @@
 <template>
-    <div v-for="(nk, keynk) in navigation" :key="keynk">
-    <v-sheet
-    color="#0080bc"
-    class="d-flex flex-wrap justify-center align-center pa-9 ma-0"
-  >
-  <v-row no-gutters>
-      <v-col>
-        <v-sheet class="pa-2 ma-2"  color="#0080bc">
-          <h2 class="text-white">Learn {{ nk.title }}</h2>
-          <h1>
+    <v-card
+    v-for="(n, keyC) in navigation" :key="keyC"
+    color="#98c1d9"
+    class="pa-9"
+    style="overflow: auto; margin : 0; margin-bottom: 2%;" >
+        <v-row no-gutters>
+            <v-col>
+              <v-sheet class="pa-2 ma-2"  color="#98c1d9">
+                <h1 class="text-black mdi mdi-school"> Learn {{ n.title }}</h1>
+              </v-sheet>
+              <v-sheet class="pa-2 ma-2"  color="#98c1d9">
+                <h3 class="text-black" style="font-weight: normal;">{{ n.description }}</h3>
+              </v-sheet>
+            </v-col>
+            <v-col
+              cols="2">
+              <v-sheet class="pa-6 rounded-lg justify-center">
+                <img :src="n.image" alt="logo" style="height: 150px; display: block;
+                      margin-left: auto;
+                      margin-right: auto;" />
+              </v-sheet>
+            </v-col>
+        </v-row>
+    </v-card>
 
-      <h6 class="text-white" style="font-weight: normal;">{{ nk.description }}</h6>
-    </h1>
-        </v-sheet>
-      </v-col>
-      <v-col>
-        <v-sheet class="pa-2 ma-2 rounded-xl">
-          <img :src="nk.image" alt="logo" style="height: 100px" />
-        </v-sheet>
-      </v-col>
-    </v-row>
-
-  <!-- <h2>Learn {{ n.title }}</h2>
-    <h1>
-      <img :src="n.image" alt="logo" style="height: 100px" />
-      <h6 style="font-weight: normal;">{{ n.description }}</h6>
-    </h1>
-    <br/> -->
-  </v-sheet>
-</div>
   <div v-for="(n, key) in navigation" :key="key">
-    
     <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
       <h2>{{ section.title }}</h2>
       <div class="d-flex flex-wrap">

@@ -1,4 +1,27 @@
 <template>
+  <v-navigation-drawer
+            :width="325"
+            app
+            v-model="drawer"
+            absolute temporary
+            location="right">
+            <div v-for="(n, key) in navigation" :key="key">
+              <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
+                <div v-for="(c, keyC) in section.children" :key="keyC">
+                  <h3 class="text-black" style="margin-bottom: 2%; margin-left: 4%; margin-top: 4%;"> {{ c.title }}</h3>
+                  <v-list>
+                    <v-list-item
+                    @click="changePath(section._path, c._dir)"
+                    v-for="(c2, keyC2) in c.children" :key="keyC2">
+                      <v-list-item-title style="margin-bottom: 2%; margin-left: 4%;">{{ c2.title }}</v-list-item-title>
+                      <v-divider></v-divider>
+                    </v-list-item>
+                  </v-list>
+
+                </div>
+              </div>
+            </div>
+      </v-navigation-drawer>
   <v-row class="fill-height">
     <v-col class="fill-height overflow-y-auto">
       <v-card class="fill-height" >
@@ -37,35 +60,6 @@
               variant="tonal"
               > {{ step + 1 }} / {{ tutosList.length }}
             </v-btn>
-
-          <v-navigation-drawer v-model="drawer" absolute temporary>
-            <div v-for="(n, key) in navigation" :key="key">
-              <v-list-item
-              @click="changePath(section._path, c._dir)"
-              v-for="(s, Sectionkey) in n.children" :key="Sectionkey">
-                <v-list-item-content
-                v-for="(section, Skey) in s.children" :key="Skey">
-                <v-divider></v-divider>
-                <v-list-item-title>
-                  {{ section.title }}</v-list-item-title>
-                  <v-list-item-title
-                  v-for="(n, nkey) in section.children" :key="nkey">
-                  {{ n.title }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-              <v-divider></v-divider>
-              <!-- <v-list dense nav>
-                <v-list-item>
-                  <v-list-item-content>
-                    <v-list-item-title
-                    v-for="(n, nkey) in section.children" :key="nkey"
-                    class="text-h6"
-                    >{{ n.title }}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list> -->
-            </div>
-            </v-navigation-drawer>
 
         </v-card-actions>
        
