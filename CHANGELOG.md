@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.14.0...v1.15.0) (2023-08-11)
+
+
+### Features
+
+* flag ([3f939c4](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/3f939c4b7938896e15a36b7fa8dc814d98a16299))
+
 ## [1.14.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.13.0...v1.14.0) (2023-08-10)
 
 
