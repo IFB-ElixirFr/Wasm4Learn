@@ -91,7 +91,7 @@ export default {
       for (const [kt, t] of Object.entries(n.children)) {
         for (const [kc, c] of Object.entries(t.children)) {
           var temp = c;
-          temp['parentPath'] = t._path
+          temp["parentPath"] = t._path;
           temp["langImage"] = n.image;
           temp["langName"] = n.title;
           temp["type"] = t.title;
@@ -118,6 +118,7 @@ export default {
   methods: {
     filter() {
       if (this.radioLang) {
+        this.page = 1;
         const temp = this.data.filter(filterJson, this.radioLang);
         this.datafilter = temp;
       }
@@ -137,6 +138,7 @@ export default {
       this.datafilter = this.data;
       this.radioLang = null;
       this.datafilterPaginate = this.paginate();
+      this.page = 1;
     },
     changePath(pathParent, id) {
       const router = useRouter();
