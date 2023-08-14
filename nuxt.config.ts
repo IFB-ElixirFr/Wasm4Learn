@@ -5,6 +5,12 @@ import { createResolver } from '@nuxt/kit'
 const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      repo_name: process.env.repo_name,
+      repo_url: process.env.repo_url
+    },
+  },
   target: 'static',
   buildModules: [
     '@nuxt/image'
