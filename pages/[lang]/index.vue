@@ -70,26 +70,10 @@
                 </v-row>
               </div>
               <div v-if="c.belt">
-                <v-chip
-                  v-for="(b, kb) in c.belt"
-                  :key="kb"
-                  class="ma-1 rounded-sm"
-                  size="small"
-                  :variant="b == 'white' ? 'outlined' : 'tonal'"
-                  :color="b == 'white' ? '' : b"
-                >
-                  {{ b }} belt
-                </v-chip>
+                <Belts :belts="c.belt" />
               </div>
               <div v-if="c.tags">
-                <v-chip
-                  v-for="(t, kt) in c.tags"
-                  :key="kt"
-                  class="ma-1"
-                  size="small"
-                >
-                  {{ t }}
-                </v-chip>
+                <Tags :tags="c.tags" />
               </div>
               <v-spacer></v-spacer>
               <p class="mt-4 mb-1"><b>Description</b></p>
@@ -156,21 +140,4 @@ export default {
 </script>
 
 <style>
-.dividerline:after {
-  position: absolute;
-  content: "";
-  height: 5px;
-  /* adjust this to move up and down. you may have to adjust the line height of the paragraph if you move it down a lot. */
-  bottom: -10px;
-  margin: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  background: #cddd00;
-}
-
-.dividerline {
-  text-decoration: none;
-  position: relative;
-}
 </style>

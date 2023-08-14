@@ -1,5 +1,5 @@
 <template>
-  <v-btn :href="repo_url" target="_blank" variant="text">
+  <v-btn :href="config.public.repo_url" target="_blank" variant="text">
     <div class="d-flex flex-row">
       <v-sheet
         class="me-3 text-white pt-1"
@@ -10,7 +10,7 @@
         class="text-white text-body-2"
         style="background-color: transparent !important"
       >
-        <p class="ma-0">{{ repo_name }}</p>
+        <p class="ma-0">{{ config.public.repo_name }}</p>
         <p class="text-caption ma-0">
           <v-icon>mdi-tag-outline</v-icon> {{ ghRelease.tag_name }}
           <v-icon>mdi-star-outline</v-icon> {{ ghValue.stargazers_count }}
@@ -23,21 +23,19 @@
 
 <script>
 export default {
-  props: {
-    repo_url: String,
-    repo_name: String,
-  },
   async setup(props) {
+    const config = useRuntimeConfig();
+
     const { data: data } = await useFetch(
-      "https://api.github.com/repos/" + props.repo_name
+      "https://api.github.com/repos/" + config.public.repo_name
     );
 
     const ghValue = data.value;
     const { data: release } = await useFetch(
-      "https://api.github.com/repos/" + props.repo_name + "/releases/latest"
+      "https://api.github.com/repos/" + config.public.repo_name + "/releases/latest"
     );
     const ghRelease = release.value;
-    return { ghValue, ghRelease };
+    return { ghValue, ghRelease, config };
   },
 };
 </script>

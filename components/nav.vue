@@ -11,25 +11,53 @@
       ></v-app-bar-title
     >
 
-    <v-btn
-      href="https://github.com/IFB-ElixirFr/Wasm4Learn-doc"
-      target="_blank"
-      variant="text"
-      icon="mdi-toolbox"
-      style="background-color: transparent !important"
-    ></v-btn>
-    <v-btn
-      href="https://github.com/IFB-ElixirFr/Wasm4Learn-content"
-      target="_blank"
-      icon="mdi-book-education"
-      variant="text"
-      style="background-color: transparent !important"
-    ></v-btn>
-
     <template v-slot:append>
+      <v-btn to="/courses-all"
+        ><v-icon size="24px" class="me-2">mdi-magnify</v-icon> Explore</v-btn
+      >
+
       <v-menu>
         <template v-slot:activator="{ props }">
-          <v-btn v-bind="props" icon="mdi-forum-outline" variant="text">
+          <v-btn v-bind="props" variant="text">
+            <v-icon size="24px" class="me-2">mdi-tools</v-icon>
+            Our platform
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item>
+            <a
+              href="https://github.com/IFB-ElixirFr/Wasm4Learn-doc"
+              target="_blank"
+              style="all: unset; cursor: pointer;"
+              ><v-list-item-title>Documentation</v-list-item-title></a
+            >
+          </v-list-item>
+          <v-list-item>
+            <a
+              href="https://github.com/IFB-ElixirFr/Wasm4Learn-content"
+              target="_blank"
+              style="all: unset; cursor: pointer;"
+              ><v-list-item-title>Content</v-list-item-title></a
+            >
+          </v-list-item>
+          <v-list-item>
+            <NuxtLink to="/changelog" style="all: unset; cursor: pointer;">
+              <v-list-item-title>What's new ?</v-list-item-title>
+            </NuxtLink>
+          </v-list-item>
+          <v-list-item>
+            <NuxtLink to="/next" style="all: unset; cursor: pointer;">
+              <v-list-item-title>What's next ?</v-list-item-title>
+            </NuxtLink>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
+      <v-menu>
+        <template v-slot:activator="{ props }">
+          <v-btn v-bind="props" variant="text">
+            <v-icon size="24px" class="me-2">mdi-forum-outline</v-icon>
+            Feedbacks
           </v-btn>
         </template>
         <v-list>
@@ -47,10 +75,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <GithubBtn
-        repo_url="https://github.com/IFB-ElixirFr/Wasm4Learn"
-        repo_name="IFB-ElixirFr/Wasm4Learn"
-      />
+      <GithubBtn />
     </template>
   </v-app-bar>
 </template>
@@ -62,11 +87,11 @@ export default {
       { title: "Tool", link: "https://github.com/IFB-ElixirFr/Wasm4Learn" },
       {
         title: "Documentation",
-        link: "https://github.com/IFB-ElixirFr/Wasm4Learn-content",
+        link: "https://github.com/IFB-ElixirFr/Wasm4Learn-doc",
       },
       {
         title: "Content",
-        link: "https://github.com/IFB-ElixirFr/Wasm4Learn-doc",
+        link: "https://github.com/IFB-ElixirFr/Wasm4Learn-content",
       },
     ],
   }),
