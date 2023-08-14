@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.18.0...v1.19.0) (2023-08-14)
+
+
+### Features
+
+* Create a future dev page ([ce7db8d](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/ce7db8ddf39c518ad1a625b863fc4655f11069b5))
+* Create belt component ([bdc2bf3](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/bdc2bf37785f2b976cd30e3a24c3ac41b507ec9b))
+* Create explore courses page ([a2d1d4d](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/a2d1d4de42fe5dac351bf01e4574197761b41e38))
+* Create new dev page ([fbbb1b0](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/fbbb1b0b0778855c00edd2af5beb15898653f8c2))
+* Create tag component ([f027b72](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/f027b72134b504a50db949df3b206120b1dfd7e1))
+* Global variable by env file ([0dd6f61](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/0dd6f619018c7c2ce31ad10e58284dc58e4eb2be))
+
 ## [1.18.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.17.2...v1.18.0) (2023-08-14)
 
 
