@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.1](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.19.0...v1.19.1) (2023-08-14)
+
+
+### Bug Fixes
+
+* **courses all:** Update page when filter ([d7c951e](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/d7c951e216892f30db4e02cdb84cbe27d1ea1b18))
+
 ## [1.19.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.18.0...v1.19.0) (2023-08-14)
 
 
