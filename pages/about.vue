@@ -1,71 +1,73 @@
 <template>
-  <h1>About</h1>
-  <h2 class="my-3">Why ?</h2>
-  <p class="text-subtitle-1">
-    We want to propose a digital environments dedicated to self-training
-    resources with practical sessions adapted to our target audiences. We report
-    on the technologies available to create online scenarios for learning and
-    acquiring basic command line and programming skills. This field is actively
-    evolving, especially with in-browser approaches (WebAssembly, Wasm). Our
-    goal is to provide a self-training resource on which biologists wishing to
-    learn bioinformatics could acquire the basics of Unix, R and Python. For
-    this site, we drew inspiration from the work done on the website : Katacoda,
-    Killercoda and Sandbox.bio.
-  </p>
+  <v-container>
+    <p class="text-h2 dividerline mt-4 mb-8" style="color: #0080bc">About</p>
+    <h2 class="my-3">Why ?</h2>
+    <p class="text-subtitle-1">
+      We want to propose a digital environments dedicated to self-training
+      resources with practical sessions adapted to our target audiences. We
+      report on the technologies available to create online scenarios for
+      learning and acquiring basic command line and programming skills. This
+      field is actively evolving, especially with in-browser approaches
+      (WebAssembly, Wasm). Our goal is to provide a self-training resource on
+      which biologists wishing to learn bioinformatics could acquire the basics
+      of Unix, R and Python. For this site, we drew inspiration from the work
+      done on the website : Katacoda, Killercoda and Sandbox.bio.
+    </p>
 
-  <h2 class="my-3">Who ?</h2>
+    <h2 class="my-3">Who ?</h2>
 
-  <v-list lines="one">
-    <v-list-item
-      v-for="(item, key) in whoList"
-      :key="key"
-      elevation="2"
-      class="ma-3"
-    >
-      <template v-slot:prepend>
-        <v-avatar color="grey-lighten-1">
-          <v-img :src="item.urlImage" :alt="item.name"></v-img>
-        </v-avatar>
-      </template>
-      <v-list-item-title>
-        <p class="text-h6">{{ item.name }}</p>
-      </v-list-item-title>
-      <v-list-item-subtitle>
-        <v-chip v-for="r in item.role" :key="r" class="ma-1">{{ r }}</v-chip>
-        {{ r }}
-      </v-list-item-subtitle>
-      <v-list-item-action
-        ><v-btn
-          :href="'https://github.com/' + item.githubID"
-          size="x-small"
-          target="_blank"
-          class="ma-1"
-        >
-          Visit Github profil</v-btn
-        >
-      </v-list-item-action>
-    </v-list-item>
-  </v-list>
+    <v-list lines="one">
+      <v-list-item
+        v-for="(item, key) in whoList"
+        :key="key"
+        elevation="2"
+        class="ma-3"
+      >
+        <template v-slot:prepend>
+          <v-avatar color="grey-lighten-1">
+            <v-img :src="item.urlImage" :alt="item.name"></v-img>
+          </v-avatar>
+        </template>
+        <v-list-item-title>
+          <p class="text-h6">{{ item.name }}</p>
+        </v-list-item-title>
+        <v-list-item-subtitle>
+          <v-chip v-for="r in item.role" :key="r" class="ma-1">{{ r }}</v-chip>
+          {{ r }}
+        </v-list-item-subtitle>
+        <v-list-item-action
+          ><v-btn
+            :href="'https://github.com/' + item.githubID"
+            size="x-small"
+            target="_blank"
+            class="ma-1"
+          >
+            Visit Github profil</v-btn
+          >
+        </v-list-item-action>
+      </v-list-item>
+    </v-list>
 
-  <h2 class="my-3">How ?</h2>
-  To create this site, we used the following tools:
-  <v-list>
-    <v-list-item
-      v-for="(item, k) in toolList"
-      :key="k"
-      :title="item.title"
-      :subtitle="item.subtitle"
-      :prepend-avatar="item.urlImage"
-      elevation="2"
-      class="ma-3 pa-3"
-      :href="item.link"
-      target="_blank"
-    ></v-list-item>
-    <v-list-item></v-list-item>
-  </v-list>
+    <h2 class="my-3">How ?</h2>
+    To create this site, we used the following tools:
+    <v-list>
+      <v-list-item
+        v-for="(item, k) in toolList"
+        :key="k"
+        :title="item.title"
+        :subtitle="item.subtitle"
+        :prepend-avatar="item.urlImage"
+        elevation="2"
+        class="ma-3 pa-3"
+        :href="item.link"
+        target="_blank"
+      ></v-list-item>
+      <v-list-item></v-list-item>
+    </v-list>
 
-  To find out more about the teaching resources and WASM tools we have used,
-  please read our <nuxt-link to="/resources/">ressources</nuxt-link> page.
+    To find out more about the teaching resources and WASM tools we have used,
+    please read our <nuxt-link to="/resources/">ressources</nuxt-link> page.
+  </v-container>
 </template>
 
 <script>
