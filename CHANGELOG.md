@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.19.1...v1.20.0) (2023-08-16)
+
+
+### Features
+
+* Add vueuse ([29e9271](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/29e927168b6c6923535d1f7ab19856a17d2f5c3d))
+* Create a card session component ([bf726e4](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/bf726e401b732f4753fc54e53c7f2eca6f3dc065))
+* Create a progression page ([218371e](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/218371e59d0093bfcf06922243891ecf9722d689))
+* Create learning path ([f4ca953](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/f4ca95315dba40f25baa3198a8936b9578ddd067))
+
 ## [1.19.1](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.19.0...v1.19.1) (2023-08-14)
 
 
