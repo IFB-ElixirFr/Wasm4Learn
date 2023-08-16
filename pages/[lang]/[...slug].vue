@@ -1,29 +1,39 @@
 <template>
   <v-navigation-drawer
-            :width="325"
-            v-model="drawer"
-            absolute temporary
-            location="right">
-            <div v-for="(n, key) in navigation" :key="key">
-              <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
-                <div v-for="(c, keyC) in section.children" :key="keyC">
-                  <h3 class="text-black" style="margin-bottom: 2%; margin-left: 4%; margin-top: 4%;"> {{ c.title }}</h3>
-                  <v-list>
-                    <v-list-item
-                    @click="changePath(section._path, c._dir)"
-                    v-for="(c2, keyC2) in c.children" :key="keyC2">
-                      <v-list-item-title style="margin-bottom: 2%; margin-left: 4%;">{{ c2.title }}</v-list-item-title>
-                      <v-divider></v-divider>
-                    </v-list-item>
-                  </v-list>
-
-                </div>
-              </div>
-            </div>
-      </v-navigation-drawer>
+    :width="325"
+    v-model="drawer"
+    absolute
+    temporary
+    location="right"
+  >
+    <div v-for="(n, key) in navigation" :key="key">
+      <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
+        <div v-for="(c, keyC) in section.children" :key="keyC">
+          <h3
+            class="text-black"
+            style="margin-bottom: 2%; margin-left: 4%; margin-top: 4%"
+          >
+            {{ c.title }}
+          </h3>
+          <v-list>
+            <v-list-item
+              @click="changePath(section._path, c._dir)"
+              v-for="(c2, keyC2) in c.children"
+              :key="keyC2"
+            >
+              <v-list-item-title style="margin-bottom: 2%; margin-left: 4%">{{
+                c2.title
+              }}</v-list-item-title>
+              <v-divider></v-divider>
+            </v-list-item>
+          </v-list>
+        </div>
+      </div>
+    </div>
+  </v-navigation-drawer>
   <v-row class="fill-height">
     <v-col class="fill-height overflow-y-auto">
-      <v-card class="fill-height" >
+      <v-card class="fill-height">
         <v-card-text
           class="fill-height overflow-y-auto"
           style="max-height: calc(100% - 50px)"
@@ -41,27 +51,44 @@
           style="background-color: lightsteelblue"
         >
           <v-btn :disabled="step == 0" @click="prevBtn">Prev</v-btn>
+
           <v-btn
+            v-if="step != tutosList.length - 1"
             :disabled="step == tutosList.length - 1"
             @click="nextBtn"
             class="me-2"
             >Next</v-btn
           >
-            <v-btn class="bg-primary rounded-pill lighten-4 mx-4"
-              variant="Flat"
-              href="https://github.com/IFB-ElixirFr/Wasm4Learn/discussions"
-              target="_blank">Help
-            </v-btn>
 
-            <v-btn
-              @click.stop="drawer = !drawer"
-              class="rounded-pill"
-              variant="tonal"
-              > {{ step + 1 }} / {{ tutosList.length }}
-            </v-btn>
+          <v-btn
+            v-if="step == tutosList.length - 1"
+            @click="finish"
+            class="me-2 px-4"
+            color="success"
+            variant="flat"
+            prepend-icon="mdi-party-popper"
+            >Finish</v-btn
+          >
+          <v-btn @click="restart" class="me-2"
+            ><v-icon>mdi-restart</v-icon></v-btn
+          >
 
+          <v-btn
+            class="bg-primary rounded-pill lighten-4 mx-4"
+            variant="Flat"
+            href="https://github.com/IFB-ElixirFr/Wasm4Learn/discussions"
+            target="_blank"
+            >Help
+          </v-btn>
+
+          <v-btn
+            @click.stop="drawer = !drawer"
+            class="rounded-pill"
+            variant="tonal"
+          >
+            {{ step + 1 }} / {{ tutosList.length }}
+          </v-btn>
         </v-card-actions>
-       
       </v-card>
     </v-col>
     <v-col class="fill-height">
@@ -134,6 +161,7 @@ import { useCommandStore } from "@/stores/useCommandStore";
 import { storeToRefs } from "pinia";
 import { getQuickJS } from "quickjs-emscripten";
 import Split from "split.js";
+import { useStorage } from "@vueuse/core";
 
 let tempLineArray = [];
 
@@ -229,7 +257,6 @@ export default {
     const { data: navigation } = await useAsyncData("navigation", () =>
       fetchContentNavigation("/" + lang + "/")
     );
-
     return {
       contentFolder,
       navigation,
@@ -238,6 +265,7 @@ export default {
       store,
       command,
       pathParent,
+      path,
       id,
       step,
       lang,
@@ -263,6 +291,16 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
         document.getElementById("out").append(temp[i] + "\n");
       }
       temp = [];
+    }
+    const theDefault = {};
+    const state = useStorage("my-progression-store", theDefault, localStorage, {
+      mergeDefaults: true,
+    });
+
+    if (this.path in state.value) {
+      this.step = state.value[this.path].step;
+    } else {
+      state.value[this.path] = { status: "started", step: 0 };
     }
 
     this.data = this.tutosList[this.step];
@@ -339,12 +377,32 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
       var objDiv = document.getElementById("divConsole");
       objDiv.scrollTop = objDiv.scrollHeight;
     },
+    async updateState() {
+      const theDefault = {};
+      const state = useStorage(
+        "my-progression-store",
+        theDefault,
+        localStorage,
+        {
+          mergeDefaults: true,
+        }
+      );
+      state.value[this.path] = { status: "started", step: this.step };
+    },
+    restart() {
+      this.step = 0;
+      this.data = this.tutosList[this.step];
+      var myDiv = document.getElementById("contentDiv");
+      myDiv.scrollTop = 0;
+      this.updateState();
+    },
     async nextBtn() {
       if (this.step < this.tutosList.length) {
         this.step = this.step + 1;
         this.data = this.tutosList[this.step];
         var myDiv = document.getElementById("contentDiv");
         myDiv.scrollTop = 0;
+        this.updateState();
       }
     },
     async prevBtn() {
@@ -353,7 +411,24 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
         this.data = this.tutosList[this.step];
         var myDiv = document.getElementById("contentDiv");
         myDiv.scrollTop = 0;
+        this.updateState();
       }
+    },
+    async finish() {
+      const theDefault = {};
+      const state = useStorage(
+        "my-progression-store",
+        theDefault,
+        localStorage,
+        {
+          mergeDefaults: true,
+        }
+      );
+      state.value[this.path] = { status: "finish", step: this.step };
+      const router = useRouter();
+      router.push({
+        path: "/" + this.lang,
+      });
     },
     async testCode(code) {
       this.test = null;

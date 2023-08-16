@@ -1212,7 +1212,7 @@
     "find-cache-dir" "^3.3.2"
     "upath" "^2.0.1"
 
-"@vueuse/core@^10.3.0":
+"@vueuse/core@^10.3.0", "@vueuse/core@10.3.0":
   "integrity" "sha512-BEM5yxcFKb5btFjTSAFjTu5jmwoW66fyV9uJIP4wUXXU8aR5Hl44gndaaXp7dC5HSObmgbnR2RN+Un1p68Mf5Q=="
   "resolved" "https://registry.npmjs.org/@vueuse/core/-/core-10.3.0.tgz"
   "version" "10.3.0"
@@ -1226,6 +1226,18 @@
   "integrity" "sha512-Ema3YhNOa4swDsV0V7CEY5JXvK19JI/o1szFO1iWxdFg3vhdFtCtSTP26PCvbUpnUtNHBY2wx5y3WDXND5Pvnw=="
   "resolved" "https://registry.npmjs.org/@vueuse/metadata/-/metadata-10.3.0.tgz"
   "version" "10.3.0"
+
+"@vueuse/nuxt@^10.3.0":
+  "integrity" "sha512-Dmkm9H5Ubq279+FHhlJtlFP99wKrn2apuo4hk/0GbEi/6+zif7MJRtAjDBBV4VjmY6XV3kO8dQR8940FStbxsA=="
+  "resolved" "https://registry.npmjs.org/@vueuse/nuxt/-/nuxt-10.3.0.tgz"
+  "version" "10.3.0"
+  dependencies:
+    "@nuxt/kit" "^3.6.5"
+    "@vueuse/core" "10.3.0"
+    "@vueuse/metadata" "10.3.0"
+    "local-pkg" "^0.4.3"
+    "nuxt" "^3.6.5"
+    "vue-demi" ">=0.14.5"
 
 "@vueuse/shared@10.3.0":
   "integrity" "sha512-kGqCTEuFPMK4+fNWy6dUOiYmxGcUbtznMwBZLC1PubidF4VZY05B+Oht7Jh7/6x4VOWGpvu3R37WHi81cKpiqg=="

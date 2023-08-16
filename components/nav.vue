@@ -15,7 +15,10 @@
       <v-btn to="/courses-all"
         ><v-icon size="24px" class="me-2">mdi-magnify</v-icon> Explore</v-btn
       >
-
+      <v-btn to="/progression"
+        ><v-icon size="24px" class="me-2">mdi-progress-check</v-icon> Progression</v-btn
+      >
+      
       <v-menu>
         <template v-slot:activator="{ props }">
           <v-btn v-bind="props" variant="text">

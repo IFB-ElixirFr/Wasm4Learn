@@ -18,7 +18,8 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     'nuxt-content-assets',
-    '@nuxt/content'
+    '@nuxt/content',
+    '@vueuse/nuxt',
   ],
   app: {
     baseURL: '/Wasm4Learn/',
