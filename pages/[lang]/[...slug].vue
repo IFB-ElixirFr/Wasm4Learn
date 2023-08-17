@@ -156,7 +156,7 @@
 </template>
   
 <script>
-import { Console } from "@r-wasm/webr";
+import { Console } from "webr";
 import { useCommandStore } from "@/stores/useCommandStore";
 import { storeToRefs } from "pinia";
 import { getQuickJS } from "quickjs-emscripten";
@@ -281,7 +281,7 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
         `
       );
     } else if (this.lang == "r") {
-      await this.webConsole.run();
+      this.runR();
     } else if (this.lang == "ruby") {
       var pos = logMessages.length;
 
@@ -321,9 +321,12 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
         this.canvasPos = this.canvasPos - 1;
       }
 
+      const canvas = document.getElementById("plot-canvas");
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (const i in this.canvasArray[this.canvasPos]) {
         const line = this.canvasArray[this.canvasPos][i];
-        eval(`document.getElementById("plot-canvas").getContext('2d').${line}`);
+        ctx.drawImage(line, 0, 0);
       }
     },
     updateCanvas() {
@@ -471,17 +474,46 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
         document.getElementById("out").append(err + "\n");
       }
     },
+    async runR() {
+      for (;;) {
+        const output = await this.webConsole.webR.read();
+        switch (output.type) {
+          case "stdout":
+            document.getElementById("out").append(output.data + "\n");
+            break;
+          case "stderr":
+            document.getElementById("out").append(output.data + "\n");
+            break;
+          case "prompt":
+            document.getElementById("out").append(output.data + "\n");
+            break;
+          case "canvas":
+            if (output.data.event === "canvasImage") {
+              tempLineArray.push(output.data.image);
+              document
+                .getElementById("plot-canvas")
+                .getContext("2d")
+                .drawImage(output.data.image, 0, 0);
+            }
+            break;
+          case "closed":
+            return;
+          default:
+            console.warn(
+              `Unhandled output type for webR Console: ${output.type}.`
+            );
+        }
+      }
+    },
   },
   watch: {
     async command(new_val) {
       if (this.store.changed) {
         if (this.lang == "r") {
-          for (const element of this.store.command.split("\n")) {
-            this.updateCanvas();
-            await this.webConsole.stdin(element);
-            document.getElementById("out").append(element + "\n");
-            this.updateCanvas();
-          }
+          this.updateCanvas();
+          await this.webConsole.stdin(this.store.command);
+          document.getElementById("out").append(this.store.command + "\n");
+          this.updateCanvas();
         } else if (this.lang == "python") {
           this.runPython();
         } else if (this.lang == "js") {

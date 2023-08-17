@@ -174,7 +174,7 @@ export default {
         }
       );
       if (sessionPath in state.value) {
-        if (state.value[sessionPath] == "started") {
+        if (state.value[sessionPath].status == "started") {
           return "blue";
         } else {
           return "green";
