@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.20.0...v1.21.0) (2023-08-17)
+
+
+### Features
+
+* Update WebR ([3d342e9](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/3d342e99f3d13b04476df42e69cabb4631c28bc3))
+
 ## [1.20.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.19.1...v1.20.0) (2023-08-16)
 
 
