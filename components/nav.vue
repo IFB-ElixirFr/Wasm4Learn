@@ -1,6 +1,6 @@
 <template>
   <v-app-bar
-    flat="true"
+    :flat="flat"
     color="#0080bc"
     class="text-white"
     style="position: fixed"
@@ -16,9 +16,10 @@
         ><v-icon size="24px" class="me-2">mdi-magnify</v-icon> Explore</v-btn
       >
       <v-btn to="/progression"
-        ><v-icon size="24px" class="me-2">mdi-progress-check</v-icon> Progression</v-btn
+        ><v-icon size="24px" class="me-2">mdi-progress-check</v-icon>
+        Progression</v-btn
       >
-      
+
       <v-menu>
         <template v-slot:activator="{ props }">
           <v-btn v-bind="props" variant="text">
@@ -31,7 +32,7 @@
             <a
               href="https://github.com/IFB-ElixirFr/Wasm4Learn-doc"
               target="_blank"
-              style="all: unset; cursor: pointer;"
+              style="all: unset; cursor: pointer"
               ><v-list-item-title>Documentation</v-list-item-title></a
             >
           </v-list-item>
@@ -39,17 +40,17 @@
             <a
               href="https://github.com/IFB-ElixirFr/Wasm4Learn-content"
               target="_blank"
-              style="all: unset; cursor: pointer;"
+              style="all: unset; cursor: pointer"
               ><v-list-item-title>Content</v-list-item-title></a
             >
           </v-list-item>
           <v-list-item>
-            <NuxtLink to="/changelog" style="all: unset; cursor: pointer;">
+            <NuxtLink to="/changelog" style="all: unset; cursor: pointer">
               <v-list-item-title>What's new ?</v-list-item-title>
             </NuxtLink>
           </v-list-item>
           <v-list-item>
-            <NuxtLink to="/next" style="all: unset; cursor: pointer;">
+            <NuxtLink to="/next" style="all: unset; cursor: pointer">
               <v-list-item-title>What's next ?</v-list-item-title>
             </NuxtLink>
           </v-list-item>
@@ -86,6 +87,7 @@
 <script>
 export default {
   data: () => ({
+    flat: true,
     items: [
       { title: "Tool", link: "https://github.com/IFB-ElixirFr/Wasm4Learn" },
       {

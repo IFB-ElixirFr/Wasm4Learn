@@ -75,7 +75,7 @@
 
           <v-btn
             class="bg-primary rounded-pill lighten-4 mx-4"
-            variant="Flat"
+            variant="flat"
             href="https://github.com/IFB-ElixirFr/Wasm4Learn/discussions"
             target="_blank"
             >Help
@@ -96,12 +96,19 @@
         <div id="split-0" style="height: 50%">
           <v-card class="fill-height">
             <v-card-text class="fill-height overflow-x-auto" id="divConsole">
-              <pre><code id="out">Loading {{lang}} WASM environnement, please wait... <br></code></pre>
+              <div class="code" id="out">
+                <p>Loading {{ lang }} WASM environnement, please wait...</p>
+              </div>
               <v-textarea
+                style="
+                  font-family: monospace, monospace !important;
+                  margin-top: -20px !important;
+                "
+                :prefix="precommand"
                 v-on:keyup.enter="onEnter"
                 v-model="command"
                 variant="underlined"
-                prepend-icon="mdi-chevron-right"
+                active="true"
               ></v-textarea>
             </v-card-text>
           </v-card>
@@ -144,7 +151,7 @@
                   value="editorTab"
                   class="fill-height text-center"
                 >
-                  <Editor />
+                  <Editor :lang="lang" />
                 </v-window-item>
               </v-window>
             </v-card-text>
@@ -205,11 +212,22 @@ export default {
 
     // Start WebR
     var webConsole;
+    var precommand;
     if (lang == "r") {
+      precommand = ">";
       webConsole = new Console({
-        stdout: (line) => document.getElementById("out").append(line + "\n"),
-        stderr: (line) => document.getElementById("out").append(line + "\n"),
-        prompt: (p) => document.getElementById("out").append(p),
+        stdout: (line) =>
+          document
+            .getElementById("out")
+            .insertAdjacentHTML("afterend", "<p>" + line + "</p>"),
+        stderr: (line) =>
+          document
+            .getElementById("out")
+            .insertAdjacentHTML("afterend", "<p>" + line + "</p>"),
+        prompt: (p) =>
+          document
+            .getElementById("out")
+            .insertAdjacentHTML("afterend", "<p>" + p + "</p>"),
         canvasExec: (line) => {
           tempLineArray.push(line);
           eval(
@@ -218,15 +236,26 @@ export default {
         },
       });
     } else if (lang == "js") {
+      precommand = ">";
       const QuickJS = await getQuickJS();
       webConsole = QuickJS.newContext();
     } else if (lang == "python") {
+      precommand = ">>>";
       webConsole = await loadPyodide({
         indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/",
-        stdout: (line) => document.getElementById("out").append(line + "\n"),
-        stderr: (line) => document.getElementById("out").append(line + "\n"),
+        stdout: (line) => {
+          var element = document.getElementById("out");
+          element.innerHTML = element.innerHTML + "<pre><code>" + line;
+          ("<code></pre>");
+        },
+        stderr: (line) => {
+          var element = document.getElementById("out");
+          element.innerHTML = element.innerHTML + "<pre><code>" + line;
+          ("<code></pre>");
+        },
       });
     } else if (lang == "ruby") {
+      precommand = "";
       const { DefaultRubyVM } = window["ruby-wasm-wasi"];
       // Fetch and instantiate WebAssembly binary
       const response = await fetch(
@@ -269,6 +298,7 @@ export default {
       id,
       step,
       lang,
+      precommand,
     };
   },
   async mounted() {
@@ -288,7 +318,7 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
       this.webConsole.printVersion();
       var temp = logMessages;
       for (let i = pos; i < temp.length; i++) {
-        document.getElementById("out").append(temp[i] + "\n");
+        this.displayCommand(temp[i]);
       }
       temp = [];
     }
@@ -356,22 +386,22 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
         this.runPython();
       } else if (this.lang == "r") {
         this.updateCanvas();
+        this.displayCommand(this.command, ">");
         await this.webConsole.stdin(this.command);
-        document.getElementById("out").append(this.command + "\n");
         this.updateCanvas();
       } else if (this.lang == "js") {
         this.runJS();
       } else if ((this.lang = "ruby")) {
         var pos = logMessages.length;
-        document.getElementById("out").append(this.command + "\n");
+        this.displayCommand(this.command);
         try {
           this.webConsole.eval(this.command);
         } catch (err) {
-          document.getElementById("out").append(err + "\n");
+          this.displayCommand(err);
         }
         var temp = logMessages;
         for (let i = pos; i < temp.length; i++) {
-          document.getElementById("out").append(temp[i] + "\n");
+          this.displayCommand(temp[i]);
         }
         temp = [];
       }
@@ -448,7 +478,8 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
     },
     async runJS() {
       const result = this.webConsole.evalCode(this.command);
-      document.getElementById("out").append(">" + this.command + "\n");
+      this.displayCommand(this.command, ">");
+
       if (result.error) {
         document
           .getElementById("out")
@@ -464,29 +495,41 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
       }
     },
     runPython() {
-      document.getElementById("out").append(">>>" + this.store.command + "\n");
+      this.displayCommand(this.command, ">>>");
       try {
         let output = this.webConsole.runPython(this.store.command + "\n\n");
         if (output !== undefined) {
-          document.getElementById("out").append(output + "\n");
+          this.displayCommand(output);
         }
       } catch (err) {
-        document.getElementById("out").append(err + "\n");
+        this.displayCommand(err);
       }
     },
     async runR() {
       for (;;) {
         const output = await this.webConsole.webR.read();
+        var element = document.getElementById("out");
         switch (output.type) {
           case "stdout":
-            document.getElementById("out").append(output.data + "\n");
+            element.innerHTML =
+              element.innerHTML + "<pre><code>" + output.data + "<code></pre>";
             break;
           case "stderr":
-            document.getElementById("out").append(output.data + "\n");
+            element.innerHTML =
+              element.innerHTML +
+              "<pre><code class='error'>" +
+              output.data +
+              "<code></pre>";
             break;
           case "prompt":
-            document.getElementById("out").append(output.data + "\n");
-            break;
+            if (output.data != "> ") {
+              element.innerHTML =
+                element.innerHTML +
+                "<pre><code>" +
+                output.data +
+                "<code></pre>";
+              break;
+            }
           case "canvas":
             if (output.data.event === "canvasImage") {
               tempLineArray.push(output.data.image);
@@ -505,6 +548,18 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
         }
       }
     },
+    displayCommand(command, chevron = "") {
+      if (chevron != "") {
+        chevron = chevron + " ";
+      }
+      var element = document.getElementById("out");
+      element.innerHTML =
+        element.innerHTML +
+        "<pre><code class='command'>" +
+        chevron +
+        command +
+        "<code></pre>";
+    },
   },
   watch: {
     async command(new_val) {
@@ -512,7 +567,7 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
         if (this.lang == "r") {
           this.updateCanvas();
           await this.webConsole.stdin(this.store.command);
-          document.getElementById("out").append(this.store.command + "\n");
+          this.displayCommand(this.store.command, ">");
           this.updateCanvas();
         } else if (this.lang == "python") {
           this.runPython();
@@ -520,15 +575,15 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
           this.runJS();
         } else if ((this.lang = "ruby")) {
           var pos = logMessages.length;
-          document.getElementById("out").append(this.command + "\n");
+          this.displayCommand(this.store.command);
           try {
             this.webConsole.eval(this.command);
           } catch (err) {
-            document.getElementById("out").append(err + "\n");
+            this.displayCommand(err);
           }
           var temp = logMessages;
           for (let i = pos; i < temp.length; i++) {
-            document.getElementById("out").append(temp[i] + "\n");
+            this.displayCommand(temp[i]);
           }
           temp = [];
         }
@@ -589,5 +644,17 @@ li {
 }
 .math {
   font-family: Courier, monospace;
+}
+
+.code {
+  font-family: monospace, monospace;
+}
+
+.error {
+  color: red;
+}
+
+.command {
+  color: blue;
 }
 </style>

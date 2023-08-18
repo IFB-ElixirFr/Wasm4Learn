@@ -24,11 +24,21 @@
 
 <script>
 import ace from "ace-builds";
+ace.config.set('basePath', 'path')
+
 import "ace-builds/src-noconflict/mode-r";
+import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/mode-ruby";
+import "ace-builds/src-noconflict/mode-javascript";
+
+import "ace-builds/src-noconflict/ext-language_tools";
 import { useCommandStore } from "@/stores/useCommandStore";
 let editor;
 
 export default {
+  props: {
+    lang: String
+  },
   setup(props) {
     const store = useCommandStore();
     return { store };
@@ -37,9 +47,19 @@ export default {
     return {};
   },
   mounted() {
+    var mode;
+    if (this.lang == "js"){
+      mode = "javascript"
+    } else {
+      mode = this.lang
+    }
+
     editor = ace.edit("editorArea", {
-      mode: "ace/mode/r",
+      mode: "ace/mode/" + mode,
       tabSize: 4,
+      enableBasicAutocompletion: true,
+      enableSnippets: true,
+      enableLiveAutocompletion: true,
     });
   },
   methods: {

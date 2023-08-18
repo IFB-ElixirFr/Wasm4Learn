@@ -16,13 +16,13 @@
           <div>
             <h1>{{ c.title }}</h1>
             <p class="mb-2">{{ c.description }}</p>
-
-            <template v-if="c.belt">
+            
+            <div v-if="c.belt">
               <Belts :belts="c.belt" />
-            </template>
-            <template v-if="c.tags">
+            </div>
+            <div v-if="c.tags">
               <Tags :tags="c.tags" />
-            </template>
+            </div>
 
             <div class="d-flex flex-row">
               <v-sheet v-if="c.author" class="ma-2 pa-2"

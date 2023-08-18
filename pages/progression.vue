@@ -5,6 +5,18 @@
     </p>
     <v-btn @click="clear" class="my-4">Clear progression</v-btn>
 
+    <p class="text-h3">Learning path</p>
+    <template v-if="learningPath.length != 0">
+      <template v-for="(c, kc) in learningPath" :key="kc">
+        <CardLearningPath :itemSession="c" />
+        <br />
+      </template>
+    </template>
+    <template v-else>
+      <p>No learning path has been started</p>
+    </template>
+
+    <p class="text-h3">Sessions</p>
     <p class="text-h4">Started</p>
     <template v-if="started.length != 0">
       <template v-for="(c, kc) in started" :key="kc">
@@ -37,6 +49,7 @@ export default {
     return {
       started: [],
       finish: [],
+      learningPath: [],
     };
   },
   async created() {
@@ -55,17 +68,38 @@ export default {
       );
 
       for (const [key, value] of Object.entries(state.value)) {
-        switch (value.status) {
-          case "started":
-            const tempStarted = await queryContent(key + "/_dir").findOne();
-            tempStarted["type"] = key.split("/")[2];
-            this.started.push(tempStarted);
-            break;
-          case "finish":
-            const tempFinish = await queryContent(key + "/_dir").findOne();
-            tempFinish["type"] = key.split("/")[2];
-            this.finish.push(tempFinish);
-            break;
+        if (key.split("/")[2] == "learning-path") {
+          console.log(key)
+          const tempLP = await queryContent(key + "/_dir").findOne();
+          var stepsDict = [];
+          for (const i in tempLP.navigation.steps) {
+            const tempPath = "/" + key.split("/")[1] + "/" + tempLP.navigation.steps[i];
+            if (tempPath in state.value) {
+              if (state.value[tempPath].status == "started") {
+                stepsDict.push({ color: "blue", path: tempPath });
+              } else {
+                stepsDict.push({ color: "green", path: tempPath });
+              }
+            } else {
+              stepsDict.push({ color: "grey", path: tempPath });
+            }
+          }
+          tempLP["type"] = key.split("/")[2];
+          tempLP["stepsDict"] = stepsDict;
+          this.learningPath.push(tempLP);
+        } else {
+          switch (value.status) {
+            case "started":
+              const tempStarted = await queryContent(key + "/_dir").findOne();
+              tempStarted["type"] = key.split("/")[2];
+              this.started.push(tempStarted);
+              break;
+            case "finish":
+              const tempFinish = await queryContent(key + "/_dir").findOne();
+              tempFinish["type"] = key.split("/")[2];
+              this.finish.push(tempFinish);
+              break;
+          }
         }
       }
     },
@@ -83,6 +117,7 @@ export default {
       state.value = null;
       this.started = [];
       this.finish = [];
+      this.learningPath = [];
     },
   },
 };

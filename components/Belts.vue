@@ -14,7 +14,7 @@
 <script>
 export default {
   props: {
-    belts: [],
+    belts: Array,
   },
 };
 </script>

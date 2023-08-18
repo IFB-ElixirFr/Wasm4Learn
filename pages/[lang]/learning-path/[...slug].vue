@@ -83,6 +83,7 @@ export default {
     const state = useStorage("my-progression-store", theDefault, localStorage, {
       mergeDefaults: true,
     });
+    state.value[path] = { status: "started", step: 0 };
 
     var stepsInfo = [];
     for (const i in steps.navigation.steps) {
