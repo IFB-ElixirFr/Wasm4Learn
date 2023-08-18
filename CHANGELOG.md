@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.21.0...v1.22.0) (2023-08-18)
+
+
+### Features
+
+* Learning path in progression ([8d46629](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/8d466296f62bc36fee087d0a939473d2acd8cc6a))
+
 ## [1.21.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.20.0...v1.21.0) (2023-08-17)
 
 
