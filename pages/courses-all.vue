@@ -16,7 +16,7 @@
           <div>
             <h1>{{ c.title }}</h1>
             <p class="mb-2">{{ c.description }}</p>
-            
+
             <div v-if="c.belt">
               <Belts :belts="c.belt" />
             </div>
@@ -86,16 +86,18 @@ export default {
 
     var data = [];
     var lang = [];
-    for (const [kn, n] of Object.entries(navigation.value)) {
-      lang.push(n.title);
-      for (const [kt, t] of Object.entries(n.children)) {
-        for (const [kc, c] of Object.entries(t.children)) {
-          var temp = c;
-          temp["parentPath"] = t._path;
-          temp["langImage"] = n.image;
-          temp["langName"] = n.title;
-          temp["type"] = t.title;
-          data.push(temp);
+    for (const [knL1, nL1] of Object.entries(navigation.value)) {
+      for (const [kn, n] of Object.entries(nL1.children)) {
+        lang.push(n.title);
+        for (const [kt, t] of Object.entries(n.children)) {
+          for (const [kc, c] of Object.entries(t.children)) {
+            var temp = c;
+            temp["parentPath"] = t._path;
+            temp["langImage"] = n.image;
+            temp["langName"] = n.title;
+            temp["type"] = t.title;
+            data.push(temp);
+          }
         }
       }
     }

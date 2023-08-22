@@ -111,32 +111,34 @@
       <p class="text-h3 ma-5">
         <span style="color: #cddd00">Learning path</span> design by trainers
       </p>
-      <p class="text-h4">By languages</p>
-      <div class="d-flex flex-wrap justify-center">
-        <v-card
-          width="300px"
-          class="ma-5 rounded-lg"
-          v-for="(n, key) in navigation"
-          :key="key"
-          @click="changePath(n._path)"
-          elevation="5"
-        >
-          <v-card-text class="d-flex flex-column" style="height: 100%">
-            <div class="text-center mb-10">
-              <img :src="n.image" alt="logo" style="height: 100px" />
-            </div>
-            <h1>{{ n.title }}</h1>
-            <br />
-            <p class="text-subtitle-1">{{ n.description }}</p>
-            <br />
-            <v-spacer></v-spacer>
-            <div v-if="n.children">
-              <p v-for="(c, cKey) in n.children" :key="cKey">
-                <b>{{ c.title }}</b> : {{ getItems(c) }}
-              </p>
-            </div>
-          </v-card-text>
-        </v-card>
+      <div v-for="(navel, key_navel) in navigation" :key="key_navel">
+        <p class="text-h4">By {{  navel.title }}</p>
+        <div class="d-flex flex-wrap justify-center">
+          <v-card
+            width="300px"
+            class="ma-5 rounded-lg"
+            v-for="(n, key) in navel.children"
+            :key="key"
+            @click="changePath(n._path)"
+            elevation="5"
+          >
+            <v-card-text class="d-flex flex-column" style="height: 100%">
+              <div class="text-center mb-10" v-if="'image' in n">
+                <img :src="n.image" alt="logo" style="height: 100px" />
+              </div>
+              <h1>{{ n.title }}</h1>
+              <br />
+              <p class="text-subtitle-1">{{ n.description }}</p>
+              <br />
+              <v-spacer></v-spacer>
+              <div v-if="n.children">
+                <p v-for="(c, cKey) in n.children" :key="cKey">
+                  <b>{{ c.title }}</b> : {{ getItems(c) }}
+                </p>
+              </div>
+            </v-card-text>
+          </v-card>
+        </div>
       </div>
     </v-container>
   </v-sheet>
