@@ -286,6 +286,14 @@
     "@babel/helper-validator-identifier" "^7.22.5"
     "to-fast-properties" "^2.0.0"
 
+"@biowasm/aioli@^3.1.0":
+  "integrity" "sha512-0EvfL6v1MHZbtiUDNWsXh+WOdC/eQ82nBCuA2+/cYmAHOEjrymzWNr4r7pYRsgSVkbSJ2FBz+SuXnoveN8iFlQ=="
+  "resolved" "https://registry.npmjs.org/@biowasm/aioli/-/aioli-3.1.0.tgz"
+  "version" "3.1.0"
+  dependencies:
+    "comlink" "^4.3.1"
+    "wasm-feature-detect" "^1.2.11"
+
 "@cloudflare/kv-asset-handler@^0.3.0":
   "integrity" "sha512-9CB/MKf/wdvbfkUdfrj+OkEwZ5b7rws0eogJ4293h+7b6KX5toPwym+VQKmILafNB9YiehqY0DlNrDcDhdWHSQ=="
   "resolved" "https://registry.npmjs.org/@cloudflare/kv-asset-handler/-/kv-asset-handler-0.3.0.tgz"
@@ -2025,6 +2033,11 @@
   "version" "1.0.8"
   dependencies:
     "delayed-stream" "~1.0.0"
+
+"comlink@^4.3.1":
+  "integrity" "sha512-+1dlx0aY5Jo1vHy/tSsIGpSkN4tS9rZSW8FIhG0JH/crs9wwweswIo/POr451r7bZww3hFbPAKnTpimzL/mm4Q=="
+  "resolved" "https://registry.npmjs.org/comlink/-/comlink-4.4.1.tgz"
+  "version" "4.4.1"
 
 "comma-separated-tokens@^2.0.0":
   "integrity" "sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg=="
@@ -7579,6 +7592,11 @@
     "lodash" "^4.17.21"
     "minimist" "^1.2.7"
     "rxjs" "^7.8.0"
+
+"wasm-feature-detect@^1.2.11":
+  "integrity" "sha512-GHr23qmuehNXHY4902/hJ6EV5sUANIJC3R/yMfQ7hWDg3nfhlcJfnIL96R2ohpIwa62araN6aN4bLzzzq5GXkg=="
+  "resolved" "https://registry.npmjs.org/wasm-feature-detect/-/wasm-feature-detect-1.5.1.tgz"
+  "version" "1.5.1"
 
 "web-namespaces@^2.0.0":
   "integrity" "sha512-bKr1DkiNa2krS7qxNtdrtHAmzuYGFQLiQ13TsorsdT6ULTkPLKuu5+GsFpDlg6JFjUTwX2DyhMPG2be8uPrqsQ=="
