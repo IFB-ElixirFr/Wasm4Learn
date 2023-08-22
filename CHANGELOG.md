@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.22.0...v1.23.0) (2023-08-22)
+
+
+### Features
+
+* add tool ([a89a8a3](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/a89a8a36e4419efcc52fda941e91b6142e019269))
+* Component to disply content ([5dc4492](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/5dc449203b4deca4457f7a041ba65a16a907ad52))
+* create a content elements displayer component ([66c9939](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/66c99393f837de6bcb51b9c540b7f3c871ef840b))
+* create a grep component ([8625b8f](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/8625b8f265c62ec646dc267d0cc2a7bd699569c9))
+* create a sed component ([67584aa](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/67584aa318fd98d583b3c475e7419d9a99bb9ec9))
+
 ## [1.22.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.21.0...v1.22.0) (2023-08-18)
 
 
