@@ -11,7 +11,7 @@
         style="background-color: transparent !important"
       >
         <p class="ma-0">{{ config.public.repo_name }}</p>
-        <p class="text-caption ma-0">
+        <p class="text-caption ma-0" v-if="ghRelease">
           <v-icon>mdi-tag-outline</v-icon> {{ ghRelease.tag_name }}
           <v-icon>mdi-star-outline</v-icon> {{ ghValue.stargazers_count }}
           <v-icon>mdi-source-fork</v-icon> {{ ghValue.forks_count }}

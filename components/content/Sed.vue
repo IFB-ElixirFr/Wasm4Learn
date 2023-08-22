@@ -19,6 +19,11 @@
       <code>data.txt</code></b
     >
   </p>
+  <p>
+    <b
+      ><v-icon>mdi-information</v-icon> Use simple quote for write a text argument.</b
+    >
+  </p>
   <v-dialog v-model="dialog" width="75%">
     <template v-slot:activator="{ props }">
       <v-btn color="primary" v-bind="props" size="small" class="mb-4">
@@ -112,9 +117,7 @@ export default {
 
       var temp = this.commandInput;
       temp = temp.replace(this.tool, "").trim();
-      var params = this.parseFlags(temp)
-        .map((d) => d.replaceAll('"', ""))
-        .map((d) => d.replaceAll("'", ""));
+      var params = this.parseFlags(temp).map((d) => d.replaceAll("'", ""));
       console.log(params);
       const output = await CLI.exec("sed", params);
       if (output == "") {
@@ -125,7 +128,7 @@ export default {
     },
     parseFlags(flags) {
       // Source: https://stackoverflow.com/a/16261693
-      return flags.match(/(?:[^\s"]+|"[^"]*")+/g) || [];
+      return flags.match(/(?:[^\s']+|'[^']*')+/g) || [];
     },
   },
 };
