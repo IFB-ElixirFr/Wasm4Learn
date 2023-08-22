@@ -49,7 +49,7 @@ export default defineNuxtConfig({
     serveStatic: true,
   },
   content: {
-    /*sources: {
+    sources: {
       github: {
         prefix: '', // Prefix for routes used to query contents
         driver: 'github', // Driver used to fetch contents (view unstorage documentation)
@@ -58,7 +58,7 @@ export default defineNuxtConfig({
         dir: "content", // Directory where contents are located. It could be a subdirectory of the repository.
         // Imagine you have a blog inside your content folder. You can set this option to `content/blog` with the prefix option to `/blog` to avoid conflicts with local files.
       },
-    }, */
+    },
     markdown: {
       remarkPlugins: ['remark-math'],
       rehypePlugins: {
