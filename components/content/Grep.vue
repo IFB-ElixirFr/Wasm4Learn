@@ -21,7 +21,8 @@
   </p>
   <p>
     <b
-      ><v-icon>mdi-information</v-icon> Use simple quote for write a text argument.</b
+      ><v-icon>mdi-information</v-icon> Use simple quote for write a text
+      argument.</b
     >
   </p>
   <v-dialog v-model="dialog" width="75%">
@@ -34,7 +35,7 @@
     <v-card>
       <v-card-text style="height: 90vh">
         <iframe
-          src="/man/grep.html"
+          :src="manPage"
           frameborder="0"
           style="height: 100%; width: 100%"
         ></iframe>
@@ -69,11 +70,16 @@ export default {
     var id = new Date().valueOf();
     var idEditor = "editorArea" + id;
     var idOutput = "output" + id;
-
+    
     const route = useRoute();
     let tool = route.params.tool;
 
-    return { idEditor, idOutput, tool };
+    // Get man page
+    const config = useRuntimeConfig();
+    let repo_name = config.public.repo_name;
+    let manPage = "/" + repo_name.split("/")[1] + "/man/" + tool + ".html";
+    
+    return { idEditor, idOutput, tool, manPage };
   },
   data() {
     return {

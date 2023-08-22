@@ -34,7 +34,7 @@
     <v-card>
       <v-card-text style="height: 90vh">
         <iframe
-          src="/man/sed.html"
+          :src="manPage"
           frameborder="0"
           style="height: 100%; width: 100%"
         ></iframe>
@@ -73,7 +73,12 @@ export default {
     const route = useRoute();
     let tool = route.params.tool;
 
-    return { idEditor, idOutput, tool };
+    // Get man page
+    const config = useRuntimeConfig();
+    let repo_name = config.public.repo_name;
+    let manPage = "/" + repo_name.split("/")[1] + "/man/" + tool + ".html";
+    
+    return { idEditor, idOutput, tool, manPage };
   },
   data() {
     return {
