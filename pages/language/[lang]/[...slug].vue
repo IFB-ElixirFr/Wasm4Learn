@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer :width="325" height="100vh" v-model="drawer" absolute temporary location="right">
+  <v-navigation-drawer :width="325" height="100vh" v-model="drawer" temporary location="right">
     <div v-for="(n, key) in navigation" :key="key">
       <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
         <div v-for="(c, keyC) in section.children" :key="keyC">
