@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.23.1...v1.24.0) (2023-08-22)
+
+
+### Features
+
+* impove tool display ([dd83697](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/dd836979c38dc3a5793c423b68a8e1f1f26eef7c))
+
 ## [1.23.1](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.23.0...v1.23.1) (2023-08-22)
 
 
