@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.24.0...v1.25.0) (2023-08-22)
+
+
+### Features
+
+* Add man page ([33420a9](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/33420a9b1cdc4934f75e8c86f08c74ccd43d865e))
+
 ## [1.24.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.23.1...v1.24.0) (2023-08-22)
 
 
