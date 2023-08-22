@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.1](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.23.0...v1.23.1) (2023-08-22)
+
+
+### Bug Fixes
+
+* readd content config ([02b4ee8](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/02b4ee8fb922155887dc262775f9be50b8365538))
+
 ## [1.23.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.22.0...v1.23.0) (2023-08-22)
 
 
