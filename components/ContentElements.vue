@@ -154,7 +154,7 @@ export default {
   async setup(props) {
     const route = useRoute();
     const pathParent = route.path;
-    console.log(pathParent);
+
     let lang = route.params.lang;
     const { data: navigation } = await useAsyncData("navigation", () =>
       fetchContentNavigation(pathParent)

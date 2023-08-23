@@ -167,6 +167,7 @@
             </v-card-text>
           </v-card>
         </div>
+        <NuxtLink v-if="navel.title == 'Learning Path'" to="/learning-path/all/" style="color: gainsboro; text-decoration: none; ">+ Show more</NuxtLink>
       </div>
     </v-container>
   </v-sheet>
