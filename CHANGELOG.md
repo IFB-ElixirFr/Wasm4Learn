@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.25.0...v1.26.0) (2023-08-23)
+
+
+### Features
+
+* Create a page with all learning path ([7b09620](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/7b096207a1fe6845bb90f7fd9228524e6bf40903))
+* create learning part section ([17e93cc](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/17e93ccaa47be653a42c3020d21cec141354559c))
+
 ## [1.25.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.24.0...v1.25.0) (2023-08-22)
 
 
