@@ -109,11 +109,15 @@
   <v-sheet style="background-color: #0080bc" id="getStarted">
     <v-container class="pa-10 text-white text-center">
       <p class="text-h3 ma-5">
-        <span style="color: #cddd00">Learning path</span> design by trainers
+        <span style="color: #cddd00">Pedagogical content</span> design by
+        trainers
       </p>
       <div v-for="(navel, key_navel) in navigation" :key="key_navel">
-        <p class="text-h4">By {{  navel.title }}</p>
-        <div class="d-flex flex-wrap justify-center">
+        <p class="text-h4">By {{ navel.title }}</p>
+        <div
+          class="d-flex flex-wrap justify-center"
+          v-if="navel.title != 'Learning Path'"
+        >
           <v-card
             width="300px"
             class="ma-5 rounded-lg"
@@ -135,6 +139,30 @@
                 <p v-for="(c, cKey) in n.children" :key="cKey">
                   <b>{{ c.title }}</b> : {{ getItems(c) }}
                 </p>
+              </div>
+            </v-card-text>
+          </v-card>
+        </div>
+        <div v-else class="d-flex flex-wrap justify-center">
+          <v-card
+            width="300px"
+            class="ma-5 rounded-lg"
+            v-for="(n, key) in navel.children"
+            :key="key"
+            @click="changePathLearningPath(navel._path, n._dir)"
+            elevation="5"
+          >
+            <v-card-text class="d-flex flex-column" style="height: 100%">
+              <div class="text-center mb-10" v-if="'image' in n">
+                <img :src="n.image" alt="logo" style="height: 100px" />
+              </div>
+              <h1>{{ n.title }}</h1>
+              <br />
+              <p class="text-subtitle-1">{{ n.description }}</p>
+              <br />
+              <v-spacer></v-spacer>
+              <div v-if="n.steps">
+                <p><b>Number of sessions</b> : {{ n.steps.length }}</p>
               </div>
             </v-card-text>
           </v-card>
@@ -237,6 +265,10 @@ export default {
     changePath(path) {
       const router = useRouter();
       router.push({ path: path + "/" });
+    },
+    changePathLearningPath(pathParent, dir) {
+      const router = useRouter();
+      router.push({ path: pathParent + "/", query: { id: dir } });
     },
     getSection(n) {
       if (n.children !== undefined) {

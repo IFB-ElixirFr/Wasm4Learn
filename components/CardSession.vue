@@ -55,6 +55,11 @@ export default {
       var pathParts = stepPath.replace("/_dir", "");
       var id = pathParts.split("/");
       id = id[id.length - 1];
+
+      if (!pathParts.startsWith("/")) {
+        pathParts = "/" + pathParts;
+      }
+
       const router = useRouter();
       router.push({
         path: pathParts.replace(id, ""),

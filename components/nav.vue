@@ -30,7 +30,7 @@
         <v-list>
           <v-list-item>
             <a
-              href="https://github.com/IFB-ElixirFr/Wasm4Learn-doc"
+              href="https://ifb-elixirfr.github.io/Wasm4Learn-doc/"
               target="_blank"
               style="all: unset; cursor: pointer"
               ><v-list-item-title>Documentation</v-list-item-title></a

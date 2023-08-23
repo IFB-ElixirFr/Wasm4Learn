@@ -5,39 +5,27 @@
     </p>
     <v-btn @click="clear" class="my-4">Clear progression</v-btn>
 
-    <p class="text-h3">Learning path</p>
-    <template v-if="learningPath.length != 0">
-      <template v-for="(c, kc) in learningPath" :key="kc">
-        <CardLearningPath :itemSession="c" />
-        <br />
-      </template>
-    </template>
-    <template v-else>
-      <p>No learning path has been started</p>
-    </template>
+    <div v-for="(e, ke) in progressionElements" :key="ke">
+      <p class="text-h3 mb-4">{{ clearTitle(ke) }}</p>
 
-    <p class="text-h3">Sessions</p>
-    <p class="text-h4">Started</p>
-    <template v-if="started.length != 0">
-      <template v-for="(c, kc) in started" :key="kc">
-        <CardSession :itemSession="c" />
-        <br />
-      </template>
-    </template>
-    <template v-else>
-      <p>No session has been started</p>
-    </template>
-
-    <p class="text-h4">Finish</p>
-    <template v-if="finish.length != 0">
-      <template v-for="(c, kc) in finish" :key="kc">
-        <CardSession :itemSession="c" />
-        <br />
-      </template>
-    </template>
-    <template v-else>
-      <p>No session has been completed</p>
-    </template>
+      <div v-for="(elStatus, kelStatus) in e" :key="kelStatus">
+        <div v-if="elStatus.length != 0">
+          <p class="text-h4 mb-4">{{ clearTitle(kelStatus) }}</p>
+          <div v-if="ke == 'learning-path'">
+            <template v-for="(c, kc) in elStatus" :key="kc">
+              <CardLearningPath :itemSession="c" />
+              <br />
+            </template>
+          </div>
+          <div v-else>
+            <template v-for="(c, kc) in elStatus" :key="kc">
+              <CardSession :itemSession="c" />
+              <br />
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
   </v-container>
 </template>
 
@@ -47,15 +35,18 @@ import { useStorage } from "@vueuse/core";
 export default {
   data() {
     return {
-      started: [],
-      finish: [],
-      learningPath: [],
+   
+      progressionElements: {},
     };
   },
   async created() {
     await this.getState();
   },
   methods: {
+    clearTitle(title) {
+      const temp = title.replace("-", " ");
+      return temp.charAt(0).toUpperCase() + temp.slice(1);
+    },
     async getState() {
       const theDefault = {};
       const state = useStorage(
@@ -68,12 +59,17 @@ export default {
       );
 
       for (const [key, value] of Object.entries(state.value)) {
-        if (key.split("/")[2] == "learning-path") {
-          console.log(key)
-          const tempLP = await queryContent(key + "/_dir").findOne();
+        const type = key.split("/")[1];
+
+        if (!(type in this.progressionElements)) {
+          this.progressionElements[type] = { started: [], finish: [] };
+        }
+        const temp = await queryContent(key + "/_dir").findOne();
+        if (type == "learning-path") {
           var stepsDict = [];
-          for (const i in tempLP.navigation.steps) {
-            const tempPath = "/" + key.split("/")[1] + "/" + tempLP.navigation.steps[i];
+          for (const i in temp.navigation.steps) {
+            const tempPath =
+              "/" + key.split("/")[1] + "/" + temp.navigation.steps[i];
             if (tempPath in state.value) {
               if (state.value[tempPath].status == "started") {
                 stepsDict.push({ color: "blue", path: tempPath });
@@ -83,24 +79,11 @@ export default {
             } else {
               stepsDict.push({ color: "grey", path: tempPath });
             }
-          }
-          tempLP["type"] = key.split("/")[2];
-          tempLP["stepsDict"] = stepsDict;
-          this.learningPath.push(tempLP);
-        } else {
-          switch (value.status) {
-            case "started":
-              const tempStarted = await queryContent(key + "/_dir").findOne();
-              tempStarted["type"] = key.split("/")[2];
-              this.started.push(tempStarted);
-              break;
-            case "finish":
-              const tempFinish = await queryContent(key + "/_dir").findOne();
-              tempFinish["type"] = key.split("/")[2];
-              this.finish.push(tempFinish);
-              break;
+            temp["stepsDict"] = stepsDict;
           }
         }
+        temp["type"] = key.split("/")[2];
+        this.progressionElements[type][value.status].push(temp);
       }
     },
     clear() {
@@ -115,9 +98,7 @@ export default {
       );
 
       state.value = null;
-      this.started = [];
-      this.finish = [];
-      this.learningPath = [];
+      this.progressionElements = {};
     },
   },
 };

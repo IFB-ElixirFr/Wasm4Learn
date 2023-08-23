@@ -52,14 +52,16 @@
       </v-col>
       <v-col cols="2"
         ><h3>Filters</h3>
-
         <v-radio-group v-model="radioLang">
-          <v-radio
-            v-for="(l, kl) in lang"
-            :key="kl"
-            :label="l"
-            :value="l"
-          ></v-radio>
+          <div v-for="(type, kt) in filterDict" :key="kt">
+            <p class="text-h6">{{ kt }}</p>
+            <v-radio
+              v-for="(t, kt) in type"
+              :key="kt"
+              :label="t"
+              :value="t"
+            ></v-radio>
+          </div>
         </v-radio-group>
 
         <v-btn @click="filter" class="ma-2" block> Filter </v-btn>
@@ -74,7 +76,7 @@ import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 // Funtion to filter a json
 function filterJson(item) {
-  return item.langName == this;
+  return item.name == this;
 }
 
 export default {
@@ -86,23 +88,37 @@ export default {
 
     var data = [];
     var lang = [];
+    var filterDict = {};
+
     for (const [knL1, nL1] of Object.entries(navigation.value)) {
       for (const [kn, n] of Object.entries(nL1.children)) {
+        if (!(nL1.title in filterDict)) {
+          filterDict[nL1.title] = [];
+        }
+        filterDict[nL1.title].push(n.title);
         lang.push(n.title);
-        for (const [kt, t] of Object.entries(n.children)) {
-          for (const [kc, c] of Object.entries(t.children)) {
-            var temp = c;
-            temp["parentPath"] = t._path;
-            temp["langImage"] = n.image;
-            temp["langName"] = n.title;
-            temp["type"] = t.title;
-            data.push(temp);
+        if (nL1.title === "Learning Path") {
+          var temp = n;
+          temp["parentPath"] = nL1._path;
+          temp["name"] = n.title;
+          temp["type"] = nL1.title;
+          data.push(temp);
+        } else {
+          for (const [kt, t] of Object.entries(n.children)) {
+            for (const [kc, c] of Object.entries(t.children)) {
+              var temp = c;
+              temp["parentPath"] = t._path;
+              temp["langImage"] = n.image;
+              temp["name"] = n.title;
+              temp["type"] = t.title;
+              data.push(temp);
+            }
           }
         }
       }
     }
 
-    return { navigation, data, lang };
+    return { navigation, data, lang, filterDict };
   },
   data() {
     return {
