@@ -1,5 +1,6 @@
 <template>
-  <v-navigation-drawer :width="325" height="100vh" v-model="drawer" temporary location="right">
+  <v-navigation-drawer style=" height: calc(100vh - 60px); top: 0px; bottom: 0px;" :width="325" v-model="drawer" temporary
+    location="right">
     <div v-for="(n, key) in navigation" :key="key">
       <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
         <div v-for="(c, keyC) in section.children" :key="keyC">
@@ -14,7 +15,9 @@
       </div>
     </div>
   </v-navigation-drawer>
-  <v-navigation-drawer :width="325" v-model="drawer_curent_course" absolute temporary location="right">
+
+  <v-navigation-drawer style=" height: calc(100vh - 60px); top: 0px; bottom: 0px;" :width="325"
+    v-model="drawer_current_course" temporary location="right">
     <div v-for="(n, key) in navigation" :key="key">
       <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
         <div v-for="(c, keyC) in section.children" :key="keyC">
@@ -29,6 +32,7 @@
       </div>
     </div>
   </v-navigation-drawer>
+
   <v-row class="fill-height">
     <v-col class="fill-height overflow-y-auto">
       <DisplayContent />
@@ -41,17 +45,11 @@
               <div class="code" id="out">
                 <p>Loading {{ lang }} WASM environnement, please wait...</p>
               </div>
-              <v-textarea
-                style="
+              <v-textarea style="
                   font-family: monospace, monospace !important;
                   margin-top: -20px !important;
-                "
-                :prefix="precommand"
-                v-on:keyup.enter="onEnter"
-                v-model="command"
-                variant="underlined"
-                active="true"
-              ></v-textarea>
+                " :prefix="precommand" v-on:keyup.enter="onEnter" v-model="command" variant="underlined"
+                active="true"></v-textarea>
             </v-card-text>
           </v-card>
         </div>
@@ -72,10 +70,7 @@
                   <canvas id="plot-canvas" width="1008" height="1008"
                     style="margin: auto; height: calc(100% - 50px)"></canvas>
                 </v-window-item>
-                <v-window-item
-                  value="editorTab"
-                  class="fill-height text-center"
-                >
+                <v-window-item value="editorTab" class="fill-height text-center">
                   <Editor :lang="lang" />
                 </v-window-item>
               </v-window>
@@ -118,7 +113,7 @@ export default {
       canvasArray: [],
       canvasPos: 0,
       drawer: null,
-      drawer_curent_course: null,
+      drawer_current_course: null,
     };
   },
   async setup() {
@@ -351,7 +346,7 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
       }
     },
     async runR() {
-      for (;;) {
+      for (; ;) {
         const output = await this.webConsole.webR.read();
         var element = document.getElementById("out");
         switch (output.type) {
