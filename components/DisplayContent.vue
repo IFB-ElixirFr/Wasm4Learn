@@ -164,7 +164,7 @@ export default {
       state.value[this.path] = { status: "finish", step: this.step };
       const router = useRouter();
       router.push({
-        path: "/" + this.lang,
+        path: "/language/" + this.lang,
       });
     },
   },

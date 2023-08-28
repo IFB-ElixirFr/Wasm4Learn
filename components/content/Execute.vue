@@ -44,12 +44,13 @@ export default {
 
   setup(props) {
     const store = useCommandStore();
-
+    const route = useRoute();
+    let lang = route.params.lang;
     var id = new Date().valueOf();
     id = "editorArea" + id;
     const { resultTestChanged } = storeToRefs(store);
 
-    return { store, id, resultTestChanged };
+    return { store, id, resultTestChanged, lang };
   },
   data() {
     return {
@@ -72,8 +73,10 @@ export default {
       this.store.updateCommand(this.editor.getValue());
     },
     async testCode() {
-      await this.store.updateCommand(this.editor.getValue());
-      await this.store.updateCommandTest(this.test.split("\n"), this.id);
+      if (this.lang == "r") {
+        await this.store.updateCommand(this.editor.getValue());
+        await this.store.updateCommandTest(this.test.split("\n"), this.id);
+      }
     },
   },
   watch: {
