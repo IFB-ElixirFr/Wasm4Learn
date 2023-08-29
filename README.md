@@ -12,19 +12,29 @@
     ...                 # function shared in all project
 /layouts
     default.vue         # layout of the application
+    home.vue            # layout of home page
 /pages
     index.vue           # home page
-    /[lang]
+    /language/[lang]/
         index.vue       # home page of language
         [...slug].vue   # How display content
+    /learning-path/
+        /all/index.vue  # All learning-path available
+        [...slug].vue   # How display content
+    /tool/[tool]/
+        index.vue       # home page of language
+        [...slug].vue   # How display content
+    about.vue           # About page
+    ... 
 /plugins                # plugings used by application
     vuetify.js
     markdownit.ts
 /publics                # assets available in all web site
-    ... 
+    ...
+    man/                # Man pages 
 /store
     ...                 # Store declaration
-nuxt.config.ts           # configuration file
+nuxt.config.ts          # configuration file
 ```
 
 !!! warning
