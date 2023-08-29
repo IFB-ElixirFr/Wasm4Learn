@@ -1,5 +1,32 @@
 # Wasm4Learn
 
+## Overview
+
+**Citation**
+
+[![DOI](https://zenodo.org/badge/670932463.svg)](https://zenodo.org/badge/latestdoi/670932463)
+
+**Language**
+
+[![Made with Vue3](https://img.shields.io/badge/Made%20with-Nuxt-blue)](https://vuejs.org/)
+[![Made with Nuxt](https://img.shields.io/badge/Made%20with-Nuxt%20content-blue)](https://nuxt.com/)
+[![Made with Nuxt content](https://img.shields.io/badge/Made%20with-Nuxt-blue)](https://content.nuxtjs.org/)
+[![Made with Vuetify](https://img.shields.io/badge/Made%20with-Vuetify-blue)](https://vuetifyjs.com/en/getting-started/installation/#nuxt-install)
+
+**Continuous Integration**
+
+![Release workflow](https://github.com/IFB-ElixirFr/Wasm4Learn/actions/workflows/release.yml/badge.svg)
+![Deploy workflow](https://github.com/IFB-ElixirFr/Wasm4Learn/actions/workflows/nuxtjs.yml/badge.svg)
+
+**Questions**
+
+[:speech_balloon: Ask a question](https://github.com/IFB-ElixirFr/Wasm4Learn/discussions)
+[:book: Report a problem or an idea](https://github.com/IFB-ElixirFr/Wasm4Learn/issues)
+
+**Contribution**
+
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
+
 ## Project layout
 
 ```bash
@@ -119,7 +146,7 @@ If you use our guide, please cite us :
 
 IFB-ElixirFr, Wasm4learn, [https://github.com/IFB-ElixirFr/sandboxbio-IFB-docs](https://github.com/IFB-ElixirFr/Wasm4Learn)
 
-A DOI with Zenodo is comming.
+[![DOI](https://zenodo.org/badge/670932463.svg)](https://zenodo.org/badge/latestdoi/670932463)
 
 ## Contributors
 
