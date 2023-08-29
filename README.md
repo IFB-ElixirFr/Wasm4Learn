@@ -117,7 +117,7 @@ Read the documention available [here](https://ifb-elixirfr.github.io/Wasm4Learn-
 
 If you use our guide, please cite us :
 
-IFB-ElixirFr, R WASM platform for teaching, https://github.com/IFB-ElixirFr/sandboxbio-IFB-docs
+IFB-ElixirFr, Wasm4learn, [https://github.com/IFB-ElixirFr/sandboxbio-IFB-docs](https://github.com/IFB-ElixirFr/Wasm4Learn)
 
 A DOI with Zenodo is comming.
 
