@@ -115,6 +115,9 @@ A DOI with Zenodo is comming.
 
 * [Thomas Denecker](https://github.com/thomasdenecker) <a itemprop="sameAs" content="https://orcid.org/0000-0003-1421-7641" href="https://orcid.org/0000-0003-1421-7641" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon"></a>
 * [Lucie Khamvongsa](https://github.com/lkhamvongsa) <a itemprop="sameAs" content="https://orcid.org/0000-0002-1194-0546" href="https://orcid.org/0000-0002-1194-0546" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon"></a>
+* [Imane Messak](https://gitlab.com/imanemessak) <a itemprop="sameAs" content="https://orcid.org/0000-0002-1654-6652" href="https://orcid.org/0000-0002-1654-6652" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon"></a>
+* [Anliat Mohamed](https://gitlab.com/anliatm) <a itemprop="sameAs" content="https://orcid.org/0000-0002-1105-8262" href="https://orcid.org/0000-0002-1105-8262" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon"></a>
+
 
 ## Contributing
 Please, see the [CONTRIBUTING](CONTRIBUTING.md) file.
