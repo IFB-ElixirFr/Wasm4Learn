@@ -30,5 +30,4 @@ jobs:
       - name: Generate tag
         run: npx semantic-release
         env:
-          GH_TOKEN: ${{ secrets.GH_AUTH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
