@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.26.0...v1.27.0) (2023-08-29)
+
+
+### Features
+
+* add contributor in README.md ([117662c](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/117662cd4813cfb80ff3b69e02f445b6910313e7))
+* add path directory ([d0a9942](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/d0a9942c8088b02e0f2a6ec33a5526bb3bb50aaa))
+
+
+### Bug Fixes
+
+* button finished redirected to the language page ([2cac55b](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/2cac55b35f7499680ed5537982063a73385e7404))
+* test code restricted only for R ([b205292](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/b2052929943b20bc737204d7be448a8955b7dd99))
+* update README.md ([0b124d3](https://github.com/IFB-ElixirFr/Wasm4Learn/commit/0b124d3f5ac5f9e5b9320729271bb818f9c29ada))
+
 ## [1.26.0](https://github.com/IFB-ElixirFr/Wasm4Learn/compare/v1.25.0...v1.26.0) (2023-08-23)
 
 
