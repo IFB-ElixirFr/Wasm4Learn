@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: "lts/*"
       - name: Install
-        run: npm install -g semantic-release @semantic-release/github @semantic-release/release-notes-generator @semantic-release/changelog conventional-changelog-conventionalcommits @semantic-release/commit-analyzer @semantic-release/git
+        run: npm install -g semantic-release @semantic-release/github @semantic-release/release-notes-generator @semantic-release/changelog conventional-changelog-conventionalcommits @semantic-release/commit-analyzer@10.0.1 @semantic-release/git
       - name: Generate tag
         run: npx semantic-release
         env:
