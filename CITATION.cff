@@ -3,12 +3,20 @@ message: "If you use this software, please cite it as below."
 authors:
 - family-names: "Denecker"
   given-names: "Thomas"
+  affiliation: "IFB-ElixirFr"
   orcid: "https://orcid.org/0000-0003-1421-7641"
 - family-names: "Khamvongsa-Charbonnier"
   given-names: "Lucie"
+  affiliation: "IFB-ElixirFr"
   orcid: "https://orcid.org/0000-0002-1194-0546"
-title: "IFB-ElixirFr/sandboxbio-IFB-docs"
-version: 1.0.0
-doi: 
-date-released: 2023-07-24
-url: "https://github.com/IFB-ElixirFr/sandboxbio-IFB-docs"
+- family-names: "Messak"
+  given-names: "Imane"
+  affiliation: "IFB-ElixirFr"
+  orcid: "https://orcid.org/0000-0002-1654-6652"
+- family-names: "Mohamed"
+  given-names: "Anliat"
+  affiliation: "IFB-ElixirFr"
+  orcid: "https://orcid.org/0000-0002-1105-8262"
+title: "IFB-ElixirFr/Wasm4Learn"
+doi: 10.5281/zenodo.8297609
+url: "https://github.com/IFB-ElixirFr/Wasm4Learn"
