@@ -1,29 +1,13 @@
 <template>
-  <v-navigation-drawer
-    :width="325"
-    v-model="drawer"
-    absolute
-    temporary
-    location="right"
-  >
+  <v-navigation-drawer style=" height: calc(100vh - 60px); top: 0px; bottom: 0px;" :width="325" v-model="drawer" temporary
+    location="right">
     <div v-for="(n, key) in navigation" :key="key">
       <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
         <div v-for="(c, keyC) in section.children" :key="keyC">
-          <h3
-            class="text-black"
-            style="margin-bottom: 2%; margin-left: 4%; margin-top: 4%"
-          >
-            {{ c.title }}
-          </h3>
+          <h3 class="text-black" style="margin-bottom: 2%; margin-left: 4%; margin-top: 4%;"> {{ c.title }}</h3>
           <v-list>
-            <v-list-item
-              @click="changePath(section._path, c._dir)"
-              v-for="(c2, keyC2) in c.children"
-              :key="keyC2"
-            >
-              <v-list-item-title style="margin-bottom: 2%; margin-left: 4%">{{
-                c2.title
-              }}</v-list-item-title>
+            <v-list-item @click="changePath(section._path, c._dir)" v-for="(c2, keyC2) in c.children" :key="keyC2">
+              <v-list-item-title style="margin-bottom: 2%; margin-left: 4%;">{{ c2.title }}</v-list-item-title>
               <v-divider></v-divider>
             </v-list-item>
           </v-list>
@@ -31,6 +15,24 @@
       </div>
     </div>
   </v-navigation-drawer>
+
+  <v-navigation-drawer style=" height: calc(100vh - 60px); top: 0px; bottom: 0px;" :width="325"
+    v-model="drawer_current_course" temporary location="right">
+    <div v-for="(n, key) in navigation" :key="key">
+      <div v-for="(section, sectionKey) in n.children" :key="sectionKey">
+        <div v-for="(c, keyC) in section.children" :key="keyC">
+          <h3 class="text-black" style="margin-bottom: 2%; margin-left: 4%; margin-top: 4%;"> {{ c.title }}</h3>
+          <v-list>
+            <v-list-item @click="changePath(section._path, c._dir)" v-for="(c2, keyC2) in c.children" :key="keyC2">
+              <v-list-item-title style="margin-bottom: 2%; margin-left: 4%;">{{ c2.title }}</v-list-item-title>
+              <v-divider></v-divider>
+            </v-list-item>
+          </v-list>
+        </div>
+      </div>
+    </div>
+  </v-navigation-drawer>
+
   <v-row class="fill-height">
     <v-col class="fill-height overflow-y-auto">
       <DisplayContent />
@@ -43,17 +45,11 @@
               <div class="code" id="out">
                 <p>Loading {{ lang }} WASM environnement, please wait...</p>
               </div>
-              <v-textarea
-                style="
+              <v-textarea style="
                   font-family: monospace, monospace !important;
                   margin-top: -20px !important;
-                "
-                :prefix="precommand"
-                v-on:keyup.enter="onEnter"
-                v-model="command"
-                variant="underlined"
-                active="true"
-              ></v-textarea>
+                " :prefix="precommand" v-on:keyup.enter="onEnter" v-model="command" variant="underlined"
+                active="true"></v-textarea>
             </v-card-text>
           </v-card>
         </div>
@@ -66,35 +62,15 @@
             <v-card-text class="fill-height">
               <v-window v-model="tab" class="fill-height">
                 <v-window-item value="plot" class="fill-height text-center">
-                  <div
-                    style="width: 100%; background-color: gainsboro"
-                    class="text-left"
-                  >
-                    <v-btn
-                      variant="text"
-                      @click="changePlot('prev')"
-                      icon="mdi-chevron-left"
-                      size="x-small"
-                    ></v-btn>
-                    <v-btn
-                      variant="text"
-                      @click="changePlot('next')"
-                      icon="mdi-chevron-right"
-                      size="x-small"
-                    ></v-btn>
+                  <div style="width: 100%; background-color: gainsboro" class="text-left">
+                    <v-btn variant="text" @click="changePlot('prev')" icon="mdi-chevron-left" size="x-small"></v-btn>
+                    <v-btn variant="text" @click="changePlot('next')" icon="mdi-chevron-right" size="x-small"></v-btn>
                     <v-btn size="x-small" @click="saveCanvas">Save</v-btn>
                   </div>
-                  <canvas
-                    id="plot-canvas"
-                    width="1008"
-                    height="1008"
-                    style="margin: auto; height: calc(100% - 50px)"
-                  ></canvas>
+                  <canvas id="plot-canvas" width="1008" height="1008"
+                    style="margin: auto; height: calc(100% - 50px)"></canvas>
                 </v-window-item>
-                <v-window-item
-                  value="editorTab"
-                  class="fill-height text-center"
-                >
+                <v-window-item value="editorTab" class="fill-height text-center">
                   <Editor :lang="lang" />
                 </v-window-item>
               </v-window>
@@ -137,6 +113,7 @@ export default {
       canvasArray: [],
       canvasPos: 0,
       drawer: null,
+      drawer_current_course: null,
     };
   },
   async setup() {
@@ -369,7 +346,7 @@ print("Welcome to the Pyodide terminal emulator 🐍\\n" + BANNER)
       }
     },
     async runR() {
-      for (;;) {
+      for (; ;) {
         const output = await this.webConsole.webR.read();
         var element = document.getElementById("out");
         switch (output.type) {
@@ -495,9 +472,11 @@ pre {
   overflow-x: auto !important;
   margin-bottom: 10px !important;
 }
+
 li {
   margin-left: 25px;
 }
+
 .math {
   font-family: Courier, monospace;
 }

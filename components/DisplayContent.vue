@@ -35,7 +35,14 @@
         prepend-icon="mdi-party-popper"
         >Finish</v-btn
       >
+
       <v-btn @click="restart" class="me-2"><v-icon>mdi-restart</v-icon></v-btn>
+
+      <v-btn class="bg-info rounded-pill lighten-4 mx-4 mdi mdi-format-list-bulleted"
+        variant="Flat"
+        @click.stop="drawer = !drawer_courses"
+        target="_blank">All Courses</v-btn
+      >
 
       <v-btn
         class="bg-primary rounded-pill lighten-4 mx-4"
@@ -68,6 +75,7 @@ export default {
     var step = ref(route.query.step ? route.query.step : 0);
     const pathParent = route.path;
     const path = route.path + id.value;
+    
 
     // Get Tuto pages
     const tutosList = await queryContent(path).find();
