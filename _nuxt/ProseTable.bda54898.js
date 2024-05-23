@@ -1,0 +1,1 @@
+import{_ as t,r as s,o as a,f as n,w as r,E as c}from"./entry.85fce134.js";const l={};function _(e,f){const o=s("v-table");return a(),n(o,null,{default:r(()=>[c(e.$slots,"default")]),_:3})}const p=t(l,[["render",_]]);export{p as default};
